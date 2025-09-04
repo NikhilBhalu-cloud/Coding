@@ -1,0 +1,216 @@
+(function () {
+  "use strict";
+
+  // Theme management
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+  const themeKey = "csharp_learning_theme";
+
+  function updateThemeIcon(theme) {
+    if (themeToggle) {
+      const icon = themeToggle.querySelector("i");
+      if (icon) {
+        icon.className =
+          theme === "dark" ? "bi bi-sun-fill" : "bi bi-moon-fill";
+      }
+    }
+  }
+
+  function applyTheme(theme) {
+    if (theme === "dark") {
+      body.classList.add("dark");
+    } else {
+      body.classList.remove("dark");
+    }
+    updateThemeIcon(theme);
+
+    // Update navbar and other elements
+    const navbar = document.querySelector(".navbar");
+    if (navbar) {
+      if (theme === "dark") {
+        navbar.classList.replace("navbar-light", "navbar-dark");
+      } else {
+        navbar.classList.replace("navbar-dark", "navbar-light");
+      }
+    }
+  }
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem(themeKey) || "light";
+  applyTheme(savedTheme);
+
+  // Theme toggle event
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = body.classList.contains("dark") ? "dark" : "light";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(newTheme);
+      localStorage.setItem(themeKey, newTheme);
+    });
+  }
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        const offsetTop =
+          target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+
+  // Code copy functionality
+  function addCopyButtons() {
+    const codeBlocks = document.querySelectorAll("pre code");
+    codeBlocks.forEach((codeBlock, index) => {
+      const pre = codeBlock.parentElement;
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2";
+      copyButton.innerHTML = '<i class="bi bi-clipboard"></i>';
+      copyButton.style.fontSize = "0.75rem";
+      copyButton.title = "Copy code";
+
+      pre.style.position = "relative";
+      pre.appendChild(copyButton);
+
+      copyButton.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(codeBlock.textContent);
+          copyButton.innerHTML = '<i class="bi bi-check"></i>';
+          copyButton.classList.replace("btn-outline-secondary", "btn-success");
+
+          setTimeout(() => {
+            copyButton.innerHTML = '<i class="bi bi-clipboard"></i>';
+            copyButton.classList.replace(
+              "btn-success",
+              "btn-outline-secondary"
+            );
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy: ", err);
+        }
+      });
+    });
+  }
+
+  // Add copy buttons after page load
+  document.addEventListener("DOMContentLoaded", addCopyButtons);
+
+  // Table of contents active link highlighting
+  function highlightTOC() {
+    const sections = document.querySelectorAll("section[id]");
+    const tocLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+    function updateActiveTOC() {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop <= 100) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      tocLinks.forEach((link) => {
+        link.classList.remove("active", "fw-bold");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active", "fw-bold");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveTOC);
+    updateActiveTOC(); // Initial call
+  }
+
+  // Initialize TOC highlighting if sections exist
+  if (document.querySelectorAll("section[id]").length > 0) {
+    highlightTOC();
+  }
+
+  // Fade in animation for cards
+  function animateCards() {
+    const cards = document.querySelectorAll(".card");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in-up");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
+  }
+
+  // Initialize animations
+  document.addEventListener("DOMContentLoaded", animateCards);
+
+  // Search functionality (basic)
+  function initSearch() {
+    const searchInput = document.getElementById("search");
+    if (searchInput) {
+      searchInput.addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        const searchableElements = document.querySelectorAll(
+          "h1, h2, h3, h4, h5, h6, p, code"
+        );
+
+        searchableElements.forEach((element) => {
+          const text = element.textContent.toLowerCase();
+          const parent = element.closest(".card, section");
+          if (parent) {
+            if (text.includes(query) || query === "") {
+              parent.style.display = "";
+              element.style.backgroundColor = "";
+              if (query && text.includes(query)) {
+                element.style.backgroundColor = "yellow";
+              }
+            } else {
+              parent.style.display = "none";
+            }
+          }
+        });
+      });
+    }
+  }
+
+  initSearch();
+
+  // Progress indicator for long pages
+  function addProgressIndicator() {
+    if (document.body.scrollHeight > window.innerHeight * 2) {
+      const progressBar = document.createElement("div");
+      progressBar.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 3px;
+                background: linear-gradient(90deg, #007bff, #28a745);
+                z-index: 9999;
+                transition: width 0.1s ease;
+            `;
+      document.body.appendChild(progressBar);
+
+      window.addEventListener("scroll", () => {
+        const scrollPercent =
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+          100;
+        progressBar.style.width = Math.min(scrollPercent, 100) + "%";
+      });
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", addProgressIndicator);
+})();

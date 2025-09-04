@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>C# Intermediate - Learning Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-code-square me-2"></i>C# Learning Hub
+      </a>
+      <button id="theme-toggle" class="btn btn-outline-light">
+        <i class="bi bi-moon-fill"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">C# Intermediate</li>
+      </ol>
+    </nav>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="sticky-top" style="top: 1rem">
+          <div class="card">
+            <div class="card-header bg-success text-white">
+              <h6 class="mb-0">
+                <i class="bi bi-list me-2"></i>Table of Contents
+              </h6>
+            </div>
+            <div class="card-body p-0">
+              <nav class="nav flex-column">
+                <a class="nav-link" href="#collections">Advanced Collections</a>
+                <a class="nav-link" href="#linq">LINQ</a>
+                <a class="nav-link" href="#exceptions">Exception Handling</a>
+                <a class="nav-link" href="#delegates">Delegates & Events</a>
+                <a class="nav-link" href="#files">File I/O Operations</a>
+                <a class="nav-link" href="#patterns">Design Patterns</a>
+                <a class="nav-link" href="#practice">Practice Questions</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+        <div class="mb-4">
+          <h1 class="display-5 fw-bold text-success">C# Intermediate</h1>
+          <p class="lead">
+            Elevate your C# skills with advanced concepts and techniques
+          </p>
+        </div>
+
+        <section id="collections" class="mb-5">
+          <h2 class="h3 mb-3">
+            <i class="bi bi-collection me-2"></i>Advanced Collections
+          </h2>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5>Specialized Collections</h5>
+              <p>C# offers a rich set of specialized collection types beyond List and Dictionary:</p>
+              
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
+
+// HashSet - Collection with unique elements and set operations
+HashSet&lt;string&gt; programmingLanguages = new HashSet&lt;string&gt; { "C#", "Java", "Python" };
+HashSet&lt;string&gt; scriptingLanguages = new HashSet&lt;string&gt; { "Python", "JavaScript", "Ruby" };
+
+programmingLanguages.Add("Go");        // Add element
+programmingLanguages.Remove("Java");   // Remove element
+bool containsPython = programmingLanguages.Contains("Python"); // Check for element
+
+// Set operations
+HashSet&lt;string&gt; intersection = new HashSet&lt;string&gt;(programmingLanguages);
+intersection.IntersectWith(scriptingLanguages);  // Languages in both sets: Python
+
+HashSet&lt;string&gt; union = new HashSet&lt;string&gt;(programmingLanguages);
+union.UnionWith(scriptingLanguages);  // All unique languages from both sets
+
+// Queue - FIFO (First In First Out)
+Queue&lt;string&gt; printQueue = new Queue&lt;string&gt;();
+printQueue.Enqueue("Document1.pdf");  // Add to queue
+printQueue.Enqueue("Report.docx");
+printQueue.Enqueue("Image.png");
+
+while (printQueue.Count > 0)
+{
+    string nextItem = printQueue.Dequeue();  // Remove and return first item
+    Console.WriteLine($"Printing: {nextItem}");
+}
+
+// Stack - LIFO (Last In First Out)
+Stack&lt;string&gt; browserHistory = new Stack&lt;string&gt;();
+browserHistory.Push("homepage.html");
+browserHistory.Push("products.html");
+browserHistory.Push("checkout.html");
+
+// Peek without removing
+string currentPage = browserHistory.Peek();  // "checkout.html"
+
+// Navigate back
+if (browserHistory.Count > 0)
+{
+    string previousPage = browserHistory.Pop();  // "checkout.html"
+    Console.WriteLine($"Going back to: {browserHistory.Peek()}");  // "products.html"
+}
+
+// Concurrent collections for thread-safe operations
+ConcurrentDictionary&lt;string, int&gt; userScores = new ConcurrentDictionary&lt;string, int&gt;();
+userScores.TryAdd("Alice", 95);
+userScores.TryAdd("Bob", 87);
+
+// Thread-safe update operation
+userScores.AddOrUpdate("Alice", 100, (key, oldValue) => oldValue + 5);  // Adds 5 to Alice's score
+
+// LinkedList - Double-linked list for efficient insertions/deletions
+LinkedList&lt;int&gt; linkedList = new LinkedList&lt;int&gt;(new[] { 1, 2, 3, 4, 5 });
+LinkedListNode&lt;int&gt; node = linkedList.Find(3);
+linkedList.AddBefore(node, 2);
+linkedList.AddAfter(node, 4);</code></pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h5>IEnumerable and ICollection Interfaces</h5>
+              <p>Understanding the collection interface hierarchy is crucial for working with collections effectively.</p>
+              <pre><code class="language-csharp">// Custom collection class implementing IEnumerable
+public class TemperatureData : IEnumerable&lt;double&gt;
+{
+    private List&lt;double&gt; readings = new List&lt;double&gt;();
+    
+    public void AddReading(double temperature)
+    {
+        readings.Add(temperature);
+    }
+    
+    public double AverageReading => readings.Count > 0 ? readings.Average() : 0;
+    
+    // IEnumerable implementation
+    public IEnumerator&lt;double&gt; GetEnumerator()
+    {
+        return readings.GetEnumerator();
+    }
+    
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+}
+
+// Using our custom collection
+TemperatureData weeklyTemps = new TemperatureData();
+weeklyTemps.AddReading(68.5);
+weeklyTemps.AddReading(72.1);
+weeklyTemps.AddReading(74.0);
+
+// Iterating through the collection using foreach
+foreach (double temp in weeklyTemps)
+{
+    Console.WriteLine($"Reading: {temp}°F");
+}
+
+// Calculating average
+Console.WriteLine($"Average temperature: {weeklyTemps.AverageReading}°F");</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="linq" class="mb-5">
+          <h2 class="h3 mb-3">
+            <i class="bi bi-funnel me-2"></i>LINQ (Language Integrated Query)
+          </h2>
+          <div class="card">
+            <div class="card-body">
+              <h5>Query and Method Syntax</h5>
+              <p>LINQ provides a unified way to query various data sources with a SQL-like syntax.</p>
+              
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+
+// Sample data
+List&lt;Product&gt; products = new List&lt;Product&gt;
+{
+    new Product { Id = 1, Name = "Laptop", Price = 1200.00m, Category = "Electronics" },
+    new Product { Id = 2, Name = "Desk Chair", Price = 250.50m, Category = "Furniture" },
+    new Product { Id = 3, Name = "Smartphone", Price = 800.00m, Category = "Electronics" },
+    new Product { Id = 4, Name = "Bookshelf", Price = 175.25m, Category = "Furniture" },
+    new Product { Id = 5, Name = "Headphones", Price = 150.00m, Category = "Electronics" }
+};
+
+// Query syntax
+var expensiveElectronics = from p in products
+                           where p.Category == "Electronics" && p.Price > 500
+                           orderby p.Price descending
+                           select new { p.Name, p.Price };
+
+// Method syntax (equivalent to the above)
+var expensiveElectronics2 = products
+    .Where(p => p.Category == "Electronics" && p.Price > 500)
+    .OrderByDescending(p => p.Price)
+    .Select(p => new { p.Name, p.Price });
+
+// Basic LINQ operators
+// Filtering
+var furnitureItems = products.Where(p => p.Category == "Furniture");
+
+// Sorting
+var sortedByPrice = products.OrderBy(p => p.Price);
+var sortedByNameDesc = products.OrderByDescending(p => p.Name);
+
+// Projection
+var productNames = products.Select(p => p.Name);
+var nameAndPriceList = products.Select(p => new { p.Name, p.Price });
+
+// Aggregation
+decimal totalValue = products.Sum(p => p.Price);
+decimal averagePrice = products.Average(p => p.Price);
+decimal highestPrice = products.Max(p => p.Price);
+decimal lowestPrice = products.Min(p => p.Price);
+int count = products.Count();
+
+// Grouping
+var groupedByCategory = products
+    .GroupBy(p => p.Category)
+    .Select(g => new { 
+        Category = g.Key, 
+        Count = g.Count(), 
+        AveragePrice = g.Average(p => p.Price) 
+    });
+
+// First, Last, Single
+var firstElectronicItem = products.First(p => p.Category == "Electronics");
+var lastFurnitureItem = products.Last(p => p.Category == "Furniture");
+
+// First with default value (or null) if not found
+var item = products.FirstOrDefault(p => p.Price > 2000);  // Returns null if not found
+
+// Quantifiers
+bool hasExpensiveItems = products.Any(p => p.Price > 1000);
+bool allElectronics = products.All(p => p.Category == "Electronics");  // False
+
+// Set operations
+List&lt;string&gt; techBrands = new List&lt;string&gt; { "Apple", "Microsoft", "Google" };
+List&lt;string&gt; phoneBrands = new List&lt;string&gt; { "Apple", "Samsung", "Huawei" };
+
+var allBrands = techBrands.Union(phoneBrands);  // Distinct union of both lists
+var commonBrands = techBrands.Intersect(phoneBrands);  // Items in both lists (Apple)
+var techButNotPhone = techBrands.Except(phoneBrands);  // Items in first list but not second
+
+// Joins
+var customers = new List&lt;Customer&gt;
+{
+    new Customer { Id = 1, Name = "Alice" },
+    new Customer { Id = 2, Name = "Bob" },
+    new Customer { Id = 3, Name = "Charlie" }
+};
+
+var orders = new List&lt;Order&gt;
+{
+    new Order { Id = 101, CustomerId = 1, Amount = 150.00m },
+    new Order { Id = 102, CustomerId = 2, Amount = 75.50m },
+    new Order { Id = 103, CustomerId = 1, Amount = 250.75m },
+    new Order { Id = 104, CustomerId = 3, Amount = 125.30m }
+};
+
+// Join customers with their orders
+var customerOrders = customers.Join(
+    orders,
+    customer => customer.Id,
+    order => order.CustomerId,
+    (customer, order) => new { customer.Name, order.Amount }
+);
+
+// Group join - customers with their orders as a collection
+var customersWithOrders = customers.GroupJoin(
+    orders,
+    customer => customer.Id,
+    order => order.CustomerId,
+    (customer, customerOrders) => new { 
+        Customer = customer.Name, 
+        Orders = customerOrders.ToList(),
+        TotalAmount = customerOrders.Sum(o => o.Amount)
+    }
+);
+
+// Helper classes
+public class Product 
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public string Category { get; set; }
+}
+
+public class Customer
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public class Order
+{
+    public int Id { get; set; }
+    public int CustomerId { get; set; }
+    public decimal Amount { get; set; }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="exceptions" class="mb-5">
+          <h2 class="h3 mb-3">
+            <i class="bi bi-exclamation-triangle me-2"></i>Exception Handling
+          </h2>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5>Advanced Exception Handling</h5>
+              
+              <pre><code class="language-csharp">using System;
+using System.IO;
+
+public class ExceptionDemo
+{
+    public void DemonstrateExceptions()
+    {
+        try
+        {
+            // Code that might throw exceptions
+            ProcessFile("data.txt");
+        }
+        catch (FileNotFoundException ex)
+        {
+            // Handle specific exception
+            Console.WriteLine($"File not found: {ex.FileName}");
+            Console.WriteLine($"Error: {ex.Message}");
+            
+            // Log the exception
+            LogException(ex);
+        }
+        catch (IOException ex)
+        {
+            // Handle a more general IO exception
+            Console.WriteLine("IO error occurred during file processing");
+            Console.WriteLine($"Error: {ex.Message}");
+            LogException(ex);
+        }
+        catch (Exception ex) when (ex.InnerException is NullReferenceException)
+        {
+            // Exception filter (C# 6+)
+            Console.WriteLine("A null reference occurred in inner operation");
+            LogException(ex);
+        }
+        catch (Exception ex)
+        {
+            // Catch all other exceptions
+            Console.WriteLine("An unexpected error occurred");
+            Console.WriteLine($"Error: {ex.Message}");
+            LogException(ex);
+            
+            // Optionally re-throw to let it bubble up
+            // throw;
+        }
+        finally
+        {
+            // Always executes, whether exception occurred or not
+            Console.WriteLine("Cleaning up resources");
+            CleanupResources();
+        }
+    }
+    
+    private void ProcessFile(string filename)
+    {
+        if (!File.Exists(filename))
+        {
+            throw new FileNotFoundException("The required data file was not found.", filename);
+        }
+        
+        // Other file processing code that might throw exceptions
+    }
+    
+    // Custom exception class
+    public class DataProcessingException : Exception
+    {
+        public string DataSource { get; }
+        
+        public DataProcessingException(string message) : base(message)
+        {
+        }
+        
+        public DataProcessingException(string message, Exception innerException) 
+            : base(message, innerException)
+        {
+        }
+        
+        public DataProcessingException(string message, string dataSource) 
+            : base(message)
+        {
+            DataSource = dataSource;
+        }
+    }
+    
+    // Method that throws custom exception
+    public void ProcessData(string source)
+    {
+        try
+        {
+            // Processing code
+        }
+        catch (Exception ex)
+        {
+            // Wrap the original exception
+            throw new DataProcessingException(
+                "Failed to process data from source", 
+                source) 
+            { 
+                // Set properties of Exception class
+                HelpLink = "https://example.com/error-help",
+                Source = "DataProcessor"
+            };
+        }
+    }
+    
+    // Using try-catch with the using statement
+    public void ReadDataWithUsing(string filename)
+    {
+        try
+        {
+            using (StreamReader reader = new StreamReader(filename))
+            {
+                string content = reader.ReadToEnd();
+                ProcessContent(content);
+            } // StreamReader.Dispose() is called automatically here
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error reading file: {ex.Message}");
+        }
+    }
+    
+    // Using C# 8 using declaration
+    public void ReadDataWithUsingDeclaration(string filename)
+    {
+        try
+        {
+            using StreamReader reader = new StreamReader(filename);
+            string content = reader.ReadToEnd();
+            ProcessContent(content);
+            
+            // reader.Dispose() is called at the end of the block
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error reading file: {ex.Message}");
+        }
+    }
+    
+    // Helper methods
+    private void ProcessContent(string content)
+    {
+        // Process file content
+    }
+    
+    private void LogException(Exception ex)
+    {
+        // Log the exception details
+        Console.WriteLine($"Exception logged: {ex.GetType().Name}");
+        Console.WriteLine($"Stack trace: {ex.StackTrace}");
+    }
+    
+    private void CleanupResources()
+    {
+        // Cleanup code
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="delegates" class="mb-5">
+          <h2 class="h3 mb-3">
+            <i class="bi bi-arrow-left-right me-2"></i>Delegates & Events
+          </h2>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5>Working with Delegates</h5>
+              <p>Delegates are type-safe function pointers that enable callback patterns and event handling.</p>
+              
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+// Define delegate types
+public delegate int MathOperation(int x, int y);
+public delegate void ProcessData(string data);
+public delegate bool Validator&lt;T&gt;(T item);
+
+public class DelegatesDemo
+{
+    public void SimpleDelegateExample()
+    {
+        // Create delegate instances
+        MathOperation add = Add;
+        MathOperation subtract = Subtract;
+        
+        // Use the delegates
+        int result1 = add(10, 5);      // 15
+        int result2 = subtract(10, 5); // 5
+        
+        // Passing delegates as parameters
+        PrintResult("Addition", add, 10, 5);
+        PrintResult("Subtraction", subtract, 10, 5);
+    }
+    
+    // Methods that match the delegate signature
+    private int Add(int a, int b) => a + b;
+    private int Subtract(int a, int b) => a - b;
+    
+    // Method accepting a delegate parameter
+    private void PrintResult(string operation, MathOperation mathOp, int a, int b)
+    {
+        int result = mathOp(a, b);
+        Console.WriteLine($"{operation} of {a} and {b} = {result}");
+    }
+    
+    // Multicast delegates
+    public void MulticastDelegateExample()
+    {
+        ProcessData processData = LogData;
+        processData += EncryptData;
+        processData += SaveData;
+        
+        // This calls all three methods
+        processData("Important user information");
+        
+        // Remove a method from the chain
+        processData -= EncryptData;
+        
+        // Now only LogData and SaveData will be called
+        processData("Second data chunk");
+    }
+    
+    // Methods for multicast delegate
+    private void LogData(string data)
+    {
+        Console.WriteLine($"Logging: {data}");
+    }
+    
+    private void EncryptData(string data)
+    {
+        Console.WriteLine($"Encrypting: {data}");
+    }
+    
+    private void SaveData(string data)
+    {
+        Console.WriteLine($"Saving: {data}");
+    }
+    
+    // Anonymous methods and lambda expressions
+    public void ModernDelegateUsage()
+    {
+        // Anonymous method
+        MathOperation multiply = delegate(int a, int b) { return a * b; };
+        
+        // Lambda expression (more concise)
+        MathOperation divide = (a, b) => b != 0 ? a / b : throw new DivideByZeroException();
+        
+        // Using the delegates
+        Console.WriteLine($"Multiply: {multiply(6, 3)}");  // 18
+        Console.WriteLine($"Divide: {divide(6, 3)}");      // 2
+        
+        // Generic delegate with lambda
+        Validator&lt;string&gt; isLongEnough = s => s.Length >= 8;
+        Console.WriteLine($"Password valid: {isLongEnough("securePass")}");  // true
+        
+        // Using built-in delegate types
+        Func&lt;int, int, int&gt; power = (x, y) => (int)Math.Pow(x, y);
+        Action&lt;string&gt; display = message => Console.WriteLine($"Message: {message}");
+        Predicate&lt;int&gt; isEven = number => number % 2 == 0;
+        
+        Console.WriteLine($"2^3 = {power(2, 3)}");  // 8
+        display("Hello World!");  // Message: Hello World!
+        Console.WriteLine($"Is 42 even? {isEven(42)}");  // true
+    }
+    
+    // Real-world example: Filtering a list using delegates
+    public List&lt;T&gt; Filter&lt;T&gt;(List&lt;T&gt; items, Predicate&lt;T&gt; predicate)
+    {
+        List&lt;T&gt; results = new List&lt;T&gt;();
+        foreach (var item in items)
+        {
+            if (predicate(item))
+            {
+                results.Add(item);
+            }
+        }
+        return results;
+    }
+    
+    public void DelegateFilterExample()
+    {
+        List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        
+        // Filter even numbers using delegate
+        var evenNumbers = Filter(numbers, n => n % 2 == 0);
+        
+        // Filter numbers greater than 5
+        var largeNumbers = Filter(numbers, n => n > 5);
+        
+        Console.WriteLine($"Even numbers: {string.Join(", ", evenNumbers)}");
+        Console.WriteLine($"Numbers > 5: {string.Join(", ", largeNumbers)}");
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h5>Events & Event Handling</h5>
+              <p>Events are a way for a class to notify other classes when something of interest occurs.</p>
+              
+              <pre><code class="language-csharp">using System;
+
+// Custom EventArgs class
+public class StockPriceChangedEventArgs : EventArgs
+{
+    public string StockSymbol { get; }
+    public decimal OldPrice { get; }
+    public decimal NewPrice { get; }
+    
+    public StockPriceChangedEventArgs(string symbol, decimal oldPrice, decimal newPrice)
+    {
+        StockSymbol = symbol;
+        OldPrice = oldPrice;
+        NewPrice = newPrice;
+    }
+    
+    public decimal PriceChange => NewPrice - OldPrice;
+    public decimal PercentageChange => Math.Round((NewPrice / OldPrice - 1) * 100, 2);
+}
+
+// Class that publishes events
+public class StockMonitor
+{
+    private decimal currentPrice;
+    public string Symbol { get; }
+    
+    // Define the event using EventHandler&lt;T&gt;
+    public event EventHandler&lt;StockPriceChangedEventArgs&gt; PriceChanged;
+    
+    // Simple event with no additional data
+    public event EventHandler MarketClosed;
+    
+    public StockMonitor(string symbol, decimal initialPrice)
+    {
+        Symbol = symbol;
+        currentPrice = initialPrice;
+    }
+    
+    public void UpdatePrice(decimal newPrice)
+    {
+        if (newPrice != currentPrice)
+        {
+            decimal oldPrice = currentPrice;
+            currentPrice = newPrice;
+            
+            // Create event args
+            var args = new StockPriceChangedEventArgs(Symbol, oldPrice, newPrice);
+            
+            // Raise the event - using a thread-safe pattern
+            OnPriceChanged(args);
+        }
+    }
+    
+    public void CloseMarket()
+    {
+        Console.WriteLine("Market is closing now...");
+        OnMarketClosed(EventArgs.Empty);
+    }
+    
+    // Protected virtual method for raising the event
+    protected virtual void OnPriceChanged(StockPriceChangedEventArgs e)
+    {
+        // Make a copy of the event to prevent race conditions
+        EventHandler&lt;StockPriceChangedEventArgs&gt; handler = PriceChanged;
+        
+        // Check if there are any subscribers
+        if (handler != null)
+        {
+            // Raise the event
+            handler(this, e);
+        }
+    }
+    
+    // Shorter syntax using null-conditional operator (C# 6+)
+    protected virtual void OnMarketClosed(EventArgs e)
+    {
+        MarketClosed?.Invoke(this, e);
+    }
+}
+
+// Class that subscribes to events
+public class StockAnalyzer
+{
+    public void TrackStock(StockMonitor monitor)
+    {
+        // Subscribe to events
+        monitor.PriceChanged += OnStockPriceChanged;
+        monitor.MarketClosed += OnMarketClosed;
+    }
+    
+    public void StopTracking(StockMonitor monitor)
+    {
+        // Unsubscribe from events - important to prevent memory leaks
+        monitor.PriceChanged -= OnStockPriceChanged;
+        monitor.MarketClosed -= OnMarketClosed;
+    }
+    
+    // Event handler methods
+    private void OnStockPriceChanged(object sender, StockPriceChangedEventArgs e)
+    {
+        Console.WriteLine($"Stock {e.StockSymbol} price changed: " +
+                          $"{e.OldPrice:C} -> {e.NewPrice:C} " +
+                          $"({e.PercentageChange:+0.00;-0.00}%)");
+        
+        // Implement logic for buy/sell recommendations
+        if (e.PercentageChange > 5)
+        {
+            Console.WriteLine("ALERT: Consider selling due to significant price increase!");
+        }
+        else if (e.PercentageChange < -5)
+        {
+            Console.WriteLine("ALERT: Consider buying due to significant price drop!");
+        }
+    }
+    
+    private void OnMarketClosed(object sender, EventArgs e)
+    {
+        Console.WriteLine("Market closed. Generating end-of-day report...");
+    }
+}
+
+// Usage example
+public class EventsDemo
+{
+    public void RunEventDemo()
+    {
+        // Create publisher
+        StockMonitor msftStock = new StockMonitor("MSFT", 300.00m);
+        
+        // Create subscriber
+        StockAnalyzer analyzer = new StockAnalyzer();
+        
+        // Subscribe to events
+        analyzer.TrackStock(msftStock);
+        
+        // Simulate price changes
+        msftStock.UpdatePrice(305.25m);  // +1.75%
+        msftStock.UpdatePrice(320.50m);  // +5.00%
+        msftStock.UpdatePrice(285.75m);  // -10.84%
+        
+        // Close market
+        msftStock.CloseMarket();
+        
+        // Unsubscribe
+        analyzer.StopTracking(msftStock);
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="files" class="mb-5">
+          <h2 class="h3 mb-3">
+            <i class="bi bi-file-earmark-text me-2"></i>File I/O Operations
+          </h2>
+          <div class="card">
+            <div class="card-body">
+              <h5>Working with Files and Directories</h5>
+              
+              <pre><code class="language-csharp">using System;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+
+public class FileOperationsDemo
+{
+    // Basic file operations
+    public void BasicFileOperations()
+    {
+        string filePath = "sample.txt";
+        string backupPath = "sample.bak";
+        
+        // Write text to a file
+        File.WriteAllText(filePath, "Hello, C# File I/O!");
+        
+        // Read all text
+        string content = File.ReadAllText(filePath);
+        Console.WriteLine($"File content: {content}");
+        
+        // Append text
+        File.AppendAllText(filePath, "\nThis line was appended.");
+        
+        // Read all lines as array
+        string[] lines = File.ReadAllLines(filePath);
+        Console.WriteLine($"Number of lines: {lines.Length}");
+        
+        // Copy file
+        File.Copy(filePath, backupPath, overwrite: true);
+        
+        // Check if file exists
+        bool exists = File.Exists(backupPath);
+        Console.WriteLine($"Backup file exists: {exists}");
+        
+        // Get file information
+        FileInfo fileInfo = new FileInfo(filePath);
+        Console.WriteLine($"File size: {fileInfo.Length} bytes");
+        Console.WriteLine($"Created: {fileInfo.CreationTime}");
+        Console.WriteLine($"Last modified: {fileInfo.LastWriteTime}");
+        
+        // Delete file
+        File.Delete(backupPath);
+    }
+    
+    // Working with streams
+    public void StreamOperations()
+    {
+        string filePath = "stream_sample.txt";
+        
+        // Write to a file using StreamWriter
+        using (StreamWriter writer = new StreamWriter(filePath, append: false))
+        {
+            writer.WriteLine("Line 1: StreamWriter example");
+            writer.WriteLine("Line 2: Another line of text");
+            writer.WriteLine("Line 3: Final line");
+        }
+        
+        // Read from a file using StreamReader
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            string line;
+            int lineNumber = 1;
+            
+            Console.WriteLine("Reading file content:");
+            while ((line = reader.ReadLine()) != null)
+            {
+                Console.WriteLine($"{lineNumber++}: {line}");
+            }
+        }
+        
+        // Binary file operations
+        string binaryFilePath = "binary_sample.bin";
+        byte[] dataToWrite = Encoding.UTF8.GetBytes("Binary data example");
+        
+        // Write binary data
+        using (FileStream fs = new FileStream(binaryFilePath, FileMode.Create))
+        {
+            fs.Write(dataToWrite, 0, dataToWrite.Length);
+        }
+        
+        // Read binary data
+        byte[] dataRead = new byte[100];
+        using (FileStream fs = new FileStream(binaryFilePath, FileMode.Open))
+        {
+            int bytesRead = fs.Read(dataRead, 0, dataRead.Length);
+            string recoveredData = Encoding.UTF8.GetString(dataRead, 0, bytesRead);
+            Console.WriteLine($"Read from binary file: {recoveredData}");
+        }
+    }
+    
+    // Working with directories
+    public void DirectoryOperations()
+    {
+        string dirPath = "SampleDir";
+        string subDirPath = Path.Combine(dirPath, "SubDir");
+        
+        // Create directory if it doesn't exist
+        if (!Directory.Exists(dirPath))
+        {
+            Directory.CreateDirectory(dirPath);
+            Console.WriteLine($"Directory created: {dirPath}");
+        }
+        
+        // Create subdirectory
+        Directory.CreateDirectory(subDirPath);
+        
+        // Create some files in the directory
+        File.WriteAllText(Path.Combine(dirPath, "file1.txt"), "Content of file 1");
+        File.WriteAllText(Path.Combine(dirPath, "file2.txt"), "Content of file 2");
+        File.WriteAllText(Path.Combine(subDirPath, "subfile.txt"), "Content in subdirectory");
+        
+        // Get files in directory
+        string[] files = Directory.GetFiles(dirPath);
+        Console.WriteLine($"Files in {dirPath}:");
+        foreach (string file in files)
+        {
+            Console.WriteLine($"  - {Path.GetFileName(file)}");
+        }
+        
+        // Get subdirectories
+        string[] subDirs = Directory.GetDirectories(dirPath);
+        Console.WriteLine($"Subdirectories in {dirPath}:");
+        foreach (string dir in subDirs)
+        {
+            Console.WriteLine($"  - {Path.GetFileName(dir)}");
+        }
+        
+        // Get all files in directory and subdirectories
+        string[] allFiles = Directory.GetFiles(dirPath, "*", SearchOption.AllDirectories);
+        Console.WriteLine($"All files (including subdirectories):");
+        foreach (string file in allFiles)
+        {
+            Console.WriteLine($"  - {file}");
+        }
+        
+        // Delete directory and all contents
+        Directory.Delete(dirPath, recursive: true);
+        Console.WriteLine($"Directory deleted: {dirPath}");
+    }
+    
+    // Path operations
+    public void PathOperations()
+    {
+        string filePath = @"C:\Users\Username\Documents\file.txt";
+        
+        Console.WriteLine($"Directory name: {Path.GetDirectoryName(filePath)}");
+        Console.WriteLine($"File name: {Path.GetFileName(filePath)}");
+        Console.WriteLine($"File name without extension: {Path.GetFileNameWithoutExtension(filePath)}");
+        Console.WriteLine($"Extension: {Path.GetExtension(filePath)}");
+        Console.WriteLine($"Root: {Path.GetPathRoot(filePath)}");
+        
+        // Combine paths safely
+        string newPath = Path.Combine("C:\\Users", "Username", "Downloads", "file.txt");
+        Console.WriteLine($"Combined path: {newPath}");
+        
+        // Get temporary file name
+        string tempFile = Path.GetTempFileName();
+        Console.WriteLine($"Temporary file: {tempFile}");
+        
+        // Get special folders
+        string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        Console.WriteLine($"Desktop folder: {desktop}");
+    }
+    
+    // Asynchronous file operations
+    public async Task AsyncFileOperationsAsync()
+    {
+        string filePath = "async_sample.txt";
+        
+        // Write text asynchronously
+        await File.WriteAllTextAsync(filePath, "This file was written asynchronously.");
+        
+        // Read text asynchronously
+        string content = await File.ReadAllTextAsync(filePath);
+        Console.WriteLine($"Async file content: {content}");
+        
+        // Write binary data asynchronously
+        byte[] data = Encoding.UTF8.GetBytes("Binary async data");
+        await File.WriteAllBytesAsync("async_binary.bin", data);
+        
+        // Read binary data asynchronously
+        byte[] readData = await File.ReadAllBytesAsync("async_binary.bin");
+        Console.WriteLine($"Async binary content: {Encoding.UTF8.GetString(readData)}");
+        
+        // Using streams asynchronously
+        using (FileStream fs = new FileStream("stream_async.txt", FileMode.Create))
+        using (StreamWriter writer = new StreamWriter(fs))
+        {
+            await writer.WriteLineAsync("Line 1: Async StreamWriter");
+            await writer.WriteLineAsync("Line 2: Another async line");
+        }
+        
+        using (FileStream fs = new FileStream("stream_async.txt", FileMode.Open))
+        using (StreamReader reader = new StreamReader(fs))
+        {
+            string line;
+            while ((line = await reader.ReadLineAsync()) != null)
+            {
+                Console.WriteLine($"Async read: {line}");
+            }
+        }
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="patterns" class="mb-5">
+          <h2 class="h3 mb-3">
+            <i class="bi bi-buildings me-2"></i>Design Patterns
+          </h2>
+          <div class="card">
+            <div class="card-body">
+              <h5>Common Design Patterns</h5>
+              
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+// 1. Singleton Pattern
+public sealed class Logger
+{
+    // Private static instance
+    private static Logger _instance;
+    
+    // Lock object for thread safety
+    private static readonly object _lock = new object();
+    
+    // Private constructor prevents instantiation from outside
+    private Logger() { }
+    
+    // Public method to get the instance
+    public static Logger GetInstance()
+    {
+        if (_instance == null)
+        {
+            lock (_lock) // Thread-safe check
+            {
+                if (_instance == null)
+                {
+                    _instance = new Logger();
+                }
+            }
+        }
+        return _instance;
+    }
+    
+    // Alternative lazy initialization (C# 4+)
+    private static readonly Lazy&lt;Logger&gt; _lazyInstance = 
+        new Lazy&lt;Logger&gt;(() => new Logger());
+        
+    public static Logger Instance => _lazyInstance.Value;
+    
+    // Actual functionality
+    public void Log(string message)
+    {
+        Console.WriteLine($"[{DateTime.Now}] {message}");
+    }
+}
+
+// 2. Factory Pattern
+public interface IShape
+{
+    void Draw();
+    double CalculateArea();
+}
+
+public class Circle : IShape
+{
+    public double Radius { get; }
+    
+    public Circle(double radius)
+    {
+        Radius = radius;
+    }
+    
+    public void Draw()
+    {
+        Console.WriteLine("Drawing a circle");
+    }
+    
+    public double CalculateArea()
+    {
+        return Math.PI * Radius * Radius;
+    }
+}
+
+public class Rectangle : IShape
+{
+    public double Width { get; }
+    public double Height { get; }
+    
+    public Rectangle(double width, double height)
+    {
+        Width = width;
+        Height = height;
+    }
+    
+    public void Draw()
+    {
+        Console.WriteLine("Drawing a rectangle");
+    }
+    
+    public double CalculateArea()
+    {
+        return Width * Height;
+    }
+}
+
+public class ShapeFactory
+{
+    public IShape CreateShape(string shapeType)
+    {
+        return shapeType.ToLower() switch
+        {
+            "circle" => new Circle(5),
+            "rectangle" => new Rectangle(4, 6),
+            _ => throw new ArgumentException("Invalid shape type", nameof(shapeType))
+        };
+    }
+}
+
+// 3. Observer Pattern
+public interface IObserver
+{
+    void Update(string message);
+}
+
+public interface ISubject
+{
+    void Attach(IObserver observer);
+    void Detach(IObserver observer);
+    void Notify(string message);
+}
+
+public class NewsPublisher : ISubject
+{
+    private readonly List&lt;IObserver&gt; _observers = new List&lt;IObserver&gt;();
+    
+    public void Attach(IObserver observer)
+    {
+        _observers.Add(observer);
+        Console.WriteLine("Observer attached");
+    }
+    
+    public void Detach(IObserver observer)
+    {
+        _observers.Remove(observer);
+        Console.WriteLine("Observer detached");
+    }
+    
+    public void Notify(string message)
+    {
+        foreach (var observer in _observers)
+        {
+            observer.Update(message);
+        }
+    }
+    
+    public void PublishNews(string news)
+    {
+        Console.WriteLine($"Publishing news: {news}");
+        Notify(news);
+    }
+}
+
+public class NewsSubscriber : IObserver
+{
+    public string Name { get; }
+    
+    public NewsSubscriber(string name)
+    {
+        Name = name;
+    }
+    
+    public void Update(string message)
+    {
+        Console.WriteLine($"{Name} received news: {message}");
+    }
+}
+
+// 4. Strategy Pattern
+public interface IPaymentStrategy
+{
+    void ProcessPayment(decimal amount);
+}
+
+public class CreditCardPayment : IPaymentStrategy
+{
+    private string _cardNumber;
+    private string _name;
+    
+    public CreditCardPayment(string cardNumber, string name)
+    {
+        _cardNumber = cardNumber;
+        _name = name;
+    }
+    
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing credit card payment of ${amount}");
+        Console.WriteLine($"Card: {_cardNumber.Substring(0, 4)}XXXXXXXXXXXX, Name: {_name}");
+    }
+}
+
+public class PayPalPayment : IPaymentStrategy
+{
+    private string _email;
+    
+    public PayPalPayment(string email)
+    {
+        _email = email;
+    }
+    
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing PayPal payment of ${amount}");
+        Console.WriteLine($"Email: {_email}");
+    }
+}
+
+public class ShoppingCart
+{
+    private IPaymentStrategy _paymentStrategy;
+    private readonly List&lt;string&gt; _items = new List&lt;string&gt;();
+    
+    public void AddItem(string item, decimal price)
+    {
+        _items.Add($"{item} - ${price}");
+    }
+    
+    public void SetPaymentStrategy(IPaymentStrategy strategy)
+    {
+        _paymentStrategy = strategy;
+    }
+    
+    public void Checkout(decimal total)
+    {
+        Console.WriteLine("Shopping cart contents:");
+        foreach (var item in _items)
+        {
+            Console.WriteLine($"- {item}");
+        }
+        Console.WriteLine($"Total: ${total}");
+        
+        _paymentStrategy.ProcessPayment(total);
+    }
+}
+
+// 5. Repository Pattern with SOLID principles
+public interface IEntity
+{
+    int Id { get; set; }
+}
+
+public class Customer : IEntity
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+}
+
+public interface IRepository&lt;T&gt; where T : IEntity
+{
+    T GetById(int id);
+    IEnumerable&lt;T&gt; GetAll();
+    void Add(T entity);
+    void Update(T entity);
+    void Delete(int id);
+}
+
+public class CustomerRepository : IRepository&lt;Customer&gt;
+{
+    private readonly List&lt;Customer&gt; _customers = new List&lt;Customer&gt;();
+    private int _nextId = 1;
+    
+    public Customer GetById(int id)
+    {
+        return _customers.Find(c => c.Id == id);
+    }
+    
+    public IEnumerable&lt;Customer&gt; GetAll()
+    {
+        return _customers;
+    }
+    
+    public void Add(Customer entity)
+    {
+        if (entity == null)
+            throw new ArgumentNullException(nameof(entity));
+            
+        entity.Id = _nextId++;
+        _customers.Add(entity);
+    }
+    
+    public void Update(Customer entity)
+    {
+        if (entity == null)
+            throw new ArgumentNullException(nameof(entity));
+            
+        int index = _customers.FindIndex(c => c.Id == entity.Id);
+        if (index != -1)
+        {
+            _customers[index] = entity;
+        }
+        else
+        {
+            throw new KeyNotFoundException($"Customer with ID {entity.Id} not found.");
+        }
+    }
+    
+    public void Delete(int id)
+    {
+        int index = _customers.FindIndex(c => c.Id == id);
+        if (index != -1)
+        {
+            _customers.RemoveAt(index);
+        }
+        else
+        {
+            throw new KeyNotFoundException($"Customer with ID {id} not found.");
+        }
+    }
+}
+
+// Usage of design patterns
+public class DesignPatternsDemo
+{
+    public void RunDemo()
+    {
+        // Singleton
+        Console.WriteLine("\n-- Singleton Pattern --");
+        Logger logger = Logger.GetInstance();
+        logger.Log("Application started");
+        
+        // Same instance
+        Logger anotherLogger = Logger.GetInstance();
+        anotherLogger.Log("This is the same logger instance");
+        
+        // Factory
+        Console.WriteLine("\n-- Factory Pattern --");
+        ShapeFactory factory = new ShapeFactory();
+        IShape circle = factory.CreateShape("circle");
+        circle.Draw();
+        Console.WriteLine($"Circle area: {circle.CalculateArea():F2}");
+        
+        IShape rectangle = factory.CreateShape("rectangle");
+        rectangle.Draw();
+        Console.WriteLine($"Rectangle area: {rectangle.CalculateArea():F2}");
+        
+        // Observer
+        Console.WriteLine("\n-- Observer Pattern --");
+        NewsPublisher publisher = new NewsPublisher();
+        NewsSubscriber sub1 = new NewsSubscriber("John");
+        NewsSubscriber sub2 = new NewsSubscriber("Alice");
+        
+        publisher.Attach(sub1);
+        publisher.Attach(sub2);
+        publisher.PublishNews("New C# features announced!");
+        
+        publisher.Detach(sub1);
+        publisher.PublishNews("C# conference scheduled next month");
+        
+        // Strategy
+        Console.WriteLine("\n-- Strategy Pattern --");
+        ShoppingCart cart = new ShoppingCart();
+        cart.AddItem("C# Book", 29.99m);
+        cart.AddItem("Laptop", 999.99m);
+        
+        cart.SetPaymentStrategy(new CreditCardPayment("1234567890123456", "John Doe"));
+        cart.Checkout(1029.98m);
+        
+        cart.SetPaymentStrategy(new PayPalPayment("john@example.com"));
+        cart.Checkout(1029.98m);
+        
+        // Repository
+        Console.WriteLine("\n-- Repository Pattern --");
+        IRepository&lt;Customer&gt; customerRepo = new CustomerRepository();
+        
+        Customer customer = new Customer { Name = "Jane Smith", Email = "jane@example.com" };
+        customerRepo.Add(customer);
+        Console.WriteLine($"Added customer with ID: {customer.Id}");
+        
+        customer.Email = "jane.smith@example.com";
+        customerRepo.Update(customer);
+        
+        Customer retrievedCustomer = customerRepo.GetById(customer.Id);
+        Console.WriteLine($"Retrieved: {retrievedCustomer.Name}, {retrievedCustomer.Email}");
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="practice" class="mb-5">
+          <h2 class="h3 mb-3">
+            <i class="bi bi-pencil me-2"></i>Practice Questions
+          </h2>
+          <div class="accordion" id="practiceQuestions">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                  <strong>Question 1:</strong> &nbsp;Explain the difference between IEnumerable and ICollection interfaces
+                </button>
+              </h2>
+              <div id="q1" class="accordion-collapse collapse" data-bs-parent="#practiceQuestions">
+                <div class="accordion-body">
+                  <p><strong>Answer:</strong></p>
+                  <ul>
+                    <li><strong>IEnumerable:</strong> Represents a read-only sequence of elements that can be enumerated. It's the base interface for all non-generic collections. It only defines GetEnumerator() method.</li>
+                    <li><strong>ICollection:</strong> Extends IEnumerable and adds methods for manipulating the collection like Add, Remove, Contains, etc. It also provides Count property and is a more feature-rich interface.</li>
+                  </ul>
+                  <p><strong>Key differences:</strong></p>
+                  <ul>
+                    <li>IEnumerable is read-only; ICollection allows modification</li>
+                    <li>IEnumerable doesn't provide a Count property; ICollection does</li>
+                    <li>IEnumerable is suitable for deferred execution scenarios (LINQ); ICollection is for when you need immediate access to the elements</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                  <strong>Question 2:</strong> &nbsp;What is the difference between events and delegates?
+                </button>
+              </h2>
+              <div id="q2" class="accordion-collapse collapse" data-bs-parent="#practiceQuestions">
+                <div class="accordion-body">
+                  <p><strong>Answer:</strong></p>
+                  <p><strong>Delegates:</strong></p>
+                  <ul>
+                    <li>Type-safe function pointers that can reference and invoke methods with matching signatures</li>
+                    <li>Can be directly assigned, invoked, and passed as parameters</li>
+                    <li>Can be multicast (chain multiple methods)</li>
+                  </ul>
+                  <p><strong>Events:</strong></p>
+                  <ul>
+                    <li>A special form of multicast delegate that provides an abstraction layer</li>
+                    <li>Implement the publisher-subscriber pattern</li>
+                    <li>Only the class declaring the event can invoke it (publish)</li>
+                    <li>Other classes can only subscribe or unsubscribe from the event</li>
+                    <li>Prevents outside code from removing other subscribers</li>
+                  </ul>
+                  <p>In summary: Events are a higher-level abstraction built on delegates that enforce encapsulation by limiting how the delegate can be used.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+                  <strong>Coding Exercise:</strong> &nbsp;Write a LINQ query to find the most frequent word in a text
+                </button>
+              </h2>
+              <div id="q3" class="accordion-collapse collapse" data-bs-parent="#practiceQuestions">
+                <div class="accordion-body">
+                  <pre><code class="language-csharp">public static string FindMostFrequentWord(string text)
+{
+    if (string.IsNullOrWhiteSpace(text))
+        return null;
+
+    // Split the text into words, remove punctuation, and convert to lowercase
+    var words = text.Split(new char[] { ' ', ',', '.', '!', '?', ':', ';', '\n', '\r', '\t' }, 
+                          StringSplitOptions.RemoveEmptyEntries)
+                    .Select(word => word.ToLower())
+                    .Where(word => word.Length > 0);
+
+    // Group the words by their value, count occurrences, order by count descending
+    var mostFrequent = words.GroupBy(word => word)
+                           .Select(group => new { Word = group.Key, Count = group.Count() })
+                           .OrderByDescending(x => x.Count)
+                           .FirstOrDefault();
+
+    return mostFrequent?.Word;
+}
+
+// Usage
+public static void TestFindMostFrequentWord()
+{
+    string text = "This is a test. This is only a test. If this were an actual emergency, " + 
+                 "you would be informed. This is only a test.";
+    
+    string mostFrequent = FindMostFrequentWord(text);
+    
+    Console.WriteLine($"The most frequent word is: '{mostFrequent}'");
+    // Output: The most frequent word is: 'this'
+}</code></pre>
+                  <p>This solution:</p>
+                  <ol>
+                    <li>Splits the input text into individual words</li>
+                    <li>Removes punctuation and normalizes case</li>
+                    <li>Groups words by value and counts occurrences</li>
+                    <li>Orders by count descending to find the most frequent word</li>
+                    <li>Returns the first word (most frequent)</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

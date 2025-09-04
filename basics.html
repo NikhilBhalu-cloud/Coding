@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>C# Basics - Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <button id="theme-toggle" class="btn btn-outline-light">
+          <i class="bi bi-moon-fill"></i>
+        </button>
+      </div>
+    </nav>
+
+    <div class="container py-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">C# Basics</li>
+        </ol>
+      </nav>
+
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="sticky-top" style="top: 1rem">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <h6 class="mb-0">
+                  <i class="bi bi-list me-2"></i>Table of Contents
+                </h6>
+              </div>
+              <div class="card-body p-0">
+                <nav class="nav flex-column">
+                  <a class="nav-link" href="#variables"
+                    >Variables & Data Types</a
+                  >
+                  <a class="nav-link" href="#operators">Operators</a>
+                  <a class="nav-link" href="#control">Control Structures</a>
+                  <a class="nav-link" href="#methods">Methods</a>
+                  <a class="nav-link" href="#arrays">Arrays & Collections</a>
+                  <a class="nav-link" href="#classes">Classes & Objects</a>
+                  <a class="nav-link" href="#practice">Practice Questions</a>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-9">
+          <div class="mb-4">
+            <h1 class="display-5 fw-bold text-primary">C# Basics</h1>
+            <p class="lead">
+              Master the fundamentals of C# programming language
+            </p>
+          </div>
+
+          <section id="variables" class="mb-5">
+            <h2 class="h3 mb-3">
+              <i class="bi bi-box me-2"></i>Variables & Data Types
+            </h2>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5>Value Types vs Reference Types</h5>
+                <p>C# has two main categories of types:</p>
+                <ul>
+                  <li>
+                    <strong>Value Types:</strong> Store data directly (int,
+                    double, bool, char, struct, enum)
+                  </li>
+                  <li>
+                    <strong>Reference Types:</strong> Store references to data
+                    (string, object, class, interface, delegate)
+                  </li>
+                </ul>
+                <pre><code class="language-csharp">// Value Types
+int age = 25;
+double salary = 50000.50;
+bool isActive = true;
+char grade = 'A';
+
+// Reference Types
+string name = "John Doe";
+object obj = new object();
+int[] numbers = {1, 2, 3, 4, 5};
+
+// Type inference with var
+var message = "Hello World"; // Compiler infers string
+var count = 10; // Compiler infers int</code></pre>
+              </div>
+            </div>
+
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5>Constants and Read-only Fields</h5>
+                <pre><code class="language-csharp">// Constants - compile-time constants
+const double PI = 3.14159;
+const string COMPANY_NAME = "TechCorp";
+
+// Read-only fields - runtime constants
+public class Configuration
+{
+    public readonly string ConnectionString;
+    public readonly DateTime StartTime = DateTime.Now;
+    
+    public Configuration(string connStr)
+    {
+        ConnectionString = connStr; // Can only be set in constructor
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section id="operators" class="mb-5">
+            <h2 class="h3 mb-3">
+              <i class="bi bi-calculator me-2"></i>Operators
+            </h2>
+            <div class="card">
+              <div class="card-body">
+                <pre><code class="language-csharp">// Arithmetic Operators
+int a = 10, b = 3;
+int sum = a + b;        // 13
+int difference = a - b; // 7
+int product = a * b;    // 30
+int quotient = a / b;   // 3 (integer division)
+int remainder = a % b;  // 1
+
+// Increment/Decrement
+int x = 5;
+int preInc = ++x;  // x = 6, preInc = 6
+int postInc = x++; // postInc = 6, x = 7
+
+// Comparison Operators
+bool isEqual = (a == b);     // false
+bool isNotEqual = (a != b);  // true
+bool isGreater = (a > b);    // true
+
+// Logical Operators
+bool result1 = true && false;  // false (AND)
+bool result2 = true || false;  // true (OR)
+bool result3 = !true;          // false (NOT)
+
+// Null-coalescing Operators
+string name = null;
+string displayName = name ?? "Unknown";           // "Unknown"
+string shortName = name?.Substring(0, 3) ?? "N/A"; // "N/A"</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section id="control" class="mb-5">
+            <h2 class="h3 mb-3">
+              <i class="bi bi-arrow-repeat me-2"></i>Control Structures
+            </h2>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <h5>Conditional Statements</h5>
+                    <pre><code class="language-csharp">// If-else statement
+int score = 85;
+string grade;
+
+if (score >= 90)
+    grade = "A";
+else if (score >= 80)
+    grade = "B";
+else if (score >= 70)
+    grade = "C";
+else
+    grade = "F";
+
+// Switch expression (C# 8.0+)
+string GetGrade(int score) => score switch
+{
+    >= 90 => "A",
+    >= 80 => "B",
+    >= 70 => "C",
+    _ => "F"
+};
+
+// Ternary operator
+string status = age >= 18 ? "Adult" : "Minor";</code></pre>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <h5>Loops</h5>
+                    <pre><code class="language-csharp">// For loop
+for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine($"Count: {i}");
+}
+
+// While loop
+int count = 0;
+while (count < 3)
+{
+    Console.WriteLine($"While: {count}");
+    count++;
+}
+
+// Do-while loop
+do
+{
+    Console.WriteLine("Executed at least once");
+    count--;
+} while (count > 0);
+
+// Foreach loop
+string[] names = {"Alice", "Bob", "Charlie"};
+foreach (string name in names)
+{
+    Console.WriteLine($"Hello, {name}!");
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="methods" class="mb-5">
+            <h2 class="h3 mb-3"><i class="bi bi-gear me-2"></i>Methods</h2>
+            <div class="card">
+              <div class="card-body">
+                <pre><code class="language-csharp">public class Calculator
+{
+    // Basic method
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+    
+    // Method with optional parameters
+    public void PrintMessage(string message, bool uppercase = false)
+    {
+        if (uppercase)
+            Console.WriteLine(message.ToUpper());
+        else
+            Console.WriteLine(message);
+    }
+    
+    // Method with params keyword
+    public int Sum(params int[] numbers)
+    {
+        int total = 0;
+        foreach (int num in numbers)
+        {
+            total += num;
+        }
+        return total;
+    }
+    
+    // Method overloading
+    public double Add(double a, double b) => a + b;
+    public string Add(string a, string b) => a + b;
+    
+    // Ref and out parameters
+    public void SwapNumbers(ref int a, ref int b)
+    {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+    
+    public bool TryParseAge(string input, out int age)
+    {
+        return int.TryParse(input, out age) && age >= 0;
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section id="arrays" class="mb-5">
+            <h2 class="h3 mb-3">
+              <i class="bi bi-list-ol me-2"></i>Arrays & Collections
+            </h2>
+            <div class="card">
+              <div class="card-body">
+                <pre><code class="language-csharp">using System.Collections.Generic;
+
+// Arrays
+int[] numbers = {1, 2, 3, 4, 5};
+string[] names = new string[3] {"Alice", "Bob", "Charlie"};
+int[,] matrix = {{1, 2}, {3, 4}}; // 2D array
+
+// Lists (dynamic arrays)
+List&lt;string&gt; cities = new List&lt;string&gt;();
+cities.Add("New York");
+cities.Add("London");
+cities.Add("Tokyo");
+
+// List with initialization
+List&lt;int&gt; scores = new List&lt;int&gt; {85, 92, 78, 96};
+
+// Dictionary (key-value pairs)
+Dictionary&lt;string, int&gt; ages = new Dictionary&lt;string, int&gt;
+{
+    {"Alice", 30},
+    {"Bob", 25},
+    {"Charlie", 35}
+};
+
+// Working with collections
+foreach (var city in cities)
+{
+    Console.WriteLine(city);
+}
+
+if (ages.ContainsKey("Alice"))
+{
+    Console.WriteLine($"Alice is {ages["Alice"]} years old");
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section id="classes" class="mb-5">
+            <h2 class="h3 mb-3">
+              <i class="bi bi-diagram-3 me-2"></i>Classes & Objects
+            </h2>
+            <div class="card">
+              <div class="card-body">
+                <pre><code class="language-csharp">public class Student
+{
+    // Fields
+    private string name;
+    private int age;
+    private List&lt;string&gt; courses;
+    
+    // Properties
+    public string Name 
+    { 
+        get { return name; } 
+        set { name = value?.Trim(); } 
+    }
+    
+    public int Age 
+    { 
+        get { return age; } 
+        set 
+        { 
+            if (value >= 0 && value <= 150)
+                age = value;
+            else
+                throw new ArgumentException("Invalid age");
+        } 
+    }
+    
+    // Auto-implemented property
+    public string StudentId { get; set; }
+    
+    // Constructors
+    public Student() // Default constructor
+    {
+        courses = new List&lt;string&gt;();
+    }
+    
+    public Student(string name, int age) : this() // Constructor chaining
+    {
+        Name = name;
+        Age = age;
+        StudentId = Guid.NewGuid().ToString();
+    }
+    
+    // Methods
+    public void EnrollInCourse(string course)
+    {
+        if (!courses.Contains(course))
+        {
+            courses.Add(course);
+            Console.WriteLine($"{Name} enrolled in {course}");
+        }
+    }
+    
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Student: {Name}, Age: {Age}, ID: {StudentId}");
+        Console.WriteLine($"Courses: {string.Join(", ", courses)}");
+    }
+    
+    // Static method
+    public static Student CreateFromString(string data)
+    {
+        var parts = data.Split(',');
+        return new Student(parts[0], int.Parse(parts[1]));
+    }
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section id="practice" class="mb-5">
+            <h2 class="h3 mb-3">
+              <i class="bi bi-pencil me-2"></i>Practice Questions
+            </h2>
+            <div class="accordion" id="basicQuestions">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#q1"
+                  >
+                    <strong>Question 1:</strong> &nbsp;What's the difference
+                    between value types and reference types?
+                  </button>
+                </h2>
+                <div
+                  id="q1"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#basicQuestions"
+                >
+                  <div class="accordion-body">
+                    <p><strong>Answer:</strong></p>
+                    <ul>
+                      <li>
+                        <strong>Value Types:</strong> Store actual data in
+                        memory. Examples: int, double, bool, struct, enum. When
+                        assigned, the actual value is copied.
+                      </li>
+                      <li>
+                        <strong>Reference Types:</strong> Store references
+                        (addresses) to data. Examples: string, object, class,
+                        array. When assigned, only the reference is copied, not
+                        the actual data.
+                      </li>
+                    </ul>
+                    <pre><code class="language-csharp">// Value type example
+int a = 10;
+int b = a; // b gets a copy of a's value
+a = 20;    // b is still 10
+
+// Reference type example
+int[] arr1 = {1, 2, 3};
+int[] arr2 = arr1; // arr2 points to same array as arr1
+arr1[0] = 100;     // arr2[0] is also 100 now</code></pre>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#q2"
+                  >
+                    <strong>Question 2:</strong> &nbsp;Explain method
+                    overloading with an example
+                  </button>
+                </h2>
+                <div
+                  id="q2"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#basicQuestions"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      <strong>Answer:</strong> Method overloading allows
+                      multiple methods with the same name but different
+                      parameters (type, number, or order).
+                    </p>
+                    <pre><code class="language-csharp">public class MathHelper
+{
+    public int Add(int a, int b) 
+    { 
+        return a + b; 
+    }
+    
+    public double Add(double a, double b) 
+    { 
+        return a + b; 
+    }
+    
+    public int Add(int a, int b, int c) 
+    { 
+        return a + b + c; 
+    }
+    
+    public string Add(string a, string b) 
+    { 
+        return a + b; 
+    }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#q3"
+                  >
+                    <strong>Coding Exercise:</strong> &nbsp;Write a program to
+                    find the factorial of a number
+                  </button>
+                </h2>
+                <div
+                  id="q3"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#basicQuestions"
+                >
+                  <div class="accordion-body">
+                    <pre><code class="language-csharp">public class FactorialCalculator
+{
+    // Iterative approach
+    public static long FactorialIterative(int n)
+    {
+        if (n < 0) throw new ArgumentException("Negative numbers not allowed");
+        if (n == 0 || n == 1) return 1;
+        
+        long result = 1;
+        for (int i = 2; i <= n; i++)
+        {
+            result *= i;
+        }
+        return result;
+    }
+    
+    // Recursive approach
+    public static long FactorialRecursive(int n)
+    {
+        if (n < 0) throw new ArgumentException("Negative numbers not allowed");
+        if (n == 0 || n == 1) return 1;
+        
+        return n * FactorialRecursive(n - 1);
+    }
+    
+    static void Main()
+    {
+        Console.Write("Enter a number: ");
+        if (int.TryParse(Console.ReadLine(), out int number))
+        {
+            try
+            {
+                long result = FactorialIterative(number);
+                Console.WriteLine($"Factorial of {number} is {result}");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter a valid number.");
+        }
+    }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
