@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Inheritance in C# - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-search">
+        <input type="text" id="sidebarSearch" placeholder="Search topics..." class="form-control">
+      </div>
+      
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">
+          <i class="bi bi-book me-2"></i>Learning Path
+        </h6>
+        
+        <!-- C# Basics -->
+        <div class="topic-section mb-3" data-section="basics">
+          <div class="subject-header" onclick="toggleSection('basics')">
+            <i class="bi bi-1-circle-fill text-primary"></i>
+            C# Basics
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="csharp-introduction.html">
+              <i class="bi bi-play-circle me-2"></i>01. Introduction to C#
+            </a>
+            <a class="nav-link topic-item" href="csharp-datatypes.html">
+              <i class="bi bi-layers me-2"></i>02. Data Types & Variables
+            </a>
+            <a class="nav-link topic-item" href="csharp-constants.html">
+              <i class="bi bi-lock me-2"></i>03. Constants & Readonly
+            </a>
+            <a class="nav-link topic-item" href="csharp-operators.html">
+              <i class="bi bi-calculator me-2"></i>04. Operators
+            </a>
+            <a class="nav-link topic-item" href="csharp-controlflow.html">
+              <i class="bi bi-flow-chart me-2"></i>05. Control Flow
+            </a>
+            <a class="nav-link topic-item" href="csharp-loops.html">
+              <i class="bi bi-arrow-repeat me-2"></i>06. Loops
+            </a>
+            <a class="nav-link topic-item" href="csharp-methods.html">
+              <i class="bi bi-gear me-2"></i>07. Methods & Parameters
+            </a>
+            <a class="nav-link topic-item" href="csharp-overloading.html">
+              <i class="bi bi-layers-half me-2"></i>08. Method Overloading
+            </a>
+            <a class="nav-link topic-item" href="csharp-parameters.html">
+              <i class="bi bi-arrow-left-right me-2"></i>09. Pass by Value/Reference
+            </a>
+            <a class="nav-link topic-item" href="csharp-arrays.html">
+              <i class="bi bi-list-ol me-2"></i>10. Arrays & Strings
+            </a>
+            <a class="nav-link topic-item" href="csharp-casting.html">
+              <i class="bi bi-shuffle me-2"></i>11. Type Casting & Conversion
+            </a>
+            <a class="nav-link topic-item" href="csharp-namespaces.html">
+              <i class="bi bi-folder2 me-2"></i>12. Namespaces
+            </a>
+            <a class="nav-link topic-item" href="csharp-comments.html">
+              <i class="bi bi-chat-text me-2"></i>13. Comments & Regions
+            </a>
+          </nav>
+        </div>
+
+        <!-- Object-Oriented Programming -->
+        <div class="topic-section mb-3" data-section="oop">
+          <div class="subject-header" onclick="toggleSection('oop')">
+            <i class="bi bi-2-circle-fill text-success"></i>
+            Object-Oriented Programming (OOPs)
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="csharp-classes.html">
+              <i class="bi bi-box me-2"></i>01. Classes & Objects
+            </a>
+            <a class="nav-link topic-item active" href="csharp-inheritance.html">
+              <i class="bi bi-diagram-3 me-2"></i>02. Inheritance
+            </a>
+            <a class="nav-link topic-item" href="csharp-encapsulation.html">
+              <i class="bi bi-lock me-2"></i>03. Encapsulation
+            </a>
+            <a class="nav-link topic-item" href="csharp-polymorphism.html">
+              <i class="bi bi-shuffle me-2"></i>04. Polymorphism
+            </a>
+            <a class="nav-link topic-item" href="csharp-abstraction.html">
+              <i class="bi bi-eye-slash me-2"></i>05. Abstraction
+            </a>
+            <a class="nav-link topic-item" href="csharp-interfaces.html">
+              <i class="bi bi-diagram-2 me-2"></i>06. Interfaces
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-4" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="#oop">OOPs</a></li>
+            <li class="breadcrumb-item active">Inheritance</li>
+          </ol>
+        </nav>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-4">
+              <h1 class="display-5 fw-bold text-success">
+                <i class="bi bi-diagram-3 me-3"></i>Inheritance in C#
+              </h1>
+              <p class="lead">
+                Inheritance, method overriding, base keyword, and inheritance hierarchies
+              </p>
+            </div>
+
+            <!-- Overview Section -->
+            <section class="content-section mb-5">
+              <div class="section-header theory">
+                <div class="section-icon">
+                  <i class="bi bi-info-circle"></i>
+                </div>
+                <div>
+                  <h2>Understanding Inheritance</h2>
+                  <p class="text-muted mb-0">Creating new classes based on existing ones</p>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p><strong>Inheritance</strong> is a fundamental OOP principle that allows a class to inherit properties and methods from another class. This promotes code reuse and establishes an "is-a" relationship between classes.</p>
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5><i class="bi bi-diagram-2 me-2"></i>Key Concepts</h5>
+                      <ul>
+                        <li><strong>Base Class (Parent):</strong> The class being inherited from</li>
+                        <li><strong>Derived Class (Child):</strong> The class that inherits</li>
+                        <li><strong>Method Overriding:</strong> Redefining base class methods</li>
+                        <li><strong>Virtual/Override:</strong> Keywords for polymorphism</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h5><i class="bi bi-check-circle me-2"></i>Benefits</h5>
+                      <ul>
+                        <li>Code reuse and reduction of duplication</li>
+                        <li>Establishing hierarchical relationships</li>
+                        <li>Enabling polymorphism</li>
+                        <li>Easier maintenance and updates</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Basic Inheritance -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-code-slash"></i>
+                </div>
+                <div>
+                  <h2>Basic Inheritance</h2>
+                  <p class="text-muted mb-0">Creating derived classes from a base class</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+// Base class (Parent)
+public class Animal
+{
+    public string Name { get; protected set; }
+    public int Age { get; protected set; }
+    
+    public Animal(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+    
+    // Virtual method - can be overridden
+    public virtual void MakeSound()
+    {
+        Console.WriteLine($"{Name} makes a generic animal sound");
+    }
+    
+    // Regular method - inherited as-is
+    public void Eat()
+    {
+        Console.WriteLine($"{Name} is eating");
+    }
+    
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine($"Animal: {Name}, Age: {Age}");
+    }
+}
+
+// Derived class (Child)
+public class Dog : Animal
+{
+    public string Breed { get; private set; }
+    
+    public Dog(string name, int age, string breed) : base(name, age)
+    {
+        Breed = breed;
+    }
+    
+    // Override the virtual method
+    public override void MakeSound()
+    {
+        Console.WriteLine($"{Name} barks: Woof! Woof!");
+    }
+    
+    // Override with additional functionality
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo(); // Call base class method
+        Console.WriteLine($"Breed: {Breed}");
+    }
+    
+    // Dog-specific method
+    public void Fetch()
+    {
+        Console.WriteLine($"{Name} is fetching the ball");
+    }
+}
+
+// Another derived class
+public class Cat : Animal
+{
+    public string Color { get; private set; }
+    
+    public Cat(string name, int age, string color) : base(name, age)
+    {
+        Color = color;
+    }
+    
+    public override void MakeSound()
+    {
+        Console.WriteLine($"{Name} meows: Meow! Meow!");
+    }
+    
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine($"Color: {Color}");
+    }
+    
+    public void Climb()
+    {
+        Console.WriteLine($"{Name} is climbing a tree");
+    }
+}
+
+class InheritanceExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Basic Inheritance ===");
+        
+        // Create instances
+        Animal animal = new Animal("Generic Animal", 5);
+        Dog dog = new Dog("Buddy", 3, "Golden Retriever");
+        Cat cat = new Cat("Whiskers", 2, "Orange");
+        
+        // Polymorphic behavior
+        Animal[] animals = { animal, dog, cat };
+        
+        foreach (Animal a in animals)
+        {
+            a.DisplayInfo();
+            a.MakeSound(); // Calls appropriate overridden method
+            a.Eat();       // Inherited method
+            Console.WriteLine();
+        }
+        
+        // Specific behavior
+        dog.Fetch();
+        cat.Climb();
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Method Overriding -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <div>
+                  <h2>Method Overriding</h2>
+                  <p class="text-muted mb-0">Redefining base class methods in derived classes</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+// Abstract base class for shapes
+public abstract class Shape
+{
+    public string Name { get; protected set; }
+    
+    public Shape(string name)
+    {
+        Name = name;
+    }
+    
+    // Virtual method - can be overridden
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine($"Shape: {Name}");
+    }
+    
+    // Abstract methods - must be implemented
+    public abstract double CalculateArea();
+    public abstract double CalculatePerimeter();
+}
+
+public class Circle : Shape
+{
+    public double Radius { get; private set; }
+    
+    public Circle(double radius) : base("Circle")
+    {
+        Radius = radius;
+    }
+    
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine($"Radius: {Radius}");
+    }
+    
+    public override double CalculateArea()
+    {
+        return Math.PI * Radius * Radius;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return 2 * Math.PI * Radius;
+    }
+}
+
+public class Rectangle : Shape
+{
+    public double Width { get; private set; }
+    public double Height { get; private set; }
+    
+    public Rectangle(double width, double height) : base("Rectangle")
+    {
+        Width = width;
+        Height = height;
+    }
+    
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine($"Width: {Width}, Height: {Height}");
+    }
+    
+    public override double CalculateArea()
+    {
+        return Width * Height;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return 2 * (Width + Height);
+    }
+}
+
+class MethodOverridingExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Method Overriding ===");
+        
+        Shape[] shapes = {
+            new Circle(5),
+            new Rectangle(4, 6)
+        };
+        
+        foreach (Shape shape in shapes)
+        {
+            shape.DisplayInfo();      // Virtual method
+            Console.WriteLine($"Area: {shape.CalculateArea():F2}");
+            Console.WriteLine($"Perimeter: {shape.CalculatePerimeter():F2}");
+            Console.WriteLine();
+        }
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Base Keyword -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-arrow-up-circle"></i>
+                </div>
+                <div>
+                  <h2>The base Keyword</h2>
+                  <p class="text-muted mb-0">Accessing base class members from derived classes</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+public class Employee
+{
+    public string Name { get; protected set; }
+    public int Id { get; protected set; }
+    public decimal Salary { get; protected set; }
+    
+    public Employee(string name, int id, decimal salary)
+    {
+        Name = name;
+        Id = id;
+        Salary = salary;
+    }
+    
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine($"Employee: {Name} (ID: {Id})");
+        Console.WriteLine($"Salary: ${Salary:N2}");
+    }
+    
+    public virtual decimal CalculateBonus()
+    {
+        return Salary * 0.05m; // 5% of salary
+    }
+}
+
+public class Manager : Employee
+{
+    public string Department { get; private set; }
+    public int TeamSize { get; private set; }
+    
+    public Manager(string name, int id, decimal salary, string department, int teamSize)
+        : base(name, id, salary) // Call base constructor
+    {
+        Department = department;
+        TeamSize = teamSize;
+    }
+    
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo(); // Call base method
+        Console.WriteLine($"Department: {Department}");
+        Console.WriteLine($"Team Size: {TeamSize}");
+        Console.WriteLine($"Bonus: ${CalculateBonus():N2}");
+    }
+    
+    public override decimal CalculateBonus()
+    {
+        // Base bonus + team bonus
+        decimal baseBonus = base.CalculateBonus();
+        decimal teamBonus = TeamSize * 1000m;
+        return baseBonus + teamBonus;
+    }
+    
+    public void ConductMeeting()
+    {
+        Console.WriteLine($"{Name} is conducting a meeting for {Department} team");
+    }
+}
+
+public class Developer : Employee
+{
+    public string ProgrammingLanguage { get; private set; }
+    public int ProjectsCompleted { get; private set; }
+    
+    public Developer(string name, int id, decimal salary, string language, int projects)
+        : base(name, id, salary)
+    {
+        ProgrammingLanguage = language;
+        ProjectsCompleted = projects;
+    }
+    
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine($"Programming Language: {ProgrammingLanguage}");
+        Console.WriteLine($"Projects Completed: {ProjectsCompleted}");
+    }
+    
+    public override decimal CalculateBonus()
+    {
+        // Base bonus + project bonus
+        return base.CalculateBonus() + (ProjectsCompleted * 500m);
+    }
+    
+    public void WriteCode()
+    {
+        Console.WriteLine($"{Name} is writing {ProgrammingLanguage} code");
+    }
+}
+
+class BaseKeywordExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Base Keyword Example ===");
+        
+        Employee[] employees = {
+            new Employee("John Doe", 101, 50000),
+            new Manager("Jane Smith", 102, 80000, "Engineering", 8),
+            new Developer("Bob Johnson", 103, 70000, "C#", 12)
+        };
+        
+        foreach (Employee emp in employees)
+        {
+            emp.DisplayInfo();
+            Console.WriteLine();
+        }
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Multilevel Inheritance -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-diagram-3"></i>
+                </div>
+                <div>
+                  <h2>Multilevel Inheritance</h2>
+                  <p class="text-muted mb-0">Creating inheritance chains with multiple levels</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+// Base class (Level 1)
+public class Vehicle
+{
+    public string Make { get; protected set; }
+    public string Model { get; protected set; }
+    public int Year { get; protected set; }
+    
+    public Vehicle(string make, string model, int year)
+    {
+        Make = make;
+        Model = model;
+        Year = year;
+    }
+    
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine($"Vehicle: {Year} {Make} {Model}");
+    }
+    
+    public virtual void Start()
+    {
+        Console.WriteLine("Vehicle is starting...");
+    }
+}
+
+// Derived class (Level 2)
+public class Car : Vehicle
+{
+    public int NumberOfDoors { get; protected set; }
+    
+    public Car(string make, string model, int year, int doors)
+        : base(make, model, year)
+    {
+        NumberOfDoors = doors;
+    }
+    
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine($"Type: Car, Doors: {NumberOfDoors}");
+    }
+    
+    public override void Start()
+    {
+        Console.WriteLine("Car engine is starting...");
+    }
+    
+    public virtual void Drive()
+    {
+        Console.WriteLine("Car is driving on the road");
+    }
+}
+
+// Derived class (Level 3)
+public class SportsCar : Car
+{
+    public int Horsepower { get; private set; }
+    public bool HasTurbo { get; private set; }
+    
+    public SportsCar(string make, string model, int year, int doors, int horsepower, bool turbo)
+        : base(make, model, year, doors)
+    {
+        Horsepower = horsepower;
+        HasTurbo = turbo;
+    }
+    
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine($"Type: Sports Car, Horsepower: {Horsepower}, Turbo: {HasTurbo}");
+    }
+    
+    public override void Drive()
+    {
+        Console.WriteLine("Sports car is racing at high speed!");
+    }
+    
+    public void ActivateTurbo()
+    {
+        if (HasTurbo)
+        {
+            Console.WriteLine("Turbo activated! Extra power engaged!");
+        }
+        else
+        {
+            Console.WriteLine("This car doesn't have turbo");
+        }
+    }
+}
+
+class MultilevelInheritanceExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Multilevel Inheritance ===");
+        
+        // Create instances at different levels
+        Vehicle vehicle = new Vehicle("Generic", "Vehicle", 2020);
+        Car car = new Car("Toyota", "Camry", 2022, 4);
+        SportsCar sportsCar = new SportsCar("Ferrari", "F8", 2023, 2, 710, true);
+        
+        // Demonstrate inheritance chain
+        Vehicle[] vehicles = { vehicle, car, sportsCar };
+        
+        foreach (Vehicle v in vehicles)
+        {
+            v.DisplayInfo();
+            v.Start();
+            
+            // Type-specific operations
+            if (v is Car carObj)
+            {
+                carObj.Drive();
+            }
+            
+            if (v is SportsCar sportsCarObj)
+            {
+                sportsCarObj.ActivateTurbo();
+            }
+            
+            Console.WriteLine();
+        }
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Sealed Classes -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-lock"></i>
+                </div>
+                <div>
+                  <h2>Sealed Classes and Methods</h2>
+                  <p class="text-muted mb-0">Preventing further inheritance</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+public class BaseCalculator
+{
+    public virtual double Add(double a, double b)
+    {
+        return a + b;
+    }
+    
+    public virtual double Multiply(double a, double b)
+    {
+        return a * b;
+    }
+}
+
+public class AdvancedCalculator : BaseCalculator
+{
+    // Sealed method - cannot be overridden further
+    public sealed override double Add(double a, double b)
+    {
+        Console.WriteLine("Advanced addition with logging");
+        return base.Add(a, b);
+    }
+    
+    public override double Multiply(double a, double b)
+    {
+        Console.WriteLine("Advanced multiplication");
+        return base.Multiply(a, b);
+    }
+    
+    public virtual double Power(double baseNum, double exponent)
+    {
+        return Math.Pow(baseNum, exponent);
+    }
+}
+
+// Sealed class - cannot be inherited
+public sealed class FinalCalculator : AdvancedCalculator
+{
+    // This would cause compilation error because Add is sealed:
+    // public override double Add(double a, double b) { ... }
+    
+    public override double Multiply(double a, double b)
+    {
+        Console.WriteLine("Final multiplication implementation");
+        return base.Multiply(a, b);
+    }
+    
+    public override double Power(double baseNum, double exponent)
+    {
+        Console.WriteLine("Optimized power calculation");
+        return base.Power(baseNum, exponent);
+    }
+}
+
+// This would cause compilation error because FinalCalculator is sealed:
+// public class UltimateCalculator : FinalCalculator { ... }
+
+class SealedExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Sealed Classes and Methods ===");
+        
+        FinalCalculator calc = new FinalCalculator();
+        
+        Console.WriteLine($"Add: {calc.Add(5, 3)}");
+        Console.WriteLine($"Multiply: {calc.Multiply(4, 6)}");
+        Console.WriteLine($"Power: {calc.Power(2, 8)}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between mt-5">
+              <a href="csharp-classes.html" class="btn btn-outline-success">
+                <i class="bi bi-arrow-left me-2"></i>Previous: Classes & Objects
+              </a>
+              <a href="csharp-encapsulation.html" class="btn btn-success">
+                Next: Encapsulation<i class="bi bi-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

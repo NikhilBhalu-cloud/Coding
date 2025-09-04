@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Data Types & Variables - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-search">
+        <input type="text" id="sidebarSearch" placeholder="Search topics..." class="form-control">
+      </div>
+      
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">
+          <i class="bi bi-book me-2"></i>Learning Path
+        </h6>
+        
+        <!-- C# Basics -->
+        <div class="topic-section mb-3" data-section="basics">
+          <div class="subject-header" onclick="toggleSection('basics')">
+            <i class="bi bi-1-circle-fill text-primary"></i>
+            C# Basics
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="csharp-introduction.html">
+              <i class="bi bi-play-circle me-2"></i>01. Introduction to C#
+            </a>
+            <a class="nav-link topic-item active" href="csharp-datatypes.html">
+              <i class="bi bi-layers me-2"></i>02. Data Types & Variables
+            </a>
+            <a class="nav-link topic-item" href="csharp-constants.html">
+              <i class="bi bi-lock me-2"></i>03. Constants & Readonly
+            </a>
+            <a class="nav-link topic-item" href="csharp-operators.html">
+              <i class="bi bi-calculator me-2"></i>04. Operators
+            </a>
+            <a class="nav-link topic-item" href="csharp-controlflow.html">
+              <i class="bi bi-flow-chart me-2"></i>05. Control Flow
+            </a>
+            <a class="nav-link topic-item" href="csharp-loops.html">
+              <i class="bi bi-arrow-repeat me-2"></i>06. Loops
+            </a>
+            <a class="nav-link topic-item" href="csharp-methods.html">
+              <i class="bi bi-gear me-2"></i>07. Methods & Parameters
+            </a>
+            <a class="nav-link topic-item" href="csharp-overloading.html">
+              <i class="bi bi-layers-half me-2"></i>08. Method Overloading
+            </a>
+            <a class="nav-link topic-item" href="csharp-parameters.html">
+              <i class="bi bi-arrow-left-right me-2"></i>09. Pass by Value/Reference
+            </a>
+            <a class="nav-link topic-item" href="csharp-arrays.html">
+              <i class="bi bi-list-ol me-2"></i>10. Arrays & Strings
+            </a>
+            <a class="nav-link topic-item" href="csharp-casting.html">
+              <i class="bi bi-shuffle me-2"></i>11. Type Casting & Conversion
+            </a>
+            <a class="nav-link topic-item" href="csharp-namespaces.html">
+              <i class="bi bi-folder2 me-2"></i>12. Namespaces
+            </a>
+            <a class="nav-link topic-item" href="csharp-comments.html">
+              <i class="bi bi-chat-text me-2"></i>13. Comments & Regions
+            </a>
+          </nav>
+        </div>
+
+        <!-- Object-Oriented Programming -->
+        <div class="topic-section mb-3" data-section="oop">
+          <div class="subject-header" onclick="toggleSection('oop')">
+            <i class="bi bi-2-circle-fill text-success"></i>
+            Object-Oriented Programming (OOPs)
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="csharp-classes.html">
+              <i class="bi bi-box me-2"></i>01. Classes & Objects
+            </a>
+            <a class="nav-link topic-item" href="csharp-inheritance.html">
+              <i class="bi bi-diagram-3 me-2"></i>02. Inheritance
+            </a>
+            <a class="nav-link topic-item" href="csharp-encapsulation.html">
+              <i class="bi bi-lock me-2"></i>03. Encapsulation
+            </a>
+            <a class="nav-link topic-item" href="csharp-polymorphism.html">
+              <i class="bi bi-shuffle me-2"></i>04. Polymorphism
+            </a>
+            <a class="nav-link topic-item" href="csharp-abstraction.html">
+              <i class="bi bi-eye-slash me-2"></i>05. Abstraction
+            </a>
+            <a class="nav-link topic-item" href="csharp-interfaces.html">
+              <i class="bi bi-diagram-2 me-2"></i>06. Interfaces
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-4" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="#basics">C# Basics</a></li>
+            <li class="breadcrumb-item active">Data Types & Variables</li>
+          </ol>
+        </nav>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-4">
+              <h1 class="display-5 fw-bold text-primary">
+                <i class="bi bi-layers me-3"></i>Data Types & Variables
+              </h1>
+              <p class="lead">
+                Understanding C# data types and variable declarations
+              </p>
+            </div>
+
+            <!-- Overview Section -->
+            <section class="content-section mb-5">
+              <div class="section-header theory">
+                <div class="section-icon">
+                  <i class="bi bi-info-circle"></i>
+                </div>
+                <div>
+                  <h2>Understanding Data Types</h2>
+                  <p class="text-muted mb-0">C# is a strongly-typed language with a rich type system</p>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p>C# is a strongly-typed language where every variable must have a declared type. Data types specify the type of data that variables can store.</p>
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5><i class="bi bi-box me-2"></i>Value Types</h5>
+                      <p>Store data directly in memory. Examples:</p>
+                      <ul>
+                        <li><code>int</code> - 32-bit integer</li>
+                        <li><code>double</code> - 64-bit floating point</li>
+                        <li><code>bool</code> - Boolean (true/false)</li>
+                        <li><code>char</code> - Single Unicode character</li>
+                        <li><code>decimal</code> - 128-bit decimal</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h5><i class="bi bi-arrow-right me-2"></i>Reference Types</h5>
+                      <p>Store references to data. Examples:</p>
+                      <ul>
+                        <li><code>string</code> - Sequence of characters</li>
+                        <li><code>object</code> - Base type for all types</li>
+                        <li><code>arrays</code> - Collection of elements</li>
+                        <li><code>class</code> - Custom reference types</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Value Types -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-code-slash"></i>
+                </div>
+                <div>
+                  <h2>Value Types</h2>
+                  <p class="text-muted mb-0">Exploring integer, floating-point, and other value types</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class ValueTypesExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Value Types ===");
+        
+        // Integer types
+        byte byteVar = 255;
+        short shortVar = -32768;
+        int intVar = 2147483647;
+        long longVar = 9223372036854775807L;
+        
+        Console.WriteLine($"byte: {byteVar} (Range: 0 to 255)");
+        Console.WriteLine($"short: {shortVar} (Range: -32,768 to 32,767)");
+        Console.WriteLine($"int: {intVar} (Range: -2,147,483,648 to 2,147,483,647)");
+        Console.WriteLine($"long: {longVar} (Range: very large)");
+        
+        // Floating-point types
+        float floatVar = 3.14159f;
+        double doubleVar = 3.141592653589793;
+        decimal decimalVar = 123.456789m;
+        
+        Console.WriteLine($"\nfloat: {floatVar} (7 digits precision)");
+        Console.WriteLine($"double: {doubleVar} (15-17 digits precision)");
+        Console.WriteLine($"decimal: {decimalVar} (28-29 digits precision)");
+        
+        // Other value types
+        bool boolVar = true;
+        char charVar = 'A';
+        
+        Console.WriteLine($"\nbool: {boolVar}");
+        Console.WriteLine($"char: {charVar}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Reference Types -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-arrow-right-circle"></i>
+                </div>
+                <div>
+                  <h2>Reference Types</h2>
+                  <p class="text-muted mb-0">Working with strings, objects, and arrays</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class ReferenceTypesExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Reference Types ===");
+        
+        // String type
+        string name = "John Doe";
+        string message = "Hello, C#!";
+        
+        Console.WriteLine($"string name: {name}");
+        Console.WriteLine($"string message: {message}");
+        
+        // Object type
+        object obj1 = "This is a string stored in object";
+        object obj2 = 42;
+        object obj3 = true;
+        
+        Console.WriteLine($"object containing string: {obj1}");
+        Console.WriteLine($"object containing int: {obj2}");
+        Console.WriteLine($"object containing bool: {obj3}");
+        
+        // Array type
+        int[] numbers = {1, 2, 3, 4, 5};
+        string[] colors = {"Red", "Green", "Blue"};
+        
+        Console.WriteLine($"int array: [{string.Join(", ", numbers)}]");
+        Console.WriteLine($"string array: [{string.Join(", ", colors)}]");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Type Inference -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-magic"></i>
+                </div>
+                <div>
+                  <h2>Type Inference with var</h2>
+                  <p class="text-muted mb-0">Let the compiler determine the type automatically</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class TypeInferenceExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Type Inference (var) ===");
+        
+        // var keyword - compiler infers the type
+        var implicitInt = 42;
+        var implicitString = "Inferred as string";
+        var implicitDouble = 3.14;
+        var implicitBool = true;
+        
+        Console.WriteLine($"var implicitInt = {implicitInt} (Type: {implicitInt.GetType().Name})");
+        Console.WriteLine($"var implicitString = \"{implicitString}\" (Type: {implicitString.GetType().Name})");
+        Console.WriteLine($"var implicitDouble = {implicitDouble} (Type: {implicitDouble.GetType().Name})");
+        Console.WriteLine($"var implicitBool = {implicitBool} (Type: {implicitBool.GetType().Name})");
+        
+        // Complex types with var
+        var numbers = new int[] {1, 2, 3};
+        var person = new { Name = "Alice", Age = 30 }; // Anonymous type
+        
+        Console.WriteLine($"var numbers type: {numbers.GetType().Name}");
+        Console.WriteLine($"Anonymous type: {person.Name}, {person.Age}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Nullable Types -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-question-circle"></i>
+                </div>
+                <div>
+                  <h2>Nullable Types</h2>
+                  <p class="text-muted mb-0">Allowing value types to represent null values</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class NullableTypesExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Nullable Types ===");
+        
+        // Nullable value types
+        int? nullableInt = null;
+        double? nullableDouble = 3.14;
+        bool? nullableBool = true;
+        
+        Console.WriteLine($"int? nullableInt = {nullableInt?.ToString() ?? "null"}");
+        Console.WriteLine($"double? nullableDouble = {nullableDouble}");
+        Console.WriteLine($"bool? nullableBool = {nullableBool}");
+        
+        // Checking for null
+        if (nullableInt.HasValue)
+        {
+            Console.WriteLine($"nullableInt has value: {nullableInt.Value}");
+        }
+        else
+        {
+            Console.WriteLine("nullableInt is null");
+        }
+        
+        // Null-coalescing operator
+        int actualValue = nullableInt ?? 0; // Use 0 if null
+        Console.WriteLine($"Using null-coalescing: {actualValue}");
+        
+        // Assign value
+        nullableInt = 42;
+        Console.WriteLine($"After assignment: {nullableInt}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Type Conversion -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-arrow-left-right"></i>
+                </div>
+                <div>
+                  <h2>Type Conversion</h2>
+                  <p class="text-muted mb-0">Converting between different data types</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class TypeConversionExample
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Type Conversion ===");
+        
+        // Implicit conversion (safe, no data loss)
+        int intValue = 100;
+        long longValue = intValue; // int to long
+        double doubleValue = intValue; // int to double
+        
+        Console.WriteLine($"int: {intValue}");
+        Console.WriteLine($"long: {longValue}");
+        Console.WriteLine($"double: {doubleValue}");
+        
+        // Explicit conversion (casting, potential data loss)
+        double sourceDouble = 123.456;
+        int targetInt = (int)sourceDouble; // Truncates decimal part
+        
+        Console.WriteLine($"Original double: {sourceDouble}");
+        Console.WriteLine($"Converted to int: {targetInt}");
+        
+        // Using Convert class
+        string numberString = "789";
+        int convertedInt = Convert.ToInt32(numberString);
+        double convertedDouble = Convert.ToDouble(numberString);
+        
+        Console.WriteLine($"String: \"{numberString}\"");
+        Console.WriteLine($"Converted to int: {convertedInt}");
+        Console.WriteLine($"Converted to double: {convertedDouble}");
+        
+        // Parse methods
+        string boolString = "true";
+        bool parsedBool = bool.Parse(boolString);
+        
+        Console.WriteLine($"Parsed bool: {parsedBool}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between mt-5">
+              <a href="csharp-introduction.html" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left me-2"></i>Previous: Introduction to C#
+              </a>
+              <a href="csharp-constants.html" class="btn btn-primary">
+                Next: Constants & Readonly<i class="bi bi-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

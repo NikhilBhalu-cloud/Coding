@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Operators in C# - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-search">
+        <input type="text" id="sidebarSearch" placeholder="Search topics..." class="form-control">
+      </div>
+      
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">
+          <i class="bi bi-book me-2"></i>Learning Path
+        </h6>
+        
+        <!-- C# Basics -->
+        <div class="topic-section mb-3" data-section="basics">
+          <div class="subject-header" onclick="toggleSection('basics')">
+            <i class="bi bi-1-circle-fill text-primary"></i>
+            C# Basics
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="csharp-introduction.html">
+              <i class="bi bi-play-circle me-2"></i>01. Introduction to C#
+            </a>
+            <a class="nav-link topic-item" href="csharp-datatypes.html">
+              <i class="bi bi-layers me-2"></i>02. Data Types & Variables
+            </a>
+            <a class="nav-link topic-item" href="csharp-constants.html">
+              <i class="bi bi-lock me-2"></i>03. Constants & Readonly
+            </a>
+            <a class="nav-link topic-item active" href="csharp-operators.html">
+              <i class="bi bi-calculator me-2"></i>04. Operators
+            </a>
+            <a class="nav-link topic-item" href="csharp-controlflow.html">
+              <i class="bi bi-flow-chart me-2"></i>05. Control Flow
+            </a>
+            <a class="nav-link topic-item" href="csharp-loops.html">
+              <i class="bi bi-arrow-repeat me-2"></i>06. Loops
+            </a>
+            <a class="nav-link topic-item" href="csharp-methods.html">
+              <i class="bi bi-gear me-2"></i>07. Methods & Parameters
+            </a>
+            <a class="nav-link topic-item" href="csharp-overloading.html">
+              <i class="bi bi-layers-half me-2"></i>08. Method Overloading
+            </a>
+            <a class="nav-link topic-item" href="csharp-parameters.html">
+              <i class="bi bi-arrow-left-right me-2"></i>09. Pass by Value/Reference
+            </a>
+            <a class="nav-link topic-item" href="csharp-arrays.html">
+              <i class="bi bi-list-ol me-2"></i>10. Arrays & Strings
+            </a>
+            <a class="nav-link topic-item" href="csharp-casting.html">
+              <i class="bi bi-shuffle me-2"></i>11. Type Casting & Conversion
+            </a>
+            <a class="nav-link topic-item" href="csharp-namespaces.html">
+              <i class="bi bi-folder2 me-2"></i>12. Namespaces
+            </a>
+            <a class="nav-link topic-item" href="csharp-comments.html">
+              <i class="bi bi-chat-text me-2"></i>13. Comments & Regions
+            </a>
+          </nav>
+        </div>
+
+        <!-- Object-Oriented Programming -->
+        <div class="topic-section mb-3" data-section="oop">
+          <div class="subject-header" onclick="toggleSection('oop')">
+            <i class="bi bi-2-circle-fill text-success"></i>
+            Object-Oriented Programming (OOPs)
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="csharp-classes.html">
+              <i class="bi bi-box me-2"></i>01. Classes & Objects
+            </a>
+            <a class="nav-link topic-item" href="csharp-inheritance.html">
+              <i class="bi bi-diagram-3 me-2"></i>02. Inheritance
+            </a>
+            <a class="nav-link topic-item" href="csharp-encapsulation.html">
+              <i class="bi bi-lock me-2"></i>03. Encapsulation
+            </a>
+            <a class="nav-link topic-item" href="csharp-polymorphism.html">
+              <i class="bi bi-shuffle me-2"></i>04. Polymorphism
+            </a>
+            <a class="nav-link topic-item" href="csharp-abstraction.html">
+              <i class="bi bi-eye-slash me-2"></i>05. Abstraction
+            </a>
+            <a class="nav-link topic-item" href="csharp-interfaces.html">
+              <i class="bi bi-diagram-2 me-2"></i>06. Interfaces
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-4" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="#basics">C# Basics</a></li>
+            <li class="breadcrumb-item active">Operators</li>
+          </ol>
+        </nav>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-4">
+              <h1 class="display-5 fw-bold text-primary">
+                <i class="bi bi-calculator me-3"></i>Operators in C#
+              </h1>
+              <p class="lead">
+                Learn about different types of operators and their usage in C#
+              </p>
+            </div>
+
+            <!-- Overview Section -->
+            <section class="content-section mb-5">
+              <div class="section-header theory">
+                <div class="section-icon">
+                  <i class="bi bi-info-circle"></i>
+                </div>
+                <div>
+                  <h2>Understanding Operators</h2>
+                  <p class="text-muted mb-0">Symbols that perform specific operations on operands</p>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p><strong>Operators</strong> are symbols that perform specific operations on one or more operands. C# provides a rich set of operators for arithmetic, comparison, logical, assignment, and other operations.</p>
+                  
+                  <h5><i class="bi bi-list me-2"></i>Types of Operators:</h5>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul>
+                        <li><strong>Arithmetic Operators:</strong> +, -, *, /, % (modulo)</li>
+                        <li><strong>Comparison Operators:</strong> ==, !=, <, >, <=, >=</li>
+                        <li><strong>Logical Operators:</strong> && (AND), || (OR), ! (NOT)</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <ul>
+                        <li><strong>Assignment Operators:</strong> =, +=, -=, *=, /=, %=</li>
+                        <li><strong>Increment/Decrement:</strong> ++, --</li>
+                        <li><strong>Bitwise Operators:</strong> &, |, ^, ~, <<, >></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Arithmetic Operators -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-plus-circle"></i>
+                </div>
+                <div>
+                  <h2>Arithmetic Operators</h2>
+                  <p class="text-muted mb-0">Basic mathematical operations</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class ArithmeticOperators
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Arithmetic Operators ===");
+        
+        int a = 15, b = 4;
+        Console.WriteLine($"a = {a}, b = {b}");
+        
+        // Basic arithmetic operations
+        Console.WriteLine($"Addition (a + b): {a + b}");
+        Console.WriteLine($"Subtraction (a - b): {a - b}");
+        Console.WriteLine($"Multiplication (a * b): {a * b}");
+        Console.WriteLine($"Division (a / b): {a / b}");
+        Console.WriteLine($"Modulus (a % b): {a % b}");
+        
+        // Floating-point division
+        double x = 15.0, y = 4.0;
+        Console.WriteLine($"Floating-point division ({x} / {y}): {x / y}");
+        
+        // Increment and Decrement
+        int count = 10;
+        Console.WriteLine($"Original count: {count}");
+        Console.WriteLine($"Pre-increment (++count): {++count}");
+        Console.WriteLine($"Post-increment (count++): {count++}");
+        Console.WriteLine($"After post-increment: {count}");
+        
+        Console.WriteLine($"Pre-decrement (--count): {--count}");
+        Console.WriteLine($"Post-decrement (count--): {count--}");
+        Console.WriteLine($"After post-decrement: {count}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Comparison Operators -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-arrow-left-right"></i>
+                </div>
+                <div>
+                  <h2>Comparison Operators</h2>
+                  <p class="text-muted mb-0">Comparing values and returning boolean results</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class ComparisonOperators
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Comparison Operators ===");
+        
+        int x = 10, y = 20;
+        Console.WriteLine($"x = {x}, y = {y}");
+        
+        Console.WriteLine($"Equal (x == y): {x == y}");
+        Console.WriteLine($"Not Equal (x != y): {x != y}");
+        Console.WriteLine($"Greater than (x > y): {x > y}");
+        Console.WriteLine($"Less than (x < y): {x < y}");
+        Console.WriteLine($"Greater than or equal (x >= y): {x >= y}");
+        Console.WriteLine($"Less than or equal (x <= y): {x <= y}");
+        
+        // String comparison
+        string str1 = "Hello";
+        string str2 = "World";
+        string str3 = "Hello";
+        
+        Console.WriteLine($"\nString comparison:");
+        Console.WriteLine($"str1 == str2: {str1 == str2}");
+        Console.WriteLine($"str1 == str3: {str1 == str3}");
+        
+        // Reference vs Value comparison
+        object obj1 = str1;
+        object obj2 = str3;
+        Console.WriteLine($"ReferenceEquals(obj1, obj2): {ReferenceEquals(obj1, obj2)}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Logical Operators -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-diagram-2"></i>
+                </div>
+                <div>
+                  <h2>Logical Operators</h2>
+                  <p class="text-muted mb-0">Boolean logic operations</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class LogicalOperators
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Logical Operators ===");
+        
+        bool p = true, q = false;
+        Console.WriteLine($"p = {p}, q = {q}");
+        
+        // Basic logical operations
+        Console.WriteLine($"Logical AND (p && q): {p && q}");
+        Console.WriteLine($"Logical OR (p || q): {p || q}");
+        Console.WriteLine($"Logical NOT (!p): {!p}");
+        Console.WriteLine($"Logical NOT (!q): {!q}");
+        
+        // Short-circuit evaluation
+        Console.WriteLine("\n=== Short-circuit Evaluation ===");
+        int a = 5, b = 0;
+        
+        // Short-circuit AND - second condition not evaluated if first is false
+        if (b != 0 && a / b > 2)
+        {
+            Console.WriteLine("This won't execute because b == 0");
+        }
+        else
+        {
+            Console.WriteLine("Safe: First condition (b != 0) prevented division by zero");
+        }
+        
+        // Short-circuit OR - second condition not evaluated if first is true
+        if (a > 0 || b / a > 1) // b/a won't be evaluated because a > 0 is true
+        {
+            Console.WriteLine("First condition was true, second not evaluated");
+        }
+        
+        // Complex logical expressions
+        int age = 25;
+        bool hasLicense = true;
+        bool hasInsurance = true;
+        
+        if (age >= 18 && hasLicense && hasInsurance)
+        {
+            Console.WriteLine("Can drive legally");
+        }
+        
+        if (age < 16 || !hasLicense || !hasInsurance)
+        {
+            Console.WriteLine("Cannot drive or needs requirements");
+        }
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Assignment Operators -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-arrow-down-circle"></i>
+                </div>
+                <div>
+                  <h2>Assignment Operators</h2>
+                  <p class="text-muted mb-0">Assigning and modifying values</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class AssignmentOperators
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Assignment Operators ===");
+        
+        int val = 10;
+        Console.WriteLine($"Initial value: {val}");
+        
+        // Compound assignment operators
+        val += 5; // val = val + 5
+        Console.WriteLine($"After += 5: {val}");
+        
+        val -= 3; // val = val - 3
+        Console.WriteLine($"After -= 3: {val}");
+        
+        val *= 2; // val = val * 2
+        Console.WriteLine($"After *= 2: {val}");
+        
+        val /= 4; // val = val / 4
+        Console.WriteLine($"After /= 4: {val}");
+        
+        val %= 3; // val = val % 3
+        Console.WriteLine($"After %= 3: {val}");
+        
+        // Multiple assignments
+        int a, b, c;
+        a = b = c = 5; // Right to left assignment
+        Console.WriteLine($"Multiple assignment: a={a}, b={b}, c={c}");
+        
+        // Null-coalescing assignment (C# 8.0+)
+        string name = null;
+        name ??= "Default Name"; // Assign only if null
+        Console.WriteLine($"After ??= assignment: {name}");
+        
+        name ??= "Another Name"; // Won't assign because name is not null
+        Console.WriteLine($"After second ??=: {name}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Bitwise Operators -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-gear"></i>
+                </div>
+                <div>
+                  <h2>Bitwise Operators</h2>
+                  <p class="text-muted mb-0">Working with individual bits</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class BitwiseOperators
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Bitwise Operators ===");
+        
+        int m = 12; // Binary: 1100
+        int n = 10; // Binary: 1010
+        
+        Console.WriteLine($"m = {m} (Binary: {Convert.ToString(m, 2).PadLeft(8, '0')})");
+        Console.WriteLine($"n = {n} (Binary: {Convert.ToString(n, 2).PadLeft(8, '0')})");
+        
+        // Bitwise operations
+        int andResult = m & n;
+        int orResult = m | n;
+        int xorResult = m ^ n;
+        int notResult = ~m;
+        int leftShift = m << 1;
+        int rightShift = m >> 1;
+        
+        Console.WriteLine($"Bitwise AND (m & n): {andResult} (Binary: {Convert.ToString(andResult, 2).PadLeft(8, '0')})");
+        Console.WriteLine($"Bitwise OR (m | n): {orResult} (Binary: {Convert.ToString(orResult, 2).PadLeft(8, '0')})");
+        Console.WriteLine($"Bitwise XOR (m ^ n): {xorResult} (Binary: {Convert.ToString(xorResult, 2).PadLeft(8, '0')})");
+        Console.WriteLine($"Bitwise NOT (~m): {notResult}");
+        Console.WriteLine($"Left Shift (m << 1): {leftShift} (Binary: {Convert.ToString(leftShift, 2).PadLeft(8, '0')})");
+        Console.WriteLine($"Right Shift (m >> 1): {rightShift} (Binary: {Convert.ToString(rightShift, 2).PadLeft(8, '0')})");
+        
+        // Practical example: Flags enumeration
+        Console.WriteLine("\n=== Practical Example: File Permissions ===");
+        
+        const int READ = 1;    // 001
+        const int WRITE = 2;   // 010
+        const int EXECUTE = 4; // 100
+        
+        int permissions = READ | WRITE; // Combine permissions
+        Console.WriteLine($"Initial permissions: {permissions}");
+        
+        // Check if has read permission
+        bool hasRead = (permissions & READ) != 0;
+        Console.WriteLine($"Has read permission: {hasRead}");
+        
+        // Add execute permission
+        permissions |= EXECUTE;
+        Console.WriteLine($"After adding execute: {permissions}");
+        
+        // Remove write permission
+        permissions &= ~WRITE;
+        Console.WriteLine($"After removing write: {permissions}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Special Operators -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-star"></i>
+                </div>
+                <div>
+                  <h2>Special Operators</h2>
+                  <p class="text-muted mb-0">Conditional, null-coalescing, and other special operators</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class SpecialOperators
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Special Operators ===");
+        
+        // Conditional (Ternary) Operator
+        int age = 18;
+        string status = age >= 18 ? "Adult" : "Minor";
+        Console.WriteLine($"Age: {age}, Status: {status}");
+        
+        // Null-coalescing Operators
+        string nullString = null;
+        string defaultString = "Default Value";
+        
+        string result1 = nullString ?? defaultString;
+        Console.WriteLine($"nullString ?? defaultString: {result1}");
+        
+        string result2 = "Not Null" ?? defaultString;
+        Console.WriteLine($"\"Not Null\" ?? defaultString: {result2}");
+        
+        // Null-conditional Operators
+        string name = "John Doe";
+        int? length = name?.Length; // Safe navigation
+        Console.WriteLine($"Name length: {length}");
+        
+        name = null;
+        length = name?.Length; // Returns null instead of throwing exception
+        Console.WriteLine($"Null name length: {length}");
+        
+        // Type checking operators
+        object obj = "Hello World";
+        
+        // is operator
+        if (obj is string)
+        {
+            Console.WriteLine("obj is a string");
+        }
+        
+        // is with pattern matching (C# 7.0+)
+        if (obj is string str)
+        {
+            Console.WriteLine($"String value: {str}");
+        }
+        
+        // as operator
+        string objAsString = obj as string;
+        if (objAsString != null)
+        {
+            Console.WriteLine($"Converted to string: {objAsString}");
+        }
+        
+        // typeof operator
+        Type stringType = typeof(string);
+        Console.WriteLine($"Type of string: {stringType.Name}");
+        
+        // sizeof operator (for value types)
+        Console.WriteLine($"Size of int: {sizeof(int)} bytes");
+        Console.WriteLine($"Size of double: {sizeof(double)} bytes");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between mt-5">
+              <a href="csharp-constants.html" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left me-2"></i>Previous: Constants & Readonly
+              </a>
+              <a href="csharp-controlflow.html" class="btn btn-primary">
+                Next: Control Flow<i class="bi bi-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
