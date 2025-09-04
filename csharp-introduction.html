@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Introduction to C# - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-search">
+        <input type="text" id="sidebarSearch" placeholder="Search topics..." class="form-control">
+      </div>
+      
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">
+          <i class="bi bi-book me-2"></i>Learning Path
+        </h6>
+        
+        <!-- C# Basics -->
+        <div class="topic-section mb-3" data-section="basics">
+          <div class="subject-header" onclick="toggleSection('basics')">
+            <i class="bi bi-1-circle-fill text-primary"></i>
+            C# Basics
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item active" href="csharp-introduction.html">
+              <i class="bi bi-play-circle me-2"></i>01. Introduction to C#
+            </a>
+            <a class="nav-link topic-item" href="csharp-datatypes.html">
+              <i class="bi bi-layers me-2"></i>02. Data Types & Variables
+            </a>
+            <a class="nav-link topic-item" href="csharp-constants.html">
+              <i class="bi bi-lock me-2"></i>03. Constants & Readonly
+            </a>
+            <a class="nav-link topic-item" href="csharp-operators.html">
+              <i class="bi bi-calculator me-2"></i>04. Operators
+            </a>
+            <a class="nav-link topic-item" href="csharp-controlflow.html">
+              <i class="bi bi-flow-chart me-2"></i>05. Control Flow
+            </a>
+            <a class="nav-link topic-item" href="csharp-loops.html">
+              <i class="bi bi-arrow-repeat me-2"></i>06. Loops
+            </a>
+            <a class="nav-link topic-item" href="csharp-methods.html">
+              <i class="bi bi-gear me-2"></i>07. Methods & Parameters
+            </a>
+            <a class="nav-link topic-item" href="csharp-overloading.html">
+              <i class="bi bi-layers-half me-2"></i>08. Method Overloading
+            </a>
+            <a class="nav-link topic-item" href="csharp-parameters.html">
+              <i class="bi bi-arrow-left-right me-2"></i>09. Pass by Value/Reference
+            </a>
+            <a class="nav-link topic-item" href="csharp-arrays.html">
+              <i class="bi bi-list-ol me-2"></i>10. Arrays & Strings
+            </a>
+            <a class="nav-link topic-item" href="csharp-casting.html">
+              <i class="bi bi-shuffle me-2"></i>11. Type Casting & Conversion
+            </a>
+            <a class="nav-link topic-item" href="csharp-namespaces.html">
+              <i class="bi bi-folder2 me-2"></i>12. Namespaces
+            </a>
+            <a class="nav-link topic-item" href="csharp-comments.html">
+              <i class="bi bi-chat-text me-2"></i>13. Comments & Regions
+            </a>
+          </nav>
+        </div>
+
+        <!-- Object-Oriented Programming -->
+        <div class="topic-section mb-3" data-section="oop">
+          <div class="subject-header" onclick="toggleSection('oop')">
+            <i class="bi bi-2-circle-fill text-success"></i>
+            Object-Oriented Programming (OOPs)
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="csharp-classes.html">
+              <i class="bi bi-box me-2"></i>01. Classes & Objects
+            </a>
+            <a class="nav-link topic-item" href="csharp-inheritance.html">
+              <i class="bi bi-diagram-3 me-2"></i>02. Inheritance
+            </a>
+            <a class="nav-link topic-item" href="csharp-encapsulation.html">
+              <i class="bi bi-lock me-2"></i>03. Encapsulation
+            </a>
+            <a class="nav-link topic-item" href="csharp-polymorphism.html">
+              <i class="bi bi-shuffle me-2"></i>04. Polymorphism
+            </a>
+            <a class="nav-link topic-item" href="csharp-abstraction.html">
+              <i class="bi bi-eye-slash me-2"></i>05. Abstraction
+            </a>
+            <a class="nav-link topic-item" href="csharp-interfaces.html">
+              <i class="bi bi-diagram-2 me-2"></i>06. Interfaces
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-4" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="#basics">C# Basics</a></li>
+            <li class="breadcrumb-item active">Introduction to C#</li>
+          </ol>
+        </nav>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-4">
+              <h1 class="display-5 fw-bold text-primary">
+                <i class="bi bi-play-circle me-3"></i>Introduction to C# & .NET
+              </h1>
+              <p class="lead">
+                Learn the fundamentals of C# programming language and the .NET framework
+              </p>
+            </div>
+
+            <!-- Overview Section -->
+            <section class="content-section mb-5">
+              <div class="section-header theory">
+                <div class="section-icon">
+                  <i class="bi bi-info-circle"></i>
+                </div>
+                <div>
+                  <h2>What is C#?</h2>
+                  <p class="text-muted mb-0">Understanding C# and its place in modern development</p>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p>C# (pronounced "C-Sharp") is a modern, object-oriented programming language developed by Microsoft. It runs on the .NET framework and is designed for building Windows applications, web applications, and more.</p>
+                  
+                  <h5><i class="bi bi-star me-2"></i>Key Features:</h5>
+                  <ul>
+                    <li><strong>Type Safety:</strong> Strong type checking prevents runtime errors</li>
+                    <li><strong>Memory Management:</strong> Automatic garbage collection</li>
+                    <li><strong>Object-Oriented:</strong> Supports inheritance, polymorphism, and encapsulation</li>
+                    <li><strong>Cross-Platform:</strong> Runs on Windows, macOS, and Linux with .NET Core</li>
+                    <li><strong>Rich Library:</strong> Extensive Base Class Library (BCL)</li>
+                    <li><strong>Modern Language:</strong> Regular updates with new features</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- Basic Program Structure -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-code-slash"></i>
+                </div>
+                <div>
+                  <h2>Basic C# Program Structure</h2>
+                  <p class="text-muted mb-0">Understanding the anatomy of a C# program</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h5>Hello World Example</h5>
+                  <p>Every C# program follows a basic structure. Here's a simple "Hello World" program:</p>
+                  
+                  <pre><code class="language-csharp">using System;
+
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // This is a simple "Hello World" program
+            Console.WriteLine("Hello, World!");
+            
+            // Variables and basic operations
+            string name = "C# Developer";
+            int year = 2024;
+            
+            Console.WriteLine($"Welcome {name} to C# programming in {year}!");
+            
+            // Wait for user input before closing
+            Console.ReadLine();
+        }
+    }
+}</code></pre>
+
+                  <div class="mt-3">
+                    <h6>Program Structure Breakdown:</h6>
+                    <ol>
+                      <li><strong>using statements:</strong> Import namespaces (like <code>using System;</code>)</li>
+                      <li><strong>namespace declaration:</strong> Organizes related classes</li>
+                      <li><strong>class declaration:</strong> Defines a class (blueprint for objects)</li>
+                      <li><strong>Main method:</strong> Entry point of the application</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- .NET Framework -->
+            <section class="content-section mb-5">
+              <div class="section-header theory">
+                <div class="section-icon">
+                  <i class="bi bi-gear-wide"></i>
+                </div>
+                <div>
+                  <h2>Understanding .NET</h2>
+                  <p class="text-muted mb-0">The platform that powers C# applications</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5><i class="bi bi-diagram-3 me-2"></i>.NET Framework</h5>
+                      <p>The original .NET implementation for Windows development.</p>
+                      <ul>
+                        <li>Windows-only</li>
+                        <li>Mature and stable</li>
+                        <li>Large ecosystem</li>
+                        <li>Legacy applications</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5><i class="bi bi-globe me-2"></i>.NET Core / .NET 5+</h5>
+                      <p>Modern, cross-platform implementation of .NET.</p>
+                      <ul>
+                        <li>Cross-platform (Windows, macOS, Linux)</li>
+                        <li>High performance</li>
+                        <li>Open source</li>
+                        <li>Cloud-ready</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Common Use Cases -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-laptop"></i>
+                </div>
+                <div>
+                  <h2>What Can You Build with C#?</h2>
+                  <p class="text-muted mb-0">Real-world applications of C# programming</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card text-center h-100">
+                    <div class="card-body">
+                      <i class="bi bi-window-desktop text-primary mb-3" style="font-size: 2rem;"></i>
+                      <h5>Desktop Applications</h5>
+                      <p>Windows Forms, WPF, and modern WinUI applications</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card text-center h-100">
+                    <div class="card-body">
+                      <i class="bi bi-globe text-success mb-3" style="font-size: 2rem;"></i>
+                      <h5>Web Applications</h5>
+                      <p>ASP.NET Core web apps, APIs, and web services</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card text-center h-100">
+                    <div class="card-body">
+                      <i class="bi bi-phone text-warning mb-3" style="font-size: 2rem;"></i>
+                      <h5>Mobile Apps</h5>
+                      <p>Cross-platform mobile apps with Xamarin and .NET MAUI</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Environment Information -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-info-square"></i>
+                </div>
+                <div>
+                  <h2>Environment Information</h2>
+                  <p class="text-muted mb-0">Getting system information in C#</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+class EnvironmentInfo
+{
+    static void Main()
+    {
+        Console.WriteLine("=== C# Environment Information ===");
+        
+        // Display .NET version information
+        Console.WriteLine($"Runtime Version: {Environment.Version}");
+        Console.WriteLine($"Operating System: {Environment.OSVersion}");
+        Console.WriteLine($"Machine Name: {Environment.MachineName}");
+        Console.WriteLine($"User Name: {Environment.UserName}");
+        Console.WriteLine($"Current Directory: {Environment.CurrentDirectory}");
+        
+        // Framework information
+        Console.WriteLine($"64-bit OS: {Environment.Is64BitOperatingSystem}");
+        Console.WriteLine($"64-bit Process: {Environment.Is64BitProcess}");
+        Console.WriteLine($"Processor Count: {Environment.ProcessorCount}");
+        
+        Console.WriteLine("\nPress any key to exit...");
+        Console.ReadKey();
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between mt-5">
+              <a href="index.html" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left me-2"></i>Back to Home
+              </a>
+              <a href="csharp-datatypes.html" class="btn btn-primary">
+                Next: Data Types & Variables<i class="bi bi-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Classes & Objects - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-search">
+        <input type="text" id="sidebarSearch" placeholder="Search topics..." class="form-control">
+      </div>
+      
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">
+          <i class="bi bi-book me-2"></i>Learning Path
+        </h6>
+        
+        <!-- C# Basics -->
+        <div class="topic-section mb-3" data-section="basics">
+          <div class="subject-header" onclick="toggleSection('basics')">
+            <i class="bi bi-1-circle-fill text-primary"></i>
+            C# Basics
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="csharp-introduction.html">
+              <i class="bi bi-play-circle me-2"></i>01. Introduction to C#
+            </a>
+            <a class="nav-link topic-item" href="csharp-datatypes.html">
+              <i class="bi bi-layers me-2"></i>02. Data Types & Variables
+            </a>
+            <a class="nav-link topic-item" href="csharp-constants.html">
+              <i class="bi bi-lock me-2"></i>03. Constants & Readonly
+            </a>
+            <a class="nav-link topic-item" href="csharp-operators.html">
+              <i class="bi bi-calculator me-2"></i>04. Operators
+            </a>
+            <a class="nav-link topic-item" href="csharp-controlflow.html">
+              <i class="bi bi-flow-chart me-2"></i>05. Control Flow
+            </a>
+            <a class="nav-link topic-item" href="csharp-loops.html">
+              <i class="bi bi-arrow-repeat me-2"></i>06. Loops
+            </a>
+            <a class="nav-link topic-item" href="csharp-methods.html">
+              <i class="bi bi-gear me-2"></i>07. Methods & Parameters
+            </a>
+            <a class="nav-link topic-item" href="csharp-overloading.html">
+              <i class="bi bi-layers-half me-2"></i>08. Method Overloading
+            </a>
+            <a class="nav-link topic-item" href="csharp-parameters.html">
+              <i class="bi bi-arrow-left-right me-2"></i>09. Pass by Value/Reference
+            </a>
+            <a class="nav-link topic-item" href="csharp-arrays.html">
+              <i class="bi bi-list-ol me-2"></i>10. Arrays & Strings
+            </a>
+            <a class="nav-link topic-item" href="csharp-casting.html">
+              <i class="bi bi-shuffle me-2"></i>11. Type Casting & Conversion
+            </a>
+            <a class="nav-link topic-item" href="csharp-namespaces.html">
+              <i class="bi bi-folder2 me-2"></i>12. Namespaces
+            </a>
+            <a class="nav-link topic-item" href="csharp-comments.html">
+              <i class="bi bi-chat-text me-2"></i>13. Comments & Regions
+            </a>
+          </nav>
+        </div>
+
+        <!-- Object-Oriented Programming -->
+        <div class="topic-section mb-3" data-section="oop">
+          <div class="subject-header" onclick="toggleSection('oop')">
+            <i class="bi bi-2-circle-fill text-success"></i>
+            Object-Oriented Programming (OOPs)
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item active" href="csharp-classes.html">
+              <i class="bi bi-box me-2"></i>01. Classes & Objects
+            </a>
+            <a class="nav-link topic-item" href="csharp-inheritance.html">
+              <i class="bi bi-diagram-3 me-2"></i>02. Inheritance
+            </a>
+            <a class="nav-link topic-item" href="csharp-encapsulation.html">
+              <i class="bi bi-lock me-2"></i>03. Encapsulation
+            </a>
+            <a class="nav-link topic-item" href="csharp-polymorphism.html">
+              <i class="bi bi-shuffle me-2"></i>04. Polymorphism
+            </a>
+            <a class="nav-link topic-item" href="csharp-abstraction.html">
+              <i class="bi bi-eye-slash me-2"></i>05. Abstraction
+            </a>
+            <a class="nav-link topic-item" href="csharp-interfaces.html">
+              <i class="bi bi-diagram-2 me-2"></i>06. Interfaces
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-4" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="#oop">OOPs</a></li>
+            <li class="breadcrumb-item active">Classes & Objects</li>
+          </ol>
+        </nav>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-4">
+              <h1 class="display-5 fw-bold text-success">
+                <i class="bi bi-box me-3"></i>Classes & Objects
+              </h1>
+              <p class="lead">
+                Understanding the fundamental concepts of object-oriented programming
+              </p>
+            </div>
+
+            <!-- Overview Section -->
+            <section class="content-section mb-5">
+              <div class="section-header theory">
+                <div class="section-icon">
+                  <i class="bi bi-info-circle"></i>
+                </div>
+                <div>
+                  <h2>What are Classes and Objects?</h2>
+                  <p class="text-muted mb-0">Building blocks of object-oriented programming</p>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5><i class="bi bi-blueprint me-2"></i>Class</h5>
+                      <p>A <strong>class</strong> is a blueprint or template that defines the structure and behavior of objects.</p>
+                      <ul>
+                        <li>Defines data members (fields)</li>
+                        <li>Defines behavior (methods)</li>
+                        <li>Encapsulates data and methods</li>
+                        <li>Can be instantiated multiple times</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h5><i class="bi bi-box me-2"></i>Object</h5>
+                      <p>An <strong>object</strong> is an instance of a class that contains actual data.</p>
+                      <ul>
+                        <li>Created from a class template</li>
+                        <li>Has its own memory space</li>
+                        <li>Contains actual values</li>
+                        <li>Can interact with other objects</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Basic Class Example -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-code-slash"></i>
+                </div>
+                <div>
+                  <h2>Basic Class Definition</h2>
+                  <p class="text-muted mb-0">Creating your first class with fields, properties, and methods</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">using System;
+
+// Basic class definition
+public class Person
+{
+    // Private fields (data encapsulation)
+    private string _name;
+    private int _age;
+    
+    // Properties (controlled access to data)
+    public string Name
+    {
+        get { return _name; }
+        set 
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Name cannot be empty");
+            _name = value;
+        }
+    }
+    
+    public int Age
+    {
+        get { return _age; }
+        set 
+        {
+            if (value < 0 || value > 150)
+                throw new ArgumentException("Age must be between 0 and 150");
+            _age = value;
+        }
+    }
+    
+    // Constructor - initializes new objects
+    public Person(string name, int age)
+    {
+        Name = name;  // Using property for validation
+        Age = age;    // Using property for validation
+    }
+    
+    // Method - defines behavior
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Name: {Name}, Age: {Age}");
+    }
+    
+    // Method with return value
+    public string GetGreeting()
+    {
+        return $"Hello, my name is {Name} and I'm {Age} years old.";
+    }
+}
+
+// Using the class
+class Program
+{
+    static void Main()
+    {
+        // Creating objects (instances) of the Person class
+        Person person1 = new Person("Alice", 25);
+        Person person2 = new Person("Bob", 30);
+        
+        // Using object methods
+        person1.DisplayInfo();
+        person2.DisplayInfo();
+        
+        // Getting values from objects
+        Console.WriteLine(person1.GetGreeting());
+        Console.WriteLine(person2.GetGreeting());
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Constructors -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-hammer"></i>
+                </div>
+                <div>
+                  <h2>Constructors</h2>
+                  <p class="text-muted mb-0">Special methods for object initialization</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">public class Car
+{
+    public string Make { get; set; }
+    public string Model { get; set; }
+    public int Year { get; set; }
+    public string Color { get; set; }
+    
+    // Default constructor
+    public Car()
+    {
+        Make = "Unknown";
+        Model = "Unknown";
+        Year = DateTime.Now.Year;
+        Color = "White";
+    }
+    
+    // Parameterized constructor
+    public Car(string make, string model)
+    {
+        Make = make;
+        Model = model;
+        Year = DateTime.Now.Year;
+        Color = "White";
+    }
+    
+    // Constructor with all parameters
+    public Car(string make, string model, int year, string color)
+    {
+        Make = make;
+        Model = model;
+        Year = year;
+        Color = color;
+    }
+    
+    // Copy constructor
+    public Car(Car other)
+    {
+        Make = other.Make;
+        Model = other.Model;
+        Year = other.Year;
+        Color = other.Color;
+    }
+    
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"{Year} {Color} {Make} {Model}");
+    }
+}
+
+class ConstructorExample
+{
+    static void Main()
+    {
+        // Using different constructors
+        Car car1 = new Car();                              // Default constructor
+        Car car2 = new Car("Toyota", "Camry");             // Parameterized constructor
+        Car car3 = new Car("Honda", "Civic", 2023, "Red"); // Full constructor
+        Car car4 = new Car(car3);                          // Copy constructor
+        
+        car1.DisplayInfo();
+        car2.DisplayInfo(); 
+        car3.DisplayInfo();
+        car4.DisplayInfo();
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Properties vs Fields -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-gear-wide"></i>
+                </div>
+                <div>
+                  <h2>Properties vs Fields</h2>
+                  <p class="text-muted mb-0">Understanding data encapsulation and controlled access</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">public class BankAccount
+{
+    // Private fields - not accessible from outside
+    private string _accountNumber;
+    private decimal _balance;
+    private DateTime _lastTransactionDate;
+    
+    // Public properties - controlled access
+    public string AccountNumber
+    {
+        get { return _accountNumber; }
+        private set { _accountNumber = value; } // Private setter
+    }
+    
+    public decimal Balance
+    {
+        get { return _balance; }
+        set 
+        {
+            if (value < 0)
+                throw new ArgumentException("Balance cannot be negative");
+            _balance = value;
+            _lastTransactionDate = DateTime.Now;
+        }
+    }
+    
+    // Read-only property
+    public DateTime LastTransactionDate
+    {
+        get { return _lastTransactionDate; }
+    }
+    
+    // Auto-implemented property
+    public string AccountHolder { get; set; }
+    
+    // Calculated property
+    public string AccountSummary => $"Account: {AccountNumber}, Balance: ${Balance:F2}";
+    
+    public BankAccount(string accountNumber, string accountHolder, decimal initialBalance)
+    {
+        AccountNumber = accountNumber;
+        AccountHolder = accountHolder;
+        Balance = initialBalance;
+    }
+    
+    public void Deposit(decimal amount)
+    {
+        if (amount <= 0)
+            throw new ArgumentException("Deposit amount must be positive");
+        
+        Balance += amount; // Uses property setter
+        Console.WriteLine($"Deposited ${amount:F2}. New balance: ${Balance:F2}");
+    }
+    
+    public bool Withdraw(decimal amount)
+    {
+        if (amount <= 0)
+            throw new ArgumentException("Withdrawal amount must be positive");
+        
+        if (amount > Balance)
+        {
+            Console.WriteLine("Insufficient funds");
+            return false;
+        }
+        
+        Balance -= amount; // Uses property setter
+        Console.WriteLine($"Withdrew ${amount:F2}. New balance: ${Balance:F2}");
+        return true;
+    }
+}
+
+class PropertyExample
+{
+    static void Main()
+    {
+        BankAccount account = new BankAccount("12345", "John Doe", 1000);
+        
+        Console.WriteLine(account.AccountSummary);
+        
+        account.Deposit(500);
+        account.Withdraw(200);
+        
+        Console.WriteLine($"Last transaction: {account.LastTransactionDate}");
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Static Members -->
+            <section class="content-section mb-5">
+              <div class="section-header examples">
+                <div class="section-icon">
+                  <i class="bi bi-lightning"></i>
+                </div>
+                <div>
+                  <h2>Static Members</h2>
+                  <p class="text-muted mb-0">Class-level data and methods shared by all instances</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <pre><code class="language-csharp">public class Student
+{
+    // Static field - shared by all instances
+    private static int _nextId = 1;
+    public static int TotalStudents { get; private set; } = 0;
+    
+    // Instance fields
+    public int Id { get; private set; }
+    public string Name { get; set; }
+    public string Grade { get; set; }
+    
+    // Static property
+    public static string SchoolName { get; set; } = "C# Learning Academy";
+    
+    public Student(string name, string grade)
+    {
+        Id = _nextId++;
+        Name = name;
+        Grade = grade;
+        TotalStudents++; // Increment static counter
+    }
+    
+    // Instance method
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Student ID: {Id}, Name: {Name}, Grade: {Grade}");
+    }
+    
+    // Static method
+    public static void DisplaySchoolInfo()
+    {
+        Console.WriteLine($"School: {SchoolName}");
+        Console.WriteLine($"Total Students: {TotalStudents}");
+    }
+    
+    // Static method with parameters
+    public static Student CreateHonorStudent(string name)
+    {
+        return new Student(name, "A+");
+    }
+}
+
+class StaticExample
+{
+    static void Main()
+    {
+        // Access static members without creating instances
+        Console.WriteLine($"School: {Student.SchoolName}");
+        Console.WriteLine($"Total students initially: {Student.TotalStudents}");
+        
+        // Create instances
+        Student student1 = new Student("Alice", "A");
+        Student student2 = new Student("Bob", "B");
+        Student student3 = Student.CreateHonorStudent("Charlie");
+        
+        // Display instance information
+        student1.DisplayInfo();
+        student2.DisplayInfo();
+        student3.DisplayInfo();
+        
+        // Display static information
+        Student.DisplaySchoolInfo();
+    }
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between mt-5">
+              <a href="csharp-comments.html" class="btn btn-outline-success">
+                <i class="bi bi-arrow-left me-2"></i>Previous: Comments & Regions
+              </a>
+              <a href="csharp-inheritance.html" class="btn btn-success">
+                Next: Inheritance<i class="bi bi-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
