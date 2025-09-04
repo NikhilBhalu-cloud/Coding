@@ -1,0 +1,356 @@
+/* C# Learning Hub - Custom Styles */
+
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #0dcaf0;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --sidebar-width: 280px;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+/* Dark theme */
+body.dark {
+  background-color: #1a1a1a;
+  color: #e9ecef;
+}
+
+body.dark .card {
+  background-color: #2d2d2d;
+  border-color: #3d3d3d;
+  color: #e9ecef;
+}
+
+body.dark .navbar {
+  background-color: #1a1a1a !important;
+}
+
+body.dark .sidebar {
+  background-color: #2d2d2d;
+  border-color: #3d3d3d;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  height: calc(100vh - 56px); /* Account for navbar height */
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: var(--sidebar-width);
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-toggled .sidebar {
+  transform: translateX(-100%);
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-toggled .main-content {
+  margin-left: 0;
+}
+
+/* Sidebar Navigation */
+.sidebar .nav-link {
+  color: #495057;
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #e9ecef;
+  color: var(--primary-color);
+}
+
+.sidebar .nav-link.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.sidebar .subject-header {
+  background-color: #e9ecef;
+  font-weight: 600;
+  color: #495057;
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.sidebar .topic-item {
+  padding-left: 2rem;
+  font-size: 0.9rem;
+}
+
+.sidebar .topic-item .nav-link {
+  padding: 0.5rem 1rem;
+}
+
+/* Content Sections */
+.content-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+body.dark .content-section {
+  background-color: #2d2d2d;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.section-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  color: white;
+}
+
+.theory .section-icon {
+  background-color: var(--primary-color);
+}
+
+.questions .section-icon {
+  background-color: var(--warning-color);
+}
+
+.examples .section-icon {
+  background-color: var(--success-color);
+}
+
+/* Code Blocks */
+pre {
+  position: relative;
+  background-color: #2d3748;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Q&A Accordion */
+.qa-accordion .accordion-item {
+  border: none;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.qa-accordion .accordion-header button {
+  font-weight: 500;
+  padding: 1rem 1.5rem;
+}
+
+.qa-accordion .accordion-body {
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+}
+
+body.dark .qa-accordion .accordion-body {
+  background-color: #3d3d3d;
+}
+
+/* Feature Cards */
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto;
+}
+
+.learning-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.learning-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .section-icon {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  top: 70px;
+  left: 10px;
+  z-index: 1050;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 992px) {
+  .sidebar-toggle {
+    display: flex;
+  }
+}
+
+/* Progress Indicator */
+.progress-container {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0,0,0,0.1);
+  z-index: 1051;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+/* Breadcrumb Enhancement */
+.breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  color: var(--secondary-color);
+}
+
+/* Table Enhancements */
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  border-bottom: 2px solid var(--primary-color);
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+/* Alert Enhancements */
+.alert {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Button Enhancements */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}

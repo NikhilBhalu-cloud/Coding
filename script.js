@@ -49,21 +49,77 @@
     });
   }
 
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  // Sidebar toggle functionality
+  const sidebarToggle = document.getElementById("sidebarToggle");
+  const sidebar = document.getElementById("sidebar");
+  const body = document.body;
+
+  if (sidebarToggle && sidebar) {
+    sidebarToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("show");
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener("click", (e) => {
+      if (window.innerWidth <= 992 && 
+          !sidebar.contains(e.target) && 
+          !sidebarToggle.contains(e.target) &&
+          sidebar.classList.contains("show")) {
+        sidebar.classList.remove("show");
+      }
+    });
+  }
+
+  // Smooth scrolling for sidebar links
+  document.querySelectorAll('.sidebar a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute("href"));
       if (target) {
-        const offsetTop =
-          target.getBoundingClientRect().top + window.pageYOffset - 80;
+        const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 100;
         window.scrollTo({
           top: offsetTop,
           behavior: "smooth",
         });
+        
+        // Close sidebar on mobile after clicking
+        if (window.innerWidth <= 992 && sidebar) {
+          sidebar.classList.remove("show");
+        }
+        
+        // Update active link
+        document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        this.classList.add('active');
       }
     });
   });
+
+  // Auto-highlight current section in sidebar
+  function updateSidebarActiveLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const sidebarLinks = document.querySelectorAll('.sidebar .nav-link[href^="#"]');
+    
+    let currentSection = '';
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 150 && rect.bottom >= 150) {
+        currentSection = section.id;
+      }
+    });
+    
+    sidebarLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${currentSection}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateSidebarActiveLink);
+  updateSidebarActiveLink(); // Initial call
+
 
   // Code copy functionality
   function addCopyButtons() {

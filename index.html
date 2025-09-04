@@ -19,86 +19,12 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="index.html">
           <i class="bi bi-code-square me-2"></i>C# Learning Hub
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#nav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="nav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                <i class="bi bi-book me-1"></i>Learn by Level
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="basics.html"
-                    ><i class="bi bi-1-circle me-2"></i>Basics</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="intermediate.html"
-                    ><i class="bi bi-2-circle me-2"></i>Intermediate</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="advanced.html"
-                    ><i class="bi bi-3-circle me-2"></i>Advanced</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                <i class="bi bi-gear me-1"></i>OOP Concepts
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="oop-fundamentals.html"
-                    >OOP Fundamentals</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="inheritance-polymorphism.html"
-                    >Inheritance & Polymorphism</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="encapsulation-abstraction.html"
-                    >Encapsulation & Abstraction</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="coding-examples.html"
-                ><i class="bi bi-code me-1"></i>Coding Examples</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="interview-prep.html"
-                ><i class="bi bi-chat-quote me-1"></i>Interview Prep</a
-              >
-            </li>
-          </ul>
+        <div class="d-flex align-items-center">
           <button id="theme-toggle" class="btn btn-outline-light me-2">
             <i class="bi bi-moon-fill"></i>
           </button>
@@ -106,162 +32,757 @@
       </div>
     </nav>
 
-    <div class="hero-section bg-gradient-primary text-white py-5">
-      <div class="container text-center">
-        <h1 class="display-4 fw-bold mb-3">Master C# Programming</h1>
-        <p class="lead mb-4">
-          From basics to advanced concepts, interview preparation to coding
-          examples
-        </p>
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
-          <a href="basics.html" class="btn btn-light btn-lg"
-            ><i class="bi bi-play-circle me-2"></i>Start Learning</a
-          >
-          <a href="interview-prep.html" class="btn btn-outline-light btn-lg"
-            ><i class="bi bi-briefcase me-2"></i>Interview Prep</a
-          >
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">Learning Path</h6>
+        
+        <!-- C# Basics -->
+        <div class="mb-3">
+          <div class="subject-header">
+            <i class="bi bi-1-circle-fill me-2 text-primary"></i>
+            C# Basics
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="#intro">Introduction to C#</a>
+            <a class="nav-link topic-item" href="#datatypes">Data Types & Variables</a>
+            <a class="nav-link topic-item" href="#operators">Operators</a>
+            <a class="nav-link topic-item" href="#control">Control Flow</a>
+            <a class="nav-link topic-item" href="#methods">Methods & Parameters</a>
+            <a class="nav-link topic-item" href="#arrays">Arrays & Strings</a>
+          </nav>
+        </div>
+
+        <!-- Object-Oriented Programming -->
+        <div class="mb-3">
+          <div class="subject-header">
+            <i class="bi bi-2-circle-fill me-2 text-success"></i>
+            Object-Oriented Programming
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="#classes">Classes & Objects</a>
+            <a class="nav-link topic-item" href="#constructors">Constructors & Destructors</a>
+            <a class="nav-link topic-item" href="#inheritance">Inheritance</a>
+            <a class="nav-link topic-item" href="#polymorphism">Polymorphism</a>
+            <a class="nav-link topic-item" href="#encapsulation">Encapsulation</a>
+            <a class="nav-link topic-item" href="#abstraction">Abstraction</a>
+            <a class="nav-link topic-item" href="#interfaces">Interfaces</a>
+            <a class="nav-link topic-item" href="#abstract-classes">Abstract Classes</a>
+            <a class="nav-link topic-item" href="#static-members">Static vs Instance</a>
+          </nav>
+        </div>
+
+        <!-- Advanced C# Concepts -->
+        <div class="mb-3">
+          <div class="subject-header">
+            <i class="bi bi-3-circle-fill me-2 text-warning"></i>
+            Advanced Concepts
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="#delegates">Delegates & Events</a>
+            <a class="nav-link topic-item" href="#linq">LINQ</a>
+            <a class="nav-link topic-item" href="#collections">Collections & Generics</a>
+            <a class="nav-link topic-item" href="#exceptions">Exception Handling</a>
+            <a class="nav-link topic-item" href="#async">Async & Await</a>
+            <a class="nav-link topic-item" href="#reflection">Attributes & Reflection</a>
+          </nav>
+        </div>
+
+        <!-- Interview Questions -->
+        <div class="mb-3">
+          <div class="subject-header">
+            <i class="bi bi-chat-quote-fill me-2 text-danger"></i>
+            Interview Questions
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="#beginner-qa">Beginner</a>
+            <a class="nav-link topic-item" href="#intermediate-qa">Intermediate</a>
+            <a class="nav-link topic-item" href="#advanced-qa">Advanced</a>
+          </nav>
         </div>
       </div>
     </div>
 
-    <div class="container py-5">
-      <div class="row text-center mb-5">
-        <div class="col">
-          <h2 class="display-6 fw-bold mb-3">Learning Path</h2>
-          <p class="text-muted">Structured approach from beginner to expert</p>
-        </div>
-      </div>
-
-      <div class="row g-4 mb-5">
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0 learning-card">
-            <div class="card-body text-center p-4">
-              <div
-                class="feature-icon bg-primary text-white rounded-circle mb-3"
-              >
-                <i class="bi bi-1-circle-fill"></i>
-              </div>
-              <h5 class="card-title">Basics</h5>
-              <p class="card-text text-muted">
-                Variables, data types, control structures, methods, and basic
-                OOP concepts
-              </p>
-              <a href="basics.html" class="btn btn-primary"
-                >Start Basic Level</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0 learning-card">
-            <div class="card-body text-center p-4">
-              <div
-                class="feature-icon bg-success text-white rounded-circle mb-3"
-              >
-                <i class="bi bi-2-circle-fill"></i>
-              </div>
-              <h5 class="card-title">Intermediate</h5>
-              <p class="card-text text-muted">
-                Collections, LINQ, exception handling, delegates, events, and
-                design patterns
-              </p>
-              <a href="intermediate.html" class="btn btn-success"
-                >Continue Intermediate</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0 learning-card">
-            <div class="card-body text-center p-4">
-              <div
-                class="feature-icon bg-warning text-white rounded-circle mb-3"
-              >
-                <i class="bi bi-3-circle-fill"></i>
-              </div>
-              <h5 class="card-title">Advanced</h5>
-              <p class="card-text text-muted">
-                Generics, reflection, async/await, performance optimization, and
-                architecture
-              </p>
-              <a href="advanced.html" class="btn btn-warning"
-                >Master Advanced</a
-              >
-            </div>
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <!-- Hero Section -->
+      <div class="hero-section bg-gradient-primary text-white py-5" style="margin-top: 56px;">
+        <div class="container text-center">
+          <h1 class="display-4 fw-bold mb-3">Master C# Programming</h1>
+          <p class="lead mb-4">
+            Complete learning path from basics to advanced concepts with theory, examples, and interview preparation
+          </p>
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="#intro" class="btn btn-light btn-lg">
+              <i class="bi bi-play-circle me-2"></i>Start Learning
+            </a>
+            <a href="#beginner-qa" class="btn btn-outline-light btn-lg">
+              <i class="bi bi-briefcase me-2"></i>Interview Prep
+            </a>
           </div>
         </div>
       </div>
 
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body p-4">
-              <div class="d-flex align-items-center mb-3">
-                <div
-                  class="feature-icon bg-info text-white rounded-circle me-3"
-                >
-                  <i class="bi bi-code-slash"></i>
-                </div>
-                <h5 class="mb-0">Coding Examples</h5>
-              </div>
-              <p class="text-muted mb-3">
-                Real-world examples with detailed explanations and best
-                practices
-              </p>
-              <ul class="list-unstyled mb-3">
-                <li>
-                  <i class="bi bi-check-circle text-success me-2"></i>Algorithm
-                  implementations
-                </li>
-                <li>
-                  <i class="bi bi-check-circle text-success me-2"></i>Design
-                  pattern examples
-                </li>
-                <li>
-                  <i class="bi bi-check-circle text-success me-2"></i>Complete
-                  mini-projects
-                </li>
-              </ul>
-              <a href="coding-examples.html" class="btn btn-info"
-                >View Examples</a
-              >
+      <!-- Content Sections -->
+      <div class="container py-5">
+        
+        <!-- Introduction to C# -->
+        <section id="intro" class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-book"></i>
+            </div>
+            <div>
+              <h2>Introduction to C#</h2>
+              <p class="text-muted mb-0">Learn the fundamentals of C# programming language</p>
             </div>
           </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body p-4">
-              <div class="d-flex align-items-center mb-3">
-                <div
-                  class="feature-icon bg-danger text-white rounded-circle me-3"
-                >
-                  <i class="bi bi-chat-quote"></i>
-                </div>
-                <h5 class="mb-0">Interview Preparation</h5>
-              </div>
-              <p class="text-muted mb-3">
-                Comprehensive interview questions with detailed answers
-              </p>
-              <ul class="list-unstyled mb-3">
-                <li>
-                  <i class="bi bi-check-circle text-success me-2"></i>Theory
-                  questions
-                </li>
-                <li>
-                  <i class="bi bi-check-circle text-success me-2"></i>Coding
-                  challenges
-                </li>
-                <li>
-                  <i class="bi bi-check-circle text-success me-2"></i
-                  >Scenario-based problems
-                </li>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>C# (pronounced "C-Sharp") is a modern, object-oriented programming language developed by Microsoft. It runs on the .NET framework and is designed for building Windows applications, web applications, and more.</p>
+              
+              <h5>Key Features:</h5>
+              <ul>
+                <li><strong>Type Safety:</strong> Strong type checking prevents runtime errors</li>
+                <li><strong>Memory Management:</strong> Automatic garbage collection</li>
+                <li><strong>Object-Oriented:</strong> Supports inheritance, polymorphism, and encapsulation</li>
+                <li><strong>Cross-Platform:</strong> Runs on Windows, macOS, and Linux with .NET Core</li>
               </ul>
-              <a href="interview-prep.html" class="btn btn-danger"
-                >Practice Interview</a
-              >
+
+              <h4 class="mt-4"><i class="bi bi-question-circle me-2"></i>Questions & Answers</h4>
+              <div class="qa-accordion">
+                <div class="accordion" id="introQA">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                        What is C# and what is it used for?
+                      </button>
+                    </h2>
+                    <div id="q1" class="accordion-collapse collapse" data-bs-parent="#introQA">
+                      <div class="accordion-body">
+                        C# is a general-purpose programming language used for developing desktop applications, web applications, mobile apps, games, and web services. It's particularly popular for Windows development and enterprise applications.
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                        What is the difference between C# and .NET?
+                      </button>
+                    </h2>
+                    <div id="q2" class="accordion-collapse collapse" data-bs-parent="#introQA">
+                      <div class="accordion-body">
+                        C# is the programming language, while .NET is the framework/platform that provides libraries, runtime, and tools to execute C# applications. Think of C# as the language and .NET as the ecosystem.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              <pre><code class="language-csharp">using System;
+
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // This is a simple "Hello World" program
+            Console.WriteLine("Hello, World!");
+            
+            // Variables and basic operations
+            string name = "C# Developer";
+            int year = 2024;
+            
+            Console.WriteLine($"Welcome {name} to C# programming in {year}!");
+            
+            // Wait for user input before closing
+            Console.ReadLine();
+        }
+    }
+}</code></pre>
             </div>
           </div>
-        </div>
+        </section>
+
+        <!-- Data Types & Variables -->
+        <section id="datatypes" class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-layers"></i>
+            </div>
+            <div>
+              <h2>Data Types & Variables</h2>
+              <p class="text-muted mb-0">Understanding C# data types and variable declarations</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>C# is a strongly-typed language where every variable must have a declared type. Data types specify the type of data that variables can store.</p>
+              
+              <h5>Value Types:</h5>
+              <ul>
+                <li><code>int</code> - 32-bit integer (-2,147,483,648 to 2,147,483,647)</li>
+                <li><code>double</code> - 64-bit floating point number</li>
+                <li><code>bool</code> - Boolean (true/false)</li>
+                <li><code>char</code> - Single Unicode character</li>
+                <li><code>decimal</code> - 128-bit decimal for financial calculations</li>
+              </ul>
+
+              <h5>Reference Types:</h5>
+              <ul>
+                <li><code>string</code> - Sequence of characters</li>
+                <li><code>object</code> - Base type for all types</li>
+                <li><code>arrays</code> - Collection of elements</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              <pre><code class="language-csharp">using System;
+
+class DataTypesExample
+{
+    static void Main()
+    {
+        // Value types
+        int age = 25;
+        double salary = 50000.50;
+        bool isEmployed = true;
+        char grade = 'A';
+        decimal price = 99.99m;
+        
+        // Reference types
+        string name = "John Doe";
+        object obj = "This can be anything";
+        
+        // Type inference with var
+        var automaticInt = 100; // compiler infers int
+        var automaticString = "Hello"; // compiler infers string
+        
+        // Display values
+        Console.WriteLine($"Name: {name}");
+        Console.WriteLine($"Age: {age}");
+        Console.WriteLine($"Salary: {salary:C}"); // Currency format
+        Console.WriteLine($"Employed: {isEmployed}");
+        Console.WriteLine($"Grade: {grade}");
+        Console.WriteLine($"Price: {price}");
+        
+        // Checking types
+        Console.WriteLine($"Type of automaticInt: {automaticInt.GetType()}");
+        Console.WriteLine($"Type of automaticString: {automaticString.GetType()}");
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Classes & Objects -->
+        <section id="classes" class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-box"></i>
+            </div>
+            <div>
+              <h2>Classes & Objects</h2>
+              <p class="text-muted mb-0">Understanding object-oriented programming fundamentals</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>A <strong>class</strong> is a blueprint or template that defines the structure and behavior of objects. An <strong>object</strong> is an instance of a class that contains actual data.</p>
+              
+              <h5>Key Concepts:</h5>
+              <ul>
+                <li><strong>Fields:</strong> Variables that store data</li>
+                <li><strong>Properties:</strong> Controlled access to fields</li>
+                <li><strong>Methods:</strong> Functions that define behavior</li>
+                <li><strong>Constructors:</strong> Special methods for object initialization</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-question-circle me-2"></i>Questions & Answers</h4>
+              <div class="qa-accordion">
+                <div class="accordion" id="classesQA">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cq1">
+                        What is the difference between fields and properties?
+                      </button>
+                    </h2>
+                    <div id="cq1" class="accordion-collapse collapse" data-bs-parent="#classesQA">
+                      <div class="accordion-body">
+                        <strong>Fields</strong> are variables that store data directly, while <strong>Properties</strong> provide controlled access to fields through get/set accessors. Properties can include validation, computation, or logging.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              <pre><code class="language-csharp">using System;
+
+public class Car
+{
+    // Fields (private data)
+    private string make;
+    private string model;
+    private int year;
+    private double mileage;
+    
+    // Properties (controlled access)
+    public string Make 
+    { 
+        get { return make; }
+        set { make = value?.Trim(); } // Validation/processing
+    }
+    
+    public string Model 
+    { 
+        get { return model; }
+        set { model = value?.Trim(); }
+    }
+    
+    public int Year 
+    { 
+        get { return year; }
+        set 
+        { 
+            if (value >= 1886 && value <= DateTime.Now.Year + 1)
+                year = value;
+            else
+                throw new ArgumentException("Invalid year");
+        }
+    }
+    
+    // Auto-implemented property
+    public string Color { get; set; }
+    
+    // Read-only property
+    public double Mileage => mileage;
+    
+    // Constructors
+    public Car() // Default constructor
+    {
+        make = "Unknown";
+        model = "Unknown";
+        year = DateTime.Now.Year;
+        mileage = 0;
+    }
+    
+    public Car(string make, string model, int year) // Parameterized constructor
+    {
+        Make = make;
+        Model = model;
+        Year = year;
+        mileage = 0;
+    }
+    
+    // Methods
+    public void Drive(double miles)
+    {
+        if (miles > 0)
+        {
+            mileage += miles;
+            Console.WriteLine($"Drove {miles} miles. Total: {mileage}");
+        }
+    }
+    
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"{Year} {Make} {Model} - {mileage:F1} miles");
+    }
+    
+    // Override ToString for string representation
+    public override string ToString()
+    {
+        return $"{Year} {Make} {Model}";
+    }
+}
+
+// Usage example
+class Program
+{
+    static void Main()
+    {
+        // Create objects
+        Car car1 = new Car(); // Using default constructor
+        Car car2 = new Car("Toyota", "Camry", 2022); // Using parameterized constructor
+        
+        // Set properties
+        car1.Make = "Honda";
+        car1.Model = "Civic";
+        car1.Year = 2023;
+        car1.Color = "Blue";
+        
+        car2.Color = "Red";
+        
+        // Use methods
+        car1.Drive(150.5);
+        car2.Drive(75.0);
+        
+        // Display information
+        car1.DisplayInfo();
+        car2.DisplayInfo();
+        
+        Console.WriteLine($"Car 1: {car1}"); // Uses ToString()
+        Console.WriteLine($"Car 2: {car2}");
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- More Content Coming Soon (keep this at the end) -->
+        <section id="more-content" class="content-section text-center">
+          <div class="alert alert-info">
+            <h4><i class="bi bi-info-circle me-2"></i>More Content Coming Soon</h4>
+            <p class="mb-0">Additional topics (Operators, Control Flow, Methods, Inheritance, Polymorphism, etc.) will be added as you continue developing the site. The structure is now in place for easy expansion.</p>
+          </div>
+        </section>
+
+        <!-- Beginner Interview Questions -->
+        <section id="beginner-qa" class="content-section">
+          <div class="section-header questions">
+            <div class="section-icon">
+              <i class="bi bi-question-circle"></i>
+            </div>
+            <div>
+              <h2>Beginner Interview Questions</h2>
+              <p class="text-muted mb-0">Essential C# questions for entry-level positions</p>
+            </div>
+          </div>
+
+          <div class="qa-accordion">
+            <div class="accordion" id="beginnerQA">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bq1">
+                    What is the difference between class and struct in C#?
+                  </button>
+                </h2>
+                <div id="bq1" class="accordion-collapse collapse" data-bs-parent="#beginnerQA">
+                  <div class="accordion-body">
+                    <p><strong>Class:</strong></p>
+                    <ul>
+                      <li>Reference type stored on the heap</li>
+                      <li>Supports inheritance</li>
+                      <li>Can be null</li>
+                      <li>Default constructor always exists</li>
+                    </ul>
+                    <p><strong>Struct:</strong></p>
+                    <ul>
+                      <li>Value type stored on the stack</li>
+                      <li>No inheritance (except from System.ValueType)</li>
+                      <li>Cannot be null (unless nullable)</li>
+                      <li>Must initialize all fields</li>
+                    </ul>
+                    <pre><code class="language-csharp">// Class example
+public class PersonClass
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+// Struct example
+public struct PersonStruct
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    
+    public PersonStruct(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bq2">
+                    What is boxing and unboxing in C#?
+                  </button>
+                </h2>
+                <div id="bq2" class="accordion-collapse collapse" data-bs-parent="#beginnerQA">
+                  <div class="accordion-body">
+                    <p><strong>Boxing:</strong> Converting a value type to object type (heap allocation)</p>
+                    <p><strong>Unboxing:</strong> Converting object type back to value type</p>
+                    <pre><code class="language-csharp">// Boxing - value type to reference type
+int value = 123;
+object boxed = value; // Boxing occurs
+
+// Unboxing - reference type to value type  
+int unboxed = (int)boxed; // Explicit cast required
+
+// Generic collections avoid boxing
+List&lt;int&gt; numbers = new List&lt;int&gt;(); // No boxing
+numbers.Add(123); // Direct value type storage</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bq3">
+                    Explain the difference between string and StringBuilder.
+                  </button>
+                </h2>
+                <div id="bq3" class="accordion-collapse collapse" data-bs-parent="#beginnerQA">
+                  <div class="accordion-body">
+                    <p><strong>String:</strong></p>
+                    <ul>
+                      <li>Immutable - creates new object for each modification</li>
+                      <li>Good for few string operations</li>
+                      <li>Performance penalty with many concatenations</li>
+                    </ul>
+                    <p><strong>StringBuilder:</strong></p>
+                    <ul>
+                      <li>Mutable - modifies internal buffer</li>
+                      <li>Better performance for multiple modifications</li>
+                      <li>Uses dynamic buffer allocation</li>
+                    </ul>
+                    <pre><code class="language-csharp">// String concatenation (inefficient for loops)
+string result = "";
+for (int i = 0; i < 1000; i++)
+{
+    result += i.ToString(); // Creates new string each time
+}
+
+// StringBuilder (efficient for multiple operations)
+StringBuilder sb = new StringBuilder();
+for (int i = 0; i < 1000; i++)
+{
+    sb.Append(i.ToString()); // Modifies internal buffer
+}
+string result2 = sb.ToString();</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Intermediate Interview Questions -->
+        <section id="intermediate-qa" class="content-section">
+          <div class="section-header questions">
+            <div class="section-icon">
+              <i class="bi bi-gear"></i>
+            </div>
+            <div>
+              <h2>Intermediate Interview Questions</h2>
+              <p class="text-muted mb-0">Advanced concepts for experienced developers</p>
+            </div>
+          </div>
+
+          <div class="qa-accordion">
+            <div class="accordion" id="intermediateQA">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iq1">
+                    Explain abstract class vs interface with examples.
+                  </button>
+                </h2>
+                <div id="iq1" class="accordion-collapse collapse" data-bs-parent="#intermediateQA">
+                  <div class="accordion-body">
+                    <p><strong>Abstract Class:</strong></p>
+                    <ul>
+                      <li>Can have implementation and abstract methods</li>
+                      <li>Single inheritance only</li>
+                      <li>Can have constructors, fields, properties</li>
+                      <li>Access modifiers allowed</li>
+                    </ul>
+                    <p><strong>Interface:</strong></p>
+                    <ul>
+                      <li>Only method signatures (until C# 8.0)</li>
+                      <li>Multiple inheritance supported</li>
+                      <li>No constructors or fields</li>
+                      <li>All members implicitly public</li>
+                    </ul>
+                    <pre><code class="language-csharp">// Abstract class
+public abstract class Animal
+{
+    protected string name;
+    
+    public Animal(string name) 
+    { 
+        this.name = name; 
+    }
+    
+    public abstract void MakeSound(); // Must implement
+    
+    public virtual void Sleep() // Can override
+    { 
+        Console.WriteLine($"{name} is sleeping"); 
+    }
+}
+
+// Interface
+public interface IFlyable
+{
+    void Fly();
+    int MaxAltitude { get; set; }
+}
+
+// Implementation
+public class Bird : Animal, IFlyable
+{
+    public Bird(string name) : base(name) { }
+    
+    public override void MakeSound() 
+    { 
+        Console.WriteLine("Tweet tweet"); 
+    }
+    
+    public void Fly() 
+    { 
+        Console.WriteLine($"{name} is flying"); 
+    }
+    
+    public int MaxAltitude { get; set; }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iq2">
+                    What are delegates and events in C#?
+                  </button>
+                </h2>
+                <div id="iq2" class="accordion-collapse collapse" data-bs-parent="#intermediateQA">
+                  <div class="accordion-body">
+                    <p><strong>Delegate:</strong> Type-safe function pointer that can hold references to methods</p>
+                    <p><strong>Event:</strong> Special kind of delegate that provides additional restrictions</p>
+                    <pre><code class="language-csharp">// Delegate declaration
+public delegate void NotificationHandler(string message);
+
+public class Publisher
+{
+    // Event based on delegate
+    public event NotificationHandler OnNotification;
+    
+    // Regular delegate
+    public NotificationHandler DirectDelegate;
+    
+    public void SendNotification(string message)
+    {
+        // Trigger event (safe check)
+        OnNotification?.Invoke(message);
+    }
+}
+
+public class Subscriber
+{
+    public void Subscribe(Publisher pub)
+    {
+        // Subscribe to event
+        pub.OnNotification += HandleNotification;
+        
+        // Can also use delegate directly
+        pub.DirectDelegate += HandleNotification;
+    }
+    
+    private void HandleNotification(string message)
+    {
+        Console.WriteLine($"Received: {message}");
+    }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advanced Interview Questions -->
+        <section id="advanced-qa" class="content-section">
+          <div class="section-header questions">
+            <div class="section-icon">
+              <i class="bi bi-cpu"></i>
+            </div>
+            <div>
+              <h2>Advanced Interview Questions</h2>
+              <p class="text-muted mb-0">Expert-level concepts and architecture questions</p>
+            </div>
+          </div>
+
+          <div class="qa-accordion">
+            <div class="accordion" id="advancedQA">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aq1">
+                    How does garbage collection work in .NET?
+                  </button>
+                </h2>
+                <div id="aq1" class="accordion-collapse collapse" data-bs-parent="#advancedQA">
+                  <div class="accordion-body">
+                    <p>The .NET Garbage Collector (GC) automatically manages memory by:</p>
+                    <ol>
+                      <li><strong>Generational Collection:</strong> Objects are divided into 3 generations</li>
+                      <li><strong>Mark and Sweep:</strong> Marks reachable objects, sweeps unreachable ones</li>
+                      <li><strong>Compaction:</strong> Moves objects to reduce fragmentation</li>
+                    </ol>
+                    
+                    <h6>Generations:</h6>
+                    <ul>
+                      <li><strong>Gen 0:</strong> Short-lived objects (collected frequently)</li>
+                      <li><strong>Gen 1:</strong> Medium-lived objects (buffer between 0 and 2)</li>
+                      <li><strong>Gen 2:</strong> Long-lived objects (collected less frequently)</li>
+                    </ul>
+                    
+                    <pre><code class="language-csharp">// Force garbage collection (not recommended in production)
+GC.Collect(); // Collect all generations
+GC.Collect(0); // Collect only generation 0
+
+// Check memory usage
+long memory = GC.GetTotalMemory(false);
+Console.WriteLine($"Memory used: {memory} bytes");
+
+// Implement IDisposable for unmanaged resources
+public class ResourceHandler : IDisposable
+{
+    private bool disposed = false;
+    
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+    
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
+        {
+            if (disposing)
+            {
+                // Dispose managed resources
+            }
+            // Dispose unmanaged resources
+            disposed = true;
+        }
+    }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
 
