@@ -39,70 +39,149 @@
 
     <!-- Sidebar Navigation -->
     <div class="sidebar" id="sidebar">
+      <div class="sidebar-search">
+        <input type="text" id="sidebarSearch" placeholder="Search topics..." class="form-control">
+      </div>
+      
       <div class="p-3">
-        <h6 class="text-muted text-uppercase fw-bold mb-3">Learning Path</h6>
+        <h6 class="text-muted text-uppercase fw-bold mb-3">
+          <i class="bi bi-book me-2"></i>Learning Path
+        </h6>
         
         <!-- C# Basics -->
-        <div class="mb-3">
-          <div class="subject-header">
-            <i class="bi bi-1-circle-fill me-2 text-primary"></i>
+        <div class="topic-section mb-3" data-section="basics">
+          <div class="subject-header" onclick="toggleSection('basics')">
+            <i class="bi bi-1-circle-fill text-primary"></i>
             C# Basics
           </div>
           <nav class="nav flex-column topic-list">
-            <a class="nav-link topic-item" href="#intro">Introduction to C#</a>
-            <a class="nav-link topic-item" href="#datatypes">Data Types & Variables</a>
-            <a class="nav-link topic-item" href="#operators">Operators</a>
-            <a class="nav-link topic-item" href="#control">Control Flow</a>
-            <a class="nav-link topic-item" href="#methods">Methods & Parameters</a>
-            <a class="nav-link topic-item" href="#arrays">Arrays & Strings</a>
+            <a class="nav-link topic-item" href="#intro">
+              <i class="bi bi-play-circle me-2"></i>Introduction to C#
+            </a>
+            <a class="nav-link topic-item" href="#datatypes">
+              <i class="bi bi-layers me-2"></i>Data Types & Variables
+            </a>
+            <a class="nav-link topic-item" href="#operators">
+              <i class="bi bi-calculator me-2"></i>Operators
+            </a>
+            <a class="nav-link topic-item" href="#control">
+              <i class="bi bi-flow-chart me-2"></i>Control Flow
+            </a>
+            <a class="nav-link topic-item" href="#methods">
+              <i class="bi bi-gear me-2"></i>Methods & Parameters
+            </a>
+            <a class="nav-link topic-item" href="#arrays">
+              <i class="bi bi-list-ol me-2"></i>Arrays & Strings
+            </a>
           </nav>
         </div>
 
         <!-- Object-Oriented Programming -->
-        <div class="mb-3">
-          <div class="subject-header">
-            <i class="bi bi-2-circle-fill me-2 text-success"></i>
+        <div class="topic-section mb-3" data-section="oop">
+          <div class="subject-header" onclick="toggleSection('oop')">
+            <i class="bi bi-2-circle-fill text-success"></i>
             Object-Oriented Programming
           </div>
           <nav class="nav flex-column topic-list">
-            <a class="nav-link topic-item" href="#classes">Classes & Objects</a>
-            <a class="nav-link topic-item" href="#constructors">Constructors & Destructors</a>
-            <a class="nav-link topic-item" href="#inheritance">Inheritance</a>
-            <a class="nav-link topic-item" href="#polymorphism">Polymorphism</a>
-            <a class="nav-link topic-item" href="#encapsulation">Encapsulation</a>
-            <a class="nav-link topic-item" href="#abstraction">Abstraction</a>
-            <a class="nav-link topic-item" href="#interfaces">Interfaces</a>
-            <a class="nav-link topic-item" href="#abstract-classes">Abstract Classes</a>
-            <a class="nav-link topic-item" href="#static-members">Static vs Instance</a>
+            <a class="nav-link topic-item" href="#classes">
+              <i class="bi bi-box me-2"></i>Classes & Objects
+            </a>
+            <a class="nav-link topic-item" href="#constructors">
+              <i class="bi bi-hammer me-2"></i>Constructors & Destructors
+            </a>
+            <a class="nav-link topic-item" href="inheritance.html">
+              <i class="bi bi-diagram-3 me-2"></i>Inheritance
+            </a>
+            <a class="nav-link topic-item" href="polymorphism.html">
+              <i class="bi bi-shuffle me-2"></i>Polymorphism
+            </a>
+            <a class="nav-link topic-item" href="encapsulation.html">
+              <i class="bi bi-lock me-2"></i>Encapsulation
+            </a>
+            <a class="nav-link topic-item" href="abstraction.html">
+              <i class="bi bi-eye-slash me-2"></i>Abstraction
+            </a>
+            <a class="nav-link topic-item" href="interfaces.html">
+              <i class="bi bi-diagram-2 me-2"></i>Interfaces
+            </a>
+            <a class="nav-link topic-item" href="#abstract-classes">
+              <i class="bi bi-puzzle me-2"></i>Abstract Classes
+            </a>
+            <a class="nav-link topic-item" href="#static-members">
+              <i class="bi bi-lightning me-2"></i>Static vs Instance
+            </a>
           </nav>
         </div>
 
         <!-- Advanced C# Concepts -->
-        <div class="mb-3">
-          <div class="subject-header">
-            <i class="bi bi-3-circle-fill me-2 text-warning"></i>
+        <div class="topic-section mb-3" data-section="advanced">
+          <div class="subject-header" onclick="toggleSection('advanced')">
+            <i class="bi bi-3-circle-fill text-warning"></i>
             Advanced Concepts
           </div>
           <nav class="nav flex-column topic-list">
-            <a class="nav-link topic-item" href="#delegates">Delegates & Events</a>
-            <a class="nav-link topic-item" href="#linq">LINQ</a>
-            <a class="nav-link topic-item" href="#collections">Collections & Generics</a>
-            <a class="nav-link topic-item" href="#exceptions">Exception Handling</a>
-            <a class="nav-link topic-item" href="#async">Async & Await</a>
-            <a class="nav-link topic-item" href="#reflection">Attributes & Reflection</a>
+            <a class="nav-link topic-item" href="#delegates">
+              <i class="bi bi-arrow-right-circle me-2"></i>Delegates & Events
+            </a>
+            <a class="nav-link topic-item" href="#linq">
+              <i class="bi bi-search me-2"></i>LINQ
+            </a>
+            <a class="nav-link topic-item" href="#collections">
+              <i class="bi bi-collection me-2"></i>Collections & Generics
+            </a>
+            <a class="nav-link topic-item" href="#exceptions">
+              <i class="bi bi-exclamation-triangle me-2"></i>Exception Handling
+            </a>
+            <a class="nav-link topic-item" href="#async">
+              <i class="bi bi-clock me-2"></i>Async & Await
+            </a>
+            <a class="nav-link topic-item" href="#reflection">
+              <i class="bi bi-mirror me-2"></i>Attributes & Reflection
+            </a>
+          </nav>
+        </div>
+
+        <!-- Modern C# Features -->
+        <div class="topic-section mb-3" data-section="modern">
+          <div class="subject-header" onclick="toggleSection('modern')">
+            <i class="bi bi-4-circle-fill text-info"></i>
+            Modern C# Features
+          </div>
+          <nav class="nav flex-column topic-list">
+            <a class="nav-link topic-item" href="#pattern-matching">
+              <i class="bi bi-funnel me-2"></i>Pattern Matching
+            </a>
+            <a class="nav-link topic-item" href="#nullable-types">
+              <i class="bi bi-question-circle me-2"></i>Nullable Reference Types
+            </a>
+            <a class="nav-link topic-item" href="#records">
+              <i class="bi bi-file-earmark me-2"></i>Records
+            </a>
+            <a class="nav-link topic-item" href="#tuples">
+              <i class="bi bi-collection me-2"></i>Tuples
+            </a>
+            <a class="nav-link topic-item" href="#extension-methods">
+              <i class="bi bi-plus-circle me-2"></i>Extension Methods
+            </a>
           </nav>
         </div>
 
         <!-- Interview Questions -->
-        <div class="mb-3">
-          <div class="subject-header">
-            <i class="bi bi-chat-quote-fill me-2 text-danger"></i>
+        <div class="topic-section mb-3" data-section="interview">
+          <div class="subject-header" onclick="toggleSection('interview')">
+            <i class="bi bi-chat-quote-fill text-danger"></i>
             Interview Questions
           </div>
           <nav class="nav flex-column topic-list">
-            <a class="nav-link topic-item" href="#beginner-qa">Beginner</a>
-            <a class="nav-link topic-item" href="#intermediate-qa">Intermediate</a>
-            <a class="nav-link topic-item" href="#advanced-qa">Advanced</a>
+            <a class="nav-link topic-item" href="#beginner-qa">
+              <i class="bi bi-1-square me-2"></i>Beginner
+            </a>
+            <a class="nav-link topic-item" href="#intermediate-qa">
+              <i class="bi bi-2-square me-2"></i>Intermediate
+            </a>
+            <a class="nav-link topic-item" href="#advanced-qa">
+              <i class="bi bi-3-square me-2"></i>Advanced
+            </a>
           </nav>
         </div>
       </div>
@@ -443,11 +522,531 @@ class Program
           </div>
         </section>
 
-        <!-- More Content Coming Soon (keep this at the end) -->
-        <section id="more-content" class="content-section text-center">
-          <div class="alert alert-info">
-            <h4><i class="bi bi-info-circle me-2"></i>More Content Coming Soon</h4>
-            <p class="mb-0">Additional topics (Operators, Control Flow, Methods, Inheritance, Polymorphism, etc.) will be added as you continue developing the site. The structure is now in place for easy expansion.</p>
+        <!-- Operators -->
+        <section id="operators" class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-calculator"></i>
+            </div>
+            <div>
+              <h2>Operators in C#</h2>
+              <p class="text-muted mb-0">Learn about different types of operators and their usage</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                <strong>Operators</strong> are symbols that perform specific operations on one or more operands. 
+                C# provides a rich set of operators for arithmetic, comparison, logical, assignment, and other operations.
+              </p>
+              
+              <h5>Types of Operators:</h5>
+              <ul>
+                <li><strong>Arithmetic Operators:</strong> +, -, *, /, % (modulo)</li>
+                <li><strong>Comparison Operators:</strong> ==, !=, <, >, <=, >=</li>
+                <li><strong>Logical Operators:</strong> && (AND), || (OR), ! (NOT)</li>
+                <li><strong>Assignment Operators:</strong> =, +=, -=, *=, /=, %=</li>
+                <li><strong>Increment/Decrement:</strong> ++, --</li>
+                <li><strong>Bitwise Operators:</strong> &, |, ^, ~, <<, >></li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              <pre><code class="language-csharp">using System;
+
+class OperatorsExample
+{
+    static void Main()
+    {
+        // Arithmetic operators
+        int a = 10, b = 3;
+        Console.WriteLine($"Addition: {a} + {b} = {a + b}");
+        Console.WriteLine($"Subtraction: {a} - {b} = {a - b}");
+        Console.WriteLine($"Multiplication: {a} * {b} = {a * b}");
+        Console.WriteLine($"Division: {a} / {b} = {a / b}");
+        Console.WriteLine($"Modulo: {a} % {b} = {a % b}");
+        
+        // Comparison operators
+        Console.WriteLine($"{a} == {b}: {a == b}");
+        Console.WriteLine($"{a} > {b}: {a > b}");
+        Console.WriteLine($"{a} <= {b}: {a <= b}");
+        
+        // Logical operators
+        bool x = true, y = false;
+        Console.WriteLine($"x && y: {x && y}");
+        Console.WriteLine($"x || y: {x || y}");
+        Console.WriteLine($"!x: {!x}");
+        
+        // Assignment operators
+        int c = 5;
+        c += 3; // c = c + 3
+        Console.WriteLine($"After c += 3: {c}");
+        
+        // Increment/Decrement
+        int d = 10;
+        Console.WriteLine($"d++: {d++}"); // Post-increment
+        Console.WriteLine($"++d: {++d}"); // Pre-increment
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Control Flow -->
+        <section id="control" class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-flow-chart"></i>
+            </div>
+            <div>
+              <h2>Control Flow</h2>
+              <p class="text-muted mb-0">Master conditional statements and loops to control program execution</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                <strong>Control Flow</strong> statements determine the order in which code is executed. 
+                They allow you to make decisions, repeat operations, and branch program execution based on conditions.
+              </p>
+              
+              <h5>Control Statements:</h5>
+              <ul>
+                <li><strong>if/else:</strong> Conditional execution based on boolean expressions</li>
+                <li><strong>switch:</strong> Multi-way branching based on value comparison</li>
+                <li><strong>for loop:</strong> Iterate a specific number of times</li>
+                <li><strong>while loop:</strong> Repeat while condition is true</li>
+                <li><strong>foreach:</strong> Iterate through collections</li>
+                <li><strong>break/continue:</strong> Control loop execution</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              <pre><code class="language-csharp">using System;
+
+class ControlFlowExample
+{
+    static void Main()
+    {
+        // if-else statement
+        int score = 85;
+        if (score >= 90)
+            Console.WriteLine("Grade: A");
+        else if (score >= 80)
+            Console.WriteLine("Grade: B");
+        else if (score >= 70)
+            Console.WriteLine("Grade: C");
+        else
+            Console.WriteLine("Grade: F");
+        
+        // switch statement
+        string day = "Monday";
+        switch (day)
+        {
+            case "Monday":
+                Console.WriteLine("Start of work week");
+                break;
+            case "Friday":
+                Console.WriteLine("TGIF!");
+                break;
+            case "Saturday":
+            case "Sunday":
+                Console.WriteLine("Weekend!");
+                break;
+            default:
+                Console.WriteLine("Regular weekday");
+                break;
+        }
+        
+        // for loop
+        Console.WriteLine("Counting 1 to 5:");
+        for (int i = 1; i <= 5; i++)
+        {
+            Console.WriteLine($"Count: {i}");
+        }
+        
+        // while loop
+        int count = 0;
+        while (count < 3)
+        {
+            Console.WriteLine($"While loop iteration: {count}");
+            count++;
+        }
+        
+        // foreach loop
+        string[] names = {"Alice", "Bob", "Charlie"};
+        foreach (string name in names)
+        {
+            Console.WriteLine($"Hello, {name}!");
+        }
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Methods & Parameters -->
+        <section id="methods" class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-gear"></i>
+            </div>
+            <div>
+              <h2>Methods & Parameters</h2>
+              <p class="text-muted mb-0">Learn to create reusable code blocks with methods and parameters</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                <strong>Methods</strong> are reusable blocks of code that perform specific tasks. They help organize code, 
+                reduce duplication, and make programs more modular and maintainable.
+              </p>
+              
+              <h5>Method Components:</h5>
+              <ul>
+                <li><strong>Access Modifier:</strong> public, private, protected, internal</li>
+                <li><strong>Return Type:</strong> The type of value returned (void if no return)</li>
+                <li><strong>Method Name:</strong> Descriptive name following naming conventions</li>
+                <li><strong>Parameters:</strong> Input values passed to the method</li>
+                <li><strong>Method Body:</strong> Code that executes when method is called</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              <pre><code class="language-csharp">using System;
+
+class MethodsExample
+{
+    // Method with no parameters and no return value
+    static void SayHello()
+    {
+        Console.WriteLine("Hello, World!");
+    }
+    
+    // Method with parameters and return value
+    static int Add(int a, int b)
+    {
+        return a + b;
+    }
+    
+    // Method with default parameters
+    static void Greet(string name, string greeting = "Hello")
+    {
+        Console.WriteLine($"{greeting}, {name}!");
+    }
+    
+    // Method with params keyword (variable arguments)
+    static int Sum(params int[] numbers)
+    {
+        int total = 0;
+        foreach (int num in numbers)
+        {
+            total += num;
+        }
+        return total;
+    }
+    
+    // Method with out parameter
+    static bool TryParse(string input, out int result)
+    {
+        return int.TryParse(input, out result);
+    }
+    
+    // Method with ref parameter
+    static void Double(ref int number)
+    {
+        number *= 2;
+    }
+    
+    // Method overloading - same name, different parameters
+    static void Print(string message)
+    {
+        Console.WriteLine($"String: {message}");
+    }
+    
+    static void Print(int number)
+    {
+        Console.WriteLine($"Number: {number}");
+    }
+    
+    static void Main()
+    {
+        // Calling methods
+        SayHello();
+        
+        int result = Add(5, 3);
+        Console.WriteLine($"5 + 3 = {result}");
+        
+        Greet("Alice");
+        Greet("Bob", "Hi");
+        
+        int sum = Sum(1, 2, 3, 4, 5);
+        Console.WriteLine($"Sum: {sum}");
+        
+        // Using out parameter
+        if (TryParse("123", out int parsed))
+        {
+            Console.WriteLine($"Parsed: {parsed}");
+        }
+        
+        // Using ref parameter
+        int value = 10;
+        Double(ref value);
+        Console.WriteLine($"Doubled: {value}");
+        
+        // Method overloading
+        Print("Hello");
+        Print(42);
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Arrays & Strings -->
+        <section id="arrays" class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-list-ol"></i>
+            </div>
+            <div>
+              <h2>Arrays & Strings</h2>
+              <p class="text-muted mb-0">Work with collections of data and text manipulation</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                <strong>Arrays</strong> store multiple values of the same type in a single variable. 
+                <strong>Strings</strong> are sequences of characters and have many built-in methods for manipulation.
+              </p>
+              
+              <h5>Array Features:</h5>
+              <ul>
+                <li><strong>Fixed Size:</strong> Array size is determined at creation</li>
+                <li><strong>Zero-based Indexing:</strong> First element is at index 0</li>
+                <li><strong>Type Safety:</strong> All elements must be of the same type</li>
+                <li><strong>Reference Type:</strong> Arrays are reference types</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              <pre><code class="language-csharp">using System;
+
+class ArraysStringsExample
+{
+    static void Main()
+    {
+        // Array declaration and initialization
+        int[] numbers = {1, 2, 3, 4, 5};
+        string[] names = new string[3] {"Alice", "Bob", "Charlie"};
+        
+        // Accessing array elements
+        Console.WriteLine($"First number: {numbers[0]}");
+        Console.WriteLine($"Array length: {numbers.Length}");
+        
+        // Iterating through arrays
+        Console.WriteLine("Numbers:");
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            Console.WriteLine($"numbers[{i}] = {numbers[i]}");
+        }
+        
+        Console.WriteLine("Names:");
+        foreach (string name in names)
+        {
+            Console.WriteLine($"Name: {name}");
+        }
+        
+        // Multidimensional arrays
+        int[,] matrix = {{1, 2}, {3, 4}, {5, 6}};
+        Console.WriteLine($"Matrix[1,0]: {matrix[1, 0]}");
+        
+        // Jagged arrays
+        int[][] jaggedArray = new int[3][];
+        jaggedArray[0] = new int[2] {1, 2};
+        jaggedArray[1] = new int[3] {3, 4, 5};
+        jaggedArray[2] = new int[1] {6};
+        
+        // String manipulation
+        string text = "Hello, World!";
+        Console.WriteLine($"Original: {text}");
+        Console.WriteLine($"Length: {text.Length}");
+        Console.WriteLine($"Uppercase: {text.ToUpper()}");
+        Console.WriteLine($"Substring: {text.Substring(0, 5)}");
+        Console.WriteLine($"Contains 'World': {text.Contains("World")}");
+        Console.WriteLine($"Replace: {text.Replace("World", "C#")}");
+        
+        // String splitting and joining
+        string sentence = "apple,banana,orange";
+        string[] fruits = sentence.Split(',');
+        Console.WriteLine("Fruits:");
+        foreach (string fruit in fruits)
+        {
+            Console.WriteLine($"- {fruit}");
+        }
+        
+        string joined = string.Join(" | ", fruits);
+        Console.WriteLine($"Joined: {joined}");
+        
+        // String interpolation
+        string name = "Alice";
+        int age = 25;
+        Console.WriteLine($"Name: {name}, Age: {age}");
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Constructors & Destructors -->
+        <section id="constructors" class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-hammer"></i>
+            </div>
+            <div>
+              <h2>Constructors & Destructors</h2>
+              <p class="text-muted mb-0">Learn about object initialization and cleanup</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                <strong>Constructors</strong> are special methods called when objects are created to initialize their state. 
+                <strong>Destructors</strong> (finalizers) are called when objects are destroyed by the garbage collector.
+              </p>
+              
+              <h5>Constructor Types:</h5>
+              <ul>
+                <li><strong>Default Constructor:</strong> No parameters, provides default initialization</li>
+                <li><strong>Parameterized Constructor:</strong> Takes parameters for custom initialization</li>
+                <li><strong>Copy Constructor:</strong> Creates object from another object of same type</li>
+                <li><strong>Static Constructor:</strong> Initializes static members of the class</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              <pre><code class="language-csharp">using System;
+
+public class Person
+{
+    private string name;
+    private int age;
+    private static int totalPersons = 0;
+    
+    // Static constructor - called once when class is first used
+    static Person()
+    {
+        Console.WriteLine("Static constructor called");
+        totalPersons = 0;
+    }
+    
+    // Default constructor
+    public Person()
+    {
+        Console.WriteLine("Default constructor called");
+        name = "Unknown";
+        age = 0;
+        totalPersons++;
+    }
+    
+    // Parameterized constructor
+    public Person(string name, int age)
+    {
+        Console.WriteLine($"Parameterized constructor called for {name}");
+        this.name = name;
+        this.age = age;
+        totalPersons++;
+    }
+    
+    // Constructor chaining using 'this'
+    public Person(string name) : this(name, 0)
+    {
+        Console.WriteLine("Constructor with name only called");
+    }
+    
+    // Copy constructor
+    public Person(Person other)
+    {
+        Console.WriteLine("Copy constructor called");
+        this.name = other.name;
+        this.age = other.age;
+        totalPersons++;
+    }
+    
+    // Properties
+    public string Name 
+    { 
+        get { return name; } 
+        set { name = value; } 
+    }
+    
+    public int Age 
+    { 
+        get { return age; } 
+        set { age = value; } 
+    }
+    
+    public static int TotalPersons 
+    { 
+        get { return totalPersons; } 
+    }
+    
+    // Method
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Person: {name}, Age: {age}");
+    }
+    
+    // Destructor (Finalizer)
+    ~Person()
+    {
+        Console.WriteLine($"Destructor called for {name}");
+        totalPersons--;
+    }
+}
+
+class ConstructorsExample
+{
+    static void Main()
+    {
+        Console.WriteLine("Creating persons...");
+        
+        // Using different constructors
+        Person person1 = new Person(); // Default constructor
+        person1.DisplayInfo();
+        
+        Person person2 = new Person("Alice", 25); // Parameterized constructor
+        person2.DisplayInfo();
+        
+        Person person3 = new Person("Bob"); // Constructor chaining
+        person3.DisplayInfo();
+        
+        Person person4 = new Person(person2); // Copy constructor
+        person4.DisplayInfo();
+        
+        Console.WriteLine($"Total persons created: {Person.TotalPersons}");
+        
+        // Force garbage collection to see destructors
+        person1 = null;
+        person2 = null;
+        person3 = null;
+        person4 = null;
+        
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        
+        Console.WriteLine($"Total persons after GC: {Person.TotalPersons}");
+    }
+}</code></pre>
+            </div>
           </div>
         </section>
 
