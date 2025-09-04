@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Encapsulation - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">Related Topics</h6>
+        <nav class="nav flex-column topic-list">
+          <a class="nav-link topic-item" href="index.html#classes">Classes & Objects</a>
+          <a class="nav-link topic-item" href="inheritance.html">Inheritance</a>
+          <a class="nav-link topic-item" href="polymorphism.html">Polymorphism</a>
+          <a class="nav-link topic-item active" href="encapsulation.html">Encapsulation</a>
+          <a class="nav-link topic-item" href="abstraction.html">Abstraction</a>
+          <a class="nav-link topic-item" href="interfaces.html">Interfaces</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-5" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.html#encapsulation">OOP Concepts</a></li>
+            <li class="breadcrumb-item active">Encapsulation</li>
+          </ol>
+        </nav>
+
+        <!-- Encapsulation Main Section -->
+        <section class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-lock"></i>
+            </div>
+            <div>
+              <h1>Encapsulation in C#</h1>
+              <p class="text-muted mb-0">Learn how to hide implementation details and control access to data</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                <strong>Encapsulation</strong> is the principle of hiding the internal implementation details of a class and providing 
+                controlled access to the data through public methods and properties. It's about bundling data and methods together 
+                while restricting direct access to some components.
+              </p>
+              
+              <h5>Key Concepts:</h5>
+              <ul>
+                <li><strong>Data Hiding:</strong> Keep internal data private and control access</li>
+                <li><strong>Access Modifiers:</strong> Control visibility of class members</li>
+                <li><strong>Properties:</strong> Provide controlled access to private fields</li>
+                <li><strong>Validation:</strong> Ensure data integrity through property setters</li>
+                <li><strong>Interface Design:</strong> Expose only what's necessary</li>
+              </ul>
+
+              <h5>Benefits of Encapsulation:</h5>
+              <ul>
+                <li><strong>Data Protection:</strong> Prevent unauthorized access and modification</li>
+                <li><strong>Modularity:</strong> Changes to internal implementation don't affect external code</li>
+                <li><strong>Maintainability:</strong> Easier to modify and debug code</li>
+                <li><strong>Data Integrity:</strong> Validate data before storing it</li>
+                <li><strong>Security:</strong> Hide sensitive implementation details</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-question-circle me-2"></i>Questions & Answers</h4>
+              <div class="qa-accordion">
+                <div class="accordion" id="encapsulationQA">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                        What's the difference between fields and properties?
+                      </button>
+                    </h2>
+                    <div id="q1" class="accordion-collapse collapse" data-bs-parent="#encapsulationQA">
+                      <div class="accordion-body">
+                        <p><strong>Fields:</strong></p>
+                        <ul>
+                          <li>Variables that store data directly</li>
+                          <li>Usually private to ensure encapsulation</li>
+                          <li>Direct memory storage</li>
+                          <li>No validation or computation possible</li>
+                        </ul>
+                        <p><strong>Properties:</strong></p>
+                        <ul>
+                          <li>Provide controlled access to fields through get/set methods</li>
+                          <li>Can include validation, computation, or logging</li>
+                          <li>Can be read-only, write-only, or read-write</li>
+                          <li>Enable data encapsulation and abstraction</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                        When should I use auto-implemented properties vs full properties?
+                      </button>
+                    </h2>
+                    <div id="q2" class="accordion-collapse collapse" data-bs-parent="#encapsulationQA">
+                      <div class="accordion-body">
+                        <p><strong>Auto-implemented properties (simple):</strong></p>
+                        <ul>
+                          <li>When no validation or computation is needed</li>
+                          <li>For simple data storage</li>
+                          <li>When you want clean, concise code</li>
+                          <li>Example: <code>public string Name { get; set; }</code></li>
+                        </ul>
+                        <p><strong>Full properties (with backing fields):</strong></p>
+                        <ul>
+                          <li>When you need validation in setters</li>
+                          <li>When computation is required in getters</li>
+                          <li>When you need to trigger events on property changes</li>
+                          <li>When you need different access levels for get/set</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+                        What are the different access modifiers in C#?
+                      </button>
+                    </h2>
+                    <div id="q3" class="accordion-collapse collapse" data-bs-parent="#encapsulationQA">
+                      <div class="accordion-body">
+                        <ul>
+                          <li><strong>public:</strong> Accessible from anywhere</li>
+                          <li><strong>private:</strong> Accessible only within the same class</li>
+                          <li><strong>protected:</strong> Accessible within the class and its derived classes</li>
+                          <li><strong>internal:</strong> Accessible within the same assembly</li>
+                          <li><strong>protected internal:</strong> Accessible within the same assembly or derived classes</li>
+                          <li><strong>private protected:</strong> Accessible within the same class or derived classes in the same assembly</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              
+              <h5>Basic Encapsulation with Properties</h5>
+              <pre><code class="language-csharp">using System;
+
+public class BankAccount
+{
+    // Private fields - hidden from outside access
+    private string accountNumber;
+    private decimal balance;
+    private string ownerName;
+    private DateTime createdDate;
+    
+    // Constructor
+    public BankAccount(string accountNumber, string ownerName, decimal initialBalance)
+    {
+        this.accountNumber = accountNumber;
+        this.ownerName = ownerName;
+        this.createdDate = DateTime.Now;
+        
+        // Use property to ensure validation
+        Balance = initialBalance;
+    }
+    
+    // Public properties with controlled access
+    public string AccountNumber 
+    { 
+        get { return accountNumber; } 
+        // No setter - account number is read-only after creation
+    }
+    
+    public string OwnerName
+    {
+        get { return ownerName; }
+        set 
+        { 
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Owner name cannot be empty");
+            ownerName = value.Trim();
+        }
+    }
+    
+    public decimal Balance
+    {
+        get { return balance; }
+        private set // Private setter - balance can only be changed through methods
+        { 
+            if (value < 0)
+                throw new ArgumentException("Balance cannot be negative");
+            balance = value;
+        }
+    }
+    
+    // Read-only property
+    public DateTime CreatedDate => createdDate;
+    
+    // Computed property
+    public string AccountInfo => $"Account: {accountNumber}, Owner: {ownerName}, Balance: ${balance:F2}";
+    
+    // Public methods for controlled operations
+    public bool Deposit(decimal amount)
+    {
+        if (amount <= 0)
+        {
+            Console.WriteLine("Deposit amount must be positive");
+            return false;
+        }
+        
+        Balance += amount; // Uses property setter for validation
+        Console.WriteLine($"Deposited ${amount:F2}. New balance: ${Balance:F2}");
+        return true;
+    }
+    
+    public bool Withdraw(decimal amount)
+    {
+        if (amount <= 0)
+        {
+            Console.WriteLine("Withdrawal amount must be positive");
+            return false;
+        }
+        
+        if (amount > Balance)
+        {
+            Console.WriteLine("Insufficient funds");
+            return false;
+        }
+        
+        Balance -= amount; // Uses property setter for validation
+        Console.WriteLine($"Withdrew ${amount:F2}. New balance: ${Balance:F2}");
+        return true;
+    }
+    
+    public bool Transfer(BankAccount targetAccount, decimal amount)
+    {
+        if (targetAccount == null)
+        {
+            Console.WriteLine("Target account cannot be null");
+            return false;
+        }
+        
+        if (this.Withdraw(amount))
+        {
+            targetAccount.Deposit(amount);
+            Console.WriteLine($"Transferred ${amount:F2} to account {targetAccount.AccountNumber}");
+            return true;
+        }
+        
+        return false;
+    }
+    
+    // Override ToString for better string representation
+    public override string ToString()
+    {
+        return AccountInfo;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Bank Account Encapsulation Demo ===");
+        
+        // Create accounts
+        BankAccount account1 = new BankAccount("ACC001", "John Doe", 1000.00m);
+        BankAccount account2 = new BankAccount("ACC002", "Jane Smith", 500.00m);
+        
+        // Display initial information
+        Console.WriteLine("Initial Accounts:");
+        Console.WriteLine(account1);
+        Console.WriteLine(account2);
+        Console.WriteLine();
+        
+        // Perform operations using public methods
+        account1.Deposit(200.00m);
+        account1.Withdraw(150.00m);
+        account1.Transfer(account2, 300.00m);
+        
+        Console.WriteLine("\nFinal Accounts:");
+        Console.WriteLine(account1);
+        Console.WriteLine(account2);
+        
+        // Try invalid operations
+        Console.WriteLine("\n=== Testing Validation ===");
+        account1.Withdraw(-50);        // Invalid: negative amount
+        account1.Withdraw(2000);       // Invalid: insufficient funds
+        account1.Deposit(0);           // Invalid: zero amount
+        
+        // These would cause compilation errors due to encapsulation:
+        // account1.balance = -100;     // Error: balance is private
+        // account1.Balance = -100;     // Error: Balance setter is private
+        // account1.accountNumber = "NEW"; // Error: no setter for AccountNumber
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Advanced Encapsulation Patterns</h5>
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Student
+{
+    // Private backing fields
+    private string studentId;
+    private string firstName;
+    private string lastName;
+    private DateTime birthDate;
+    private List<decimal> grades;
+    
+    // Constructor with validation
+    public Student(string studentId, string firstName, string lastName, DateTime birthDate)
+    {
+        StudentId = studentId;      // Use property for validation
+        FirstName = firstName;      // Use property for validation
+        LastName = lastName;        // Use property for validation
+        BirthDate = birthDate;      // Use property for validation
+        grades = new List<decimal>();
+    }
+    
+    // Properties with validation and business logic
+    public string StudentId
+    {
+        get { return studentId; }
+        private set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Student ID cannot be empty");
+            if (value.Length != 6)
+                throw new ArgumentException("Student ID must be 6 characters");
+            studentId = value.ToUpper();
+        }
+    }
+    
+    public string FirstName
+    {
+        get { return firstName; }
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("First name cannot be empty");
+            if (value.Length > 50)
+                throw new ArgumentException("First name cannot exceed 50 characters");
+            firstName = value.Trim();
+        }
+    }
+    
+    public string LastName
+    {
+        get { return lastName; }
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Last name cannot be empty");
+            if (value.Length > 50)
+                throw new ArgumentException("Last name cannot exceed 50 characters");
+            lastName = value.Trim();
+        }
+    }
+    
+    public DateTime BirthDate
+    {
+        get { return birthDate; }
+        private set
+        {
+            if (value > DateTime.Now)
+                throw new ArgumentException("Birth date cannot be in the future");
+            if (value < DateTime.Now.AddYears(-120))
+                throw new ArgumentException("Birth date cannot be more than 120 years ago");
+            birthDate = value;
+        }
+    }
+    
+    // Computed properties
+    public string FullName => $"{FirstName} {LastName}";
+    
+    public int Age => DateTime.Now.Year - BirthDate.Year - 
+                     (DateTime.Now.DayOfYear < BirthDate.DayOfYear ? 1 : 0);
+    
+    // Encapsulated collection access
+    public IReadOnlyList<decimal> Grades => grades.AsReadOnly();
+    
+    public decimal GPA => grades.Count > 0 ? grades.Average() : 0;
+    
+    public int TotalCredits => grades.Count * 3; // Assuming 3 credits per course
+    
+    public string AcademicStanding
+    {
+        get
+        {
+            decimal gpa = GPA;
+            if (gpa >= 3.5m) return "Dean's List";
+            if (gpa >= 3.0m) return "Good Standing";
+            if (gpa >= 2.0m) return "Satisfactory";
+            return "Academic Probation";
+        }
+    }
+    
+    // Methods for controlled operations on encapsulated data
+    public void AddGrade(decimal grade)
+    {
+        if (grade < 0 || grade > 4.0m)
+            throw new ArgumentException("Grade must be between 0 and 4.0");
+        
+        grades.Add(grade);
+        Console.WriteLine($"Added grade {grade:F1} for {FullName}. New GPA: {GPA:F2}");
+    }
+    
+    public bool RemoveGrade(decimal grade)
+    {
+        if (grades.Remove(grade))
+        {
+            Console.WriteLine($"Removed grade {grade:F1} for {FullName}. New GPA: {GPA:F2}");
+            return true;
+        }
+        return false;
+    }
+    
+    public void UpdateGrade(int index, decimal newGrade)
+    {
+        if (index < 0 || index >= grades.Count)
+            throw new ArgumentOutOfRangeException("Invalid grade index");
+        if (newGrade < 0 || newGrade > 4.0m)
+            throw new ArgumentException("Grade must be between 0 and 4.0");
+        
+        decimal oldGrade = grades[index];
+        grades[index] = newGrade;
+        Console.WriteLine($"Updated grade from {oldGrade:F1} to {newGrade:F1} for {FullName}");
+    }
+    
+    public List<decimal> GetGradesAbove(decimal threshold)
+    {
+        return grades.Where(g => g >= threshold).ToList();
+    }
+    
+    // Method to get student summary (encapsulates complex logic)
+    public string GetStudentSummary()
+    {
+        return $"""
+            Student Summary:
+            ID: {StudentId}
+            Name: {FullName}
+            Age: {Age}
+            Total Grades: {grades.Count}
+            GPA: {GPA:F2}
+            Total Credits: {TotalCredits}
+            Academic Standing: {AcademicStanding}
+            """;
+    }
+    
+    public override string ToString() => $"{FullName} (ID: {StudentId}, GPA: {GPA:F2})";
+}
+
+// Example of encapsulation in a service class
+public class StudentManagementService
+{
+    private Dictionary<string, Student> students;
+    private int nextId;
+    
+    public StudentManagementService()
+    {
+        students = new Dictionary<string, Student>();
+        nextId = 1;
+    }
+    
+    // Encapsulated collection access
+    public IReadOnlyCollection<Student> Students => students.Values;
+    
+    public int StudentCount => students.Count;
+    
+    // Controlled operations
+    public string RegisterStudent(string firstName, string lastName, DateTime birthDate)
+    {
+        string studentId = $"STU{nextId:D3}";
+        nextId++;
+        
+        var student = new Student(studentId, firstName, lastName, birthDate);
+        students.Add(studentId, student);
+        
+        Console.WriteLine($"Registered new student: {student}");
+        return studentId;
+    }
+    
+    public Student GetStudent(string studentId)
+    {
+        students.TryGetValue(studentId, out Student student);
+        return student; // Returns null if not found
+    }
+    
+    public bool AddGradeToStudent(string studentId, decimal grade)
+    {
+        var student = GetStudent(studentId);
+        if (student != null)
+        {
+            student.AddGrade(grade);
+            return true;
+        }
+        Console.WriteLine($"Student with ID {studentId} not found");
+        return false;
+    }
+    
+    public List<Student> GetHonorRollStudents()
+    {
+        return students.Values.Where(s => s.GPA >= 3.5m).ToList();
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Advanced Encapsulation Demo ===");
+        
+        var service = new StudentManagementService();
+        
+        // Register students
+        string student1Id = service.RegisterStudent("Alice", "Johnson", new DateTime(2000, 5, 15));
+        string student2Id = service.RegisterStudent("Bob", "Smith", new DateTime(1999, 8, 22));
+        
+        // Add grades using encapsulated methods
+        service.AddGradeToStudent(student1Id, 3.8m);
+        service.AddGradeToStudent(student1Id, 3.6m);
+        service.AddGradeToStudent(student1Id, 3.9m);
+        
+        service.AddGradeToStudent(student2Id, 3.2m);
+        service.AddGradeToStudent(student2Id, 2.8m);
+        service.AddGradeToStudent(student2Id, 3.4m);
+        
+        // Display information using encapsulated properties
+        Console.WriteLine("\n=== Student Information ===");
+        foreach (var student in service.Students)
+        {
+            Console.WriteLine(student.GetStudentSummary());
+            Console.WriteLine();
+        }
+        
+        // Get honor roll students
+        Console.WriteLine("=== Honor Roll Students ===");
+        var honorStudents = service.GetHonorRollStudents();
+        foreach (var student in honorStudents)
+        {
+            Console.WriteLine(student);
+        }
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Property Patterns and Encapsulation</h5>
+              <pre><code class="language-csharp">using System;
+
+public class Temperature
+{
+    private decimal celsius;
+    
+    // Full property with validation
+    public decimal Celsius
+    {
+        get { return celsius; }
+        set
+        {
+            if (value < -273.15m)
+                throw new ArgumentException("Temperature cannot be below absolute zero");
+            celsius = value;
+        }
+    }
+    
+    // Computed properties (read-only)
+    public decimal Fahrenheit
+    {
+        get { return (celsius * 9 / 5) + 32; }
+        set { Celsius = (value - 32) * 5 / 9; } // Convert and use Celsius setter
+    }
+    
+    public decimal Kelvin
+    {
+        get { return celsius + 273.15m; }
+        set { Celsius = value - 273.15m; } // Convert and use Celsius setter
+    }
+    
+    // Expression-bodied properties (C# 6.0+)
+    public string Description => GetTemperatureDescription();
+    
+    public bool IsFreezing => Celsius <= 0;
+    
+    public bool IsBoiling => Celsius >= 100;
+    
+    // Private helper method (encapsulated logic)
+    private string GetTemperatureDescription()
+    {
+        return Celsius switch
+        {
+            < -50 => "Extremely Cold",
+            < 0 => "Freezing",
+            < 10 => "Cold",
+            < 20 => "Cool",
+            < 30 => "Warm",
+            < 40 => "Hot",
+            _ => "Extremely Hot"
+        };
+    }
+    
+    public override string ToString()
+    {
+        return $"{Celsius:F1}°C ({Fahrenheit:F1}°F, {Kelvin:F1}K) - {Description}";
+    }
+}
+
+// Example with auto-implemented properties and init-only setters (C# 9.0+)
+public class Product
+{
+    // Auto-implemented properties
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public string Category { get; set; }
+    
+    // Init-only properties (can only be set during object initialization)
+    public string Id { get; init; }
+    public DateTime CreatedDate { get; init; } = DateTime.Now;
+    
+    // Property with different access levels
+    public decimal DiscountPercentage { get; private set; }
+    
+    // Required properties (C# 11.0+)
+    public required string Manufacturer { get; set; }
+    
+    // Computed property
+    public decimal DiscountedPrice => Price * (1 - DiscountPercentage / 100);
+    
+    public void ApplyDiscount(decimal percentage)
+    {
+        if (percentage < 0 || percentage > 50)
+            throw new ArgumentException("Discount must be between 0 and 50 percent");
+        
+        DiscountPercentage = percentage;
+        Console.WriteLine($"Applied {percentage}% discount to {Name}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Property Patterns Demo ===");
+        
+        // Temperature example
+        var temp = new Temperature();
+        temp.Celsius = 25;
+        Console.WriteLine($"Room temperature: {temp}");
+        
+        temp.Fahrenheit = 98.6m; // Body temperature
+        Console.WriteLine($"Body temperature: {temp}");
+        
+        // Product example with object initializer
+        var product = new Product
+        {
+            Id = "PROD001",
+            Name = "Laptop",
+            Price = 999.99m,
+            Category = "Electronics",
+            Manufacturer = "TechCorp" // Required property
+        };
+        
+        Console.WriteLine($"\nProduct: {product.Name}");
+        Console.WriteLine($"Original Price: ${product.Price:F2}");
+        
+        product.ApplyDiscount(15);
+        Console.WriteLine($"Discounted Price: ${product.DiscountedPrice:F2}");
+        
+        // These would cause compilation errors:
+        // product.Id = "NEW_ID";           // Error: init-only property
+        // product.CreatedDate = DateTime.Now; // Error: init-only property
+        // product.DiscountPercentage = 20; // Error: private setter
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-check-circle"></i>
+            </div>
+            <div>
+              <h2>Encapsulation Best Practices</h2>
+              <p class="text-muted mb-0">Guidelines for effective encapsulation in C#</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="alert alert-info">
+                <h5><i class="bi bi-lightbulb me-2"></i>Best Practices</h5>
+                <ul class="mb-0">
+                  <li><strong>Keep fields private</strong> - use properties for external access</li>
+                  <li><strong>Validate data in property setters</strong> - ensure data integrity</li>
+                  <li><strong>Use auto-implemented properties</strong> when no validation is needed</li>
+                  <li><strong>Consider init-only properties</strong> for immutable data after construction</li>
+                  <li><strong>Provide minimal public interface</strong> - expose only what's necessary</li>
+                  <li><strong>Use read-only properties</strong> for computed values</li>
+                  <li><strong>Group related data and behavior</strong> in the same class</li>
+                  <li><strong>Use appropriate access modifiers</strong> - be as restrictive as possible</li>
+                </ul>
+              </div>
+
+              <div class="alert alert-warning">
+                <h5><i class="bi bi-exclamation-triangle me-2"></i>Common Pitfalls</h5>
+                <ul class="mb-0">
+                  <li><strong>Exposing internal collections directly</strong> - use IReadOnlyCollection or return copies</li>
+                  <li><strong>Using public fields</strong> - breaks encapsulation and prevents validation</li>
+                  <li><strong>Overly complex property setters</strong> - keep validation simple and focused</li>
+                  <li><strong>Not validating constructor parameters</strong> - validate early and fail fast</li>
+                  <li><strong>Breaking encapsulation with friend classes</strong> - minimize internal access</li>
+                  <li><strong>Inconsistent access patterns</strong> - follow consistent naming and access conventions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

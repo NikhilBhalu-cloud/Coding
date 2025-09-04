@@ -49,14 +49,19 @@
     });
   }
 
-  // Sidebar toggle functionality
+  // Sidebar toggle functionality with enhanced features
   const sidebarToggle = document.getElementById("sidebarToggle");
   const sidebar = document.getElementById("sidebar");
-  const body = document.body;
+  const sidebarSearch = document.getElementById("sidebarSearch");
 
   if (sidebarToggle && sidebar) {
     sidebarToggle.addEventListener("click", () => {
       sidebar.classList.toggle("show");
+      
+      // Add overlay for mobile
+      if (window.innerWidth <= 992) {
+        toggleOverlay();
+      }
     });
 
     // Close sidebar when clicking outside on mobile
@@ -66,9 +71,91 @@
           !sidebarToggle.contains(e.target) &&
           sidebar.classList.contains("show")) {
         sidebar.classList.remove("show");
+        removeOverlay();
       }
     });
   }
+
+  // Enhanced sidebar search functionality
+  if (sidebarSearch) {
+    sidebarSearch.addEventListener("input", function() {
+      const searchTerm = this.value.toLowerCase();
+      const topicItems = document.querySelectorAll('.topic-item');
+      const topicSections = document.querySelectorAll('.topic-section');
+      
+      topicItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        const section = item.closest('.topic-section');
+        
+        if (text.includes(searchTerm)) {
+          item.style.display = '';
+          section.classList.remove('collapsed');
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Hide sections with no visible items
+      topicSections.forEach(section => {
+        const visibleItems = section.querySelectorAll('.topic-item[style=""], .topic-item:not([style])');
+        if (searchTerm && visibleItems.length === 0) {
+          section.style.display = 'none';
+        } else {
+          section.style.display = '';
+        }
+      });
+    });
+  }
+
+  // Collapsible section functionality
+  window.toggleSection = function(sectionName) {
+    const section = document.querySelector(`[data-section="${sectionName}"]`);
+    if (section) {
+      section.classList.toggle('collapsed');
+      
+      // Save state to localStorage
+      const collapsed = section.classList.contains('collapsed');
+      localStorage.setItem(`section-${sectionName}`, collapsed ? 'true' : 'false');
+    }
+  };
+
+  // Restore section states from localStorage
+  function restoreSectionStates() {
+    const sections = document.querySelectorAll('.topic-section[data-section]');
+    sections.forEach(section => {
+      const sectionName = section.getAttribute('data-section');
+      const isCollapsed = localStorage.getItem(`section-${sectionName}`) === 'true';
+      
+      if (isCollapsed) {
+        section.classList.add('collapsed');
+      }
+    });
+  }
+
+  // Mobile overlay functions
+  function toggleOverlay() {
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'sidebar-overlay';
+      document.body.appendChild(overlay);
+      
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        removeOverlay();
+      });
+    }
+  }
+
+  function removeOverlay() {
+    const overlay = document.querySelector('.sidebar-overlay');
+    if (overlay) {
+      overlay.remove();
+    }
+  }
+
+  // Initialize section states
+  restoreSectionStates();
 
   // Smooth scrolling for sidebar links
   document.querySelectorAll('.sidebar a[href^="#"]').forEach((anchor) => {

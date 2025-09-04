@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Abstraction - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">Related Topics</h6>
+        <nav class="nav flex-column topic-list">
+          <a class="nav-link topic-item" href="index.html#classes">Classes & Objects</a>
+          <a class="nav-link topic-item" href="inheritance.html">Inheritance</a>
+          <a class="nav-link topic-item" href="polymorphism.html">Polymorphism</a>
+          <a class="nav-link topic-item" href="encapsulation.html">Encapsulation</a>
+          <a class="nav-link topic-item active" href="abstraction.html">Abstraction</a>
+          <a class="nav-link topic-item" href="interfaces.html">Interfaces</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-5" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.html#abstraction">OOP Concepts</a></li>
+            <li class="breadcrumb-item active">Abstraction</li>
+          </ol>
+        </nav>
+
+        <!-- Abstraction Main Section -->
+        <section class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-eye-slash"></i>
+            </div>
+            <div>
+              <h1>Abstraction in C#</h1>
+              <p class="text-muted mb-0">Learn how to hide complex implementation details and show only essential features</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                <strong>Abstraction</strong> is the principle of hiding complex implementation details while exposing only the essential features 
+                and functionality. It focuses on what an object does rather than how it does it. Abstraction helps manage complexity by 
+                allowing developers to work with simplified representations of complex systems.
+              </p>
+              
+              <h5>Key Concepts:</h5>
+              <ul>
+                <li><strong>Abstract Classes:</strong> Classes that cannot be instantiated and may contain abstract methods</li>
+                <li><strong>Abstract Methods:</strong> Methods declared without implementation that must be overridden</li>
+                <li><strong>Interfaces:</strong> Contracts that define what a class must implement</li>
+                <li><strong>Data Abstraction:</strong> Hiding internal data representation</li>
+                <li><strong>Procedural Abstraction:</strong> Hiding complex algorithms behind simple method calls</li>
+              </ul>
+
+              <h5>Benefits of Abstraction:</h5>
+              <ul>
+                <li><strong>Complexity Management:</strong> Simplify complex systems by hiding details</li>
+                <li><strong>Code Reusability:</strong> Create common base functionality for related classes</li>
+                <li><strong>Maintainability:</strong> Changes to implementation don't affect client code</li>
+                <li><strong>Focus on Interface:</strong> Emphasize what objects do, not how they do it</li>
+                <li><strong>Polymorphism Support:</strong> Enable treating different objects uniformly</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-question-circle me-2"></i>Questions & Answers</h4>
+              <div class="qa-accordion">
+                <div class="accordion" id="abstractionQA">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                        What's the difference between abstraction and encapsulation?
+                      </button>
+                    </h2>
+                    <div id="q1" class="accordion-collapse collapse" data-bs-parent="#abstractionQA">
+                      <div class="accordion-body">
+                        <p><strong>Abstraction:</strong></p>
+                        <ul>
+                          <li>Focuses on hiding complexity and showing only essential features</li>
+                          <li>About designing - what an object should do</li>
+                          <li>Achieved through abstract classes and interfaces</li>
+                          <li>Design-time concept</li>
+                        </ul>
+                        <p><strong>Encapsulation:</strong></p>
+                        <ul>
+                          <li>Focuses on hiding data and implementation details</li>
+                          <li>About implementation - how an object does things</li>
+                          <li>Achieved through access modifiers and properties</li>
+                          <li>Implementation-time concept</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                        When should I use abstract classes vs interfaces?
+                      </button>
+                    </h2>
+                    <div id="q2" class="accordion-collapse collapse" data-bs-parent="#abstractionQA">
+                      <div class="accordion-body">
+                        <p><strong>Use Abstract Classes when:</strong></p>
+                        <ul>
+                          <li>You have common implementation that can be shared</li>
+                          <li>You need to provide default behavior</li>
+                          <li>Classes are closely related (IS-A relationship)</li>
+                          <li>You need to define constructors</li>
+                        </ul>
+                        <p><strong>Use Interfaces when:</strong></p>
+                        <ul>
+                          <li>You want to define a contract without implementation</li>
+                          <li>You need multiple inheritance</li>
+                          <li>Classes are not closely related but share behavior</li>
+                          <li>You want to achieve loose coupling</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+                        Can abstract classes have constructors?
+                      </button>
+                    </h2>
+                    <div id="q3" class="accordion-collapse collapse" data-bs-parent="#abstractionQA">
+                      <div class="accordion-body">
+                        <p>Yes, abstract classes can have constructors, but:</p>
+                        <ul>
+                          <li>They cannot be called directly (cannot instantiate abstract class)</li>
+                          <li>They are called by derived class constructors using base()</li>
+                          <li>Useful for initializing common fields and properties</li>
+                          <li>Can be public, protected, or private</li>
+                          <li>Often used to enforce initialization requirements</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              
+              <h5>Abstract Classes and Methods</h5>
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+// Abstract base class representing a database connection
+public abstract class DatabaseConnection
+{
+    protected string connectionString;
+    protected bool isConnected;
+    
+    // Constructor in abstract class
+    protected DatabaseConnection(string connectionString)
+    {
+        this.connectionString = connectionString;
+        this.isConnected = false;
+    }
+    
+    // Abstract methods that must be implemented by derived classes
+    public abstract void Connect();
+    public abstract void Disconnect();
+    public abstract void ExecuteQuery(string query);
+    public abstract List<Dictionary<string, object>> ExecuteSelect(string query);
+    
+    // Virtual method with default implementation that can be overridden
+    public virtual void TestConnection()
+    {
+        Console.WriteLine("Testing database connection...");
+        if (!isConnected)
+        {
+            Connect();
+        }
+        Console.WriteLine(isConnected ? "Connection successful" : "Connection failed");
+    }
+    
+    // Concrete method with common functionality
+    public string GetConnectionInfo()
+    {
+        return $"Database: {GetDatabaseType()}, Connected: {isConnected}";
+    }
+    
+    // Abstract property
+    public abstract string GetDatabaseType();
+    
+    // Template method pattern - defines algorithm structure
+    public void ProcessData(string selectQuery, string insertQuery)
+    {
+        Console.WriteLine("Starting data processing...");
+        
+        Connect();
+        var data = ExecuteSelect(selectQuery);
+        ProcessResults(data);
+        ExecuteQuery(insertQuery);
+        Disconnect();
+        
+        Console.WriteLine("Data processing completed.");
+    }
+    
+    // Protected method for use by derived classes
+    protected virtual void ProcessResults(List<Dictionary<string, object>> results)
+    {
+        Console.WriteLine($"Processing {results.Count} records");
+    }
+}
+
+// Concrete implementation for SQL Server
+public class SqlServerConnection : DatabaseConnection
+{
+    public SqlServerConnection(string connectionString) : base(connectionString)
+    {
+    }
+    
+    public override void Connect()
+    {
+        Console.WriteLine($"Connecting to SQL Server: {connectionString}");
+        // Simulate connection logic
+        isConnected = true;
+        Console.WriteLine("SQL Server connection established");
+    }
+    
+    public override void Disconnect()
+    {
+        Console.WriteLine("Disconnecting from SQL Server");
+        isConnected = false;
+    }
+    
+    public override void ExecuteQuery(string query)
+    {
+        if (!isConnected)
+            throw new InvalidOperationException("Not connected to database");
+        
+        Console.WriteLine($"Executing SQL Server query: {query}");
+        // Simulate query execution
+    }
+    
+    public override List<Dictionary<string, object>> ExecuteSelect(string query)
+    {
+        if (!isConnected)
+            throw new InvalidOperationException("Not connected to database");
+        
+        Console.WriteLine($"Executing SQL Server select: {query}");
+        
+        // Simulate returning data
+        return new List<Dictionary<string, object>>
+        {
+            new Dictionary<string, object> { {"Id", 1}, {"Name", "John"} },
+            new Dictionary<string, object> { {"Id", 2}, {"Name", "Jane"} }
+        };
+    }
+    
+    public override string GetDatabaseType()
+    {
+        return "SQL Server";
+    }
+    
+    // SQL Server specific method
+    public void ExecuteStoredProcedure(string procedureName, Dictionary<string, object> parameters)
+    {
+        Console.WriteLine($"Executing stored procedure: {procedureName}");
+        foreach (var param in parameters)
+        {
+            Console.WriteLine($"  Parameter: {param.Key} = {param.Value}");
+        }
+    }
+}
+
+// Another concrete implementation for MySQL
+public class MySqlConnection : DatabaseConnection
+{
+    private int maxRetries;
+    
+    public MySqlConnection(string connectionString, int maxRetries = 3) : base(connectionString)
+    {
+        this.maxRetries = maxRetries;
+    }
+    
+    public override void Connect()
+    {
+        Console.WriteLine($"Connecting to MySQL: {connectionString}");
+        
+        for (int i = 0; i < maxRetries; i++)
+        {
+            Console.WriteLine($"Connection attempt {i + 1}");
+            // Simulate connection logic
+            isConnected = true;
+            Console.WriteLine("MySQL connection established");
+            return;
+        }
+        
+        throw new Exception("Failed to connect after maximum retries");
+    }
+    
+    public override void Disconnect()
+    {
+        Console.WriteLine("Disconnecting from MySQL");
+        isConnected = false;
+    }
+    
+    public override void ExecuteQuery(string query)
+    {
+        if (!isConnected)
+            throw new InvalidOperationException("Not connected to database");
+        
+        Console.WriteLine($"Executing MySQL query: {query}");
+        // Simulate query execution
+    }
+    
+    public override List<Dictionary<string, object>> ExecuteSelect(string query)
+    {
+        if (!isConnected)
+            throw new InvalidOperationException("Not connected to database");
+        
+        Console.WriteLine($"Executing MySQL select: {query}");
+        
+        // Simulate returning data
+        return new List<Dictionary<string, object>>
+        {
+            new Dictionary<string, object> { {"UserId", 1}, {"UserName", "Alice"} },
+            new Dictionary<string, object> { {"UserId", 2}, {"UserName", "Bob"} }
+        };
+    }
+    
+    public override string GetDatabaseType()
+    {
+        return "MySQL";
+    }
+    
+    public override void TestConnection()
+    {
+        Console.WriteLine("MySQL custom connection test");
+        base.TestConnection(); // Call base implementation
+        Console.WriteLine("MySQL connection test completed");
+    }
+    
+    // MySQL specific method
+    public void OptimizeTables()
+    {
+        Console.WriteLine("Optimizing MySQL tables");
+    }
+}
+
+// Database factory using abstraction
+public static class DatabaseFactory
+{
+    public static DatabaseConnection CreateConnection(string dbType, string connectionString)
+    {
+        return dbType.ToLower() switch
+        {
+            "sqlserver" => new SqlServerConnection(connectionString),
+            "mysql" => new MySqlConnection(connectionString),
+            _ => throw new ArgumentException($"Unsupported database type: {dbType}")
+        };
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Abstraction with Abstract Classes Demo ===");
+        
+        // Create different database connections using abstraction
+        DatabaseConnection[] connections = {
+            DatabaseFactory.CreateConnection("sqlserver", "Server=localhost;Database=TestDB"),
+            DatabaseFactory.CreateConnection("mysql", "Server=localhost;Database=TestDB;Uid=root;Pwd=password")
+        };
+        
+        // Work with all databases polymorphically through abstraction
+        foreach (DatabaseConnection db in connections)
+        {
+            Console.WriteLine($"\n=== Working with {db.GetDatabaseType()} ===");
+            
+            // Use abstract methods
+            db.TestConnection();
+            Console.WriteLine(db.GetConnectionInfo());
+            
+            // Use template method (demonstrates abstraction hiding complexity)
+            db.ProcessData("SELECT * FROM Users", "INSERT INTO Log VALUES ('Processed')");
+            
+            Console.WriteLine();
+        }
+        
+        // Cannot instantiate abstract class:
+        // DatabaseConnection db = new DatabaseConnection("test"); // Compilation error
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Data Abstraction with Repository Pattern</h5>
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+
+// Domain model
+public class User
+{
+    public int Id { get; set; }
+    public string Username { get; set; }
+    public string Email { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public bool IsActive { get; set; }
+    
+    public override string ToString() => $"User: {Username} ({Email}) - Active: {IsActive}";
+}
+
+// Abstract repository providing data abstraction
+public abstract class Repository<T> where T : class
+{
+    protected List<T> items;
+    
+    protected Repository()
+    {
+        items = new List<T>();
+        InitializeData(); // Template method
+    }
+    
+    // Abstract methods for data operations
+    public abstract void Add(T item);
+    public abstract T GetById(int id);
+    public abstract void Update(T item);
+    public abstract void Delete(int id);
+    
+    // Virtual methods with default implementation
+    public virtual IEnumerable<T> GetAll()
+    {
+        return items.AsReadOnly();
+    }
+    
+    public virtual int Count => items.Count;
+    
+    // Abstract method for validation
+    protected abstract bool ValidateItem(T item);
+    
+    // Abstract method for initialization
+    protected abstract void InitializeData();
+    
+    // Template method pattern - defines the algorithm structure
+    public bool SaveItem(T item)
+    {
+        Console.WriteLine($"Saving {typeof(T).Name}...");
+        
+        if (!ValidateItem(item))
+        {
+            Console.WriteLine("Validation failed");
+            return false;
+        }
+        
+        PerformAudit(item);
+        Add(item);
+        OnItemSaved(item);
+        
+        Console.WriteLine($"{typeof(T).Name} saved successfully");
+        return true;
+    }
+    
+    // Protected methods for derived classes
+    protected virtual void PerformAudit(T item)
+    {
+        Console.WriteLine($"Audit: {typeof(T).Name} operation at {DateTime.Now}");
+    }
+    
+    protected virtual void OnItemSaved(T item)
+    {
+        Console.WriteLine($"Post-save processing for {typeof(T).Name}");
+    }
+}
+
+// Concrete implementation hiding data storage details
+public class UserRepository : Repository<User>
+{
+    private int nextId = 1;
+    
+    protected override void InitializeData()
+    {
+        // Initialize with some sample data
+        items.AddRange(new[]
+        {
+            new User { Id = nextId++, Username = "admin", Email = "admin@example.com", CreatedDate = DateTime.Now.AddDays(-30), IsActive = true },
+            new User { Id = nextId++, Username = "user1", Email = "user1@example.com", CreatedDate = DateTime.Now.AddDays(-15), IsActive = true }
+        });
+    }
+    
+    public override void Add(User user)
+    {
+        if (user.Id == 0)
+            user.Id = nextId++;
+        
+        user.CreatedDate = DateTime.Now;
+        items.Add(user);
+    }
+    
+    public override User GetById(int id)
+    {
+        return items.FirstOrDefault(u => u.Id == id);
+    }
+    
+    public override void Update(User user)
+    {
+        var existing = GetById(user.Id);
+        if (existing != null)
+        {
+            existing.Username = user.Username;
+            existing.Email = user.Email;
+            existing.IsActive = user.IsActive;
+        }
+    }
+    
+    public override void Delete(int id)
+    {
+        var user = GetById(id);
+        if (user != null)
+        {
+            items.Remove(user);
+        }
+    }
+    
+    protected override bool ValidateItem(User user)
+    {
+        if (string.IsNullOrWhiteSpace(user.Username))
+        {
+            Console.WriteLine("Username is required");
+            return false;
+        }
+        
+        if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
+        {
+            Console.WriteLine("Valid email is required");
+            return false;
+        }
+        
+        if (items.Any(u => u.Username == user.Username && u.Id != user.Id))
+        {
+            Console.WriteLine("Username already exists");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    // Additional methods specific to user management
+    public IEnumerable<User> GetActiveUsers()
+    {
+        return items.Where(u => u.IsActive);
+    }
+    
+    public User GetByUsername(string username)
+    {
+        return items.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+    }
+    
+    public void DeactivateUser(int id)
+    {
+        var user = GetById(id);
+        if (user != null)
+        {
+            user.IsActive = false;
+            Console.WriteLine($"User {user.Username} deactivated");
+        }
+    }
+    
+    protected override void OnItemSaved(User user)
+    {
+        base.OnItemSaved(user);
+        Console.WriteLine($"Welcome email sent to {user.Email}");
+    }
+}
+
+// Service class using abstraction
+public class UserService
+{
+    private readonly Repository<User> userRepository;
+    
+    public UserService(Repository<User> userRepository)
+    {
+        this.userRepository = userRepository;
+    }
+    
+    // High-level operations hiding complexity
+    public void CreateUser(string username, string email)
+    {
+        var user = new User
+        {
+            Username = username,
+            Email = email,
+            IsActive = true
+        };
+        
+        userRepository.SaveItem(user); // Uses abstract template method
+    }
+    
+    public void ListAllUsers()
+    {
+        Console.WriteLine("\n=== All Users ===");
+        var users = userRepository.GetAll();
+        foreach (var user in users)
+        {
+            Console.WriteLine(user);
+        }
+    }
+    
+    public void GetUserStatistics()
+    {
+        var allUsers = userRepository.GetAll();
+        var totalUsers = userRepository.Count;
+        var activeUsers = allUsers.Count(u => u.IsActive);
+        
+        Console.WriteLine("\n=== User Statistics ===");
+        Console.WriteLine($"Total Users: {totalUsers}");
+        Console.WriteLine($"Active Users: {activeUsers}");
+        Console.WriteLine($"Inactive Users: {totalUsers - activeUsers}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Data Abstraction with Repository Pattern ===");
+        
+        // Create repository (concrete implementation hidden behind abstraction)
+        var userRepository = new UserRepository();
+        var userService = new UserService(userRepository);
+        
+        // High-level operations using abstraction
+        userService.ListAllUsers();
+        userService.GetUserStatistics();
+        
+        Console.WriteLine("\n=== Creating New Users ===");
+        userService.CreateUser("newuser", "newuser@example.com");
+        userService.CreateUser("testuser", "testuser@example.com");
+        
+        // Try creating invalid user
+        userService.CreateUser("", "invalid-email"); // Will fail validation
+        
+        userService.ListAllUsers();
+        userService.GetUserStatistics();
+        
+        // Direct repository operations (still abstracted)
+        Console.WriteLine("\n=== Direct Repository Operations ===");
+        var specificRepo = userRepository as UserRepository;
+        specificRepo?.DeactivateUser(1);
+        
+        userService.GetUserStatistics();
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Procedural Abstraction</h5>
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+
+// Abstract class for different sorting algorithms
+public abstract class SortingAlgorithm
+{
+    protected string algorithmName;
+    
+    protected SortingAlgorithm(string algorithmName)
+    {
+        this.algorithmName = algorithmName;
+    }
+    
+    // Abstract method that hides implementation complexity
+    public abstract void Sort<T>(T[] array) where T : IComparable<T>;
+    
+    // Template method that provides a consistent interface
+    public void SortAndDisplay<T>(T[] array) where T : IComparable<T>
+    {
+        Console.WriteLine($"\n=== Sorting with {algorithmName} ===");
+        Console.WriteLine($"Original: [{string.Join(", ", array)}]");
+        
+        var startTime = DateTime.Now;
+        Sort(array); // Abstract method call
+        var endTime = DateTime.Now;
+        
+        Console.WriteLine($"Sorted:   [{string.Join(", ", array)}]");
+        Console.WriteLine($"Time:     {(endTime - startTime).TotalMilliseconds:F2}ms");
+    }
+    
+    // Protected utility method for derived classes
+    protected void Swap<T>(T[] array, int i, int j)
+    {
+        T temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+// Concrete implementation - Bubble Sort
+public class BubbleSort : SortingAlgorithm
+{
+    public BubbleSort() : base("Bubble Sort") { }
+    
+    public override void Sort<T>(T[] array)
+    {
+        int n = array.Length;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - i - 1; j++)
+            {
+                if (array[j].CompareTo(array[j + 1]) > 0)
+                {
+                    Swap(array, j, j + 1);
+                }
+            }
+        }
+    }
+}
+
+// Concrete implementation - Quick Sort
+public class QuickSort : SortingAlgorithm
+{
+    public QuickSort() : base("Quick Sort") { }
+    
+    public override void Sort<T>(T[] array)
+    {
+        QuickSortRecursive(array, 0, array.Length - 1);
+    }
+    
+    private void QuickSortRecursive<T>(T[] array, int low, int high) where T : IComparable<T>
+    {
+        if (low < high)
+        {
+            int partitionIndex = Partition(array, low, high);
+            QuickSortRecursive(array, low, partitionIndex - 1);
+            QuickSortRecursive(array, partitionIndex + 1, high);
+        }
+    }
+    
+    private int Partition<T>(T[] array, int low, int high) where T : IComparable<T>
+    {
+        T pivot = array[high];
+        int i = low - 1;
+        
+        for (int j = low; j < high; j++)
+        {
+            if (array[j].CompareTo(pivot) <= 0)
+            {
+                i++;
+                Swap(array, i, j);
+            }
+        }
+        
+        Swap(array, i + 1, high);
+        return i + 1;
+    }
+}
+
+// Abstract data processor
+public abstract class DataProcessor<T>
+{
+    public void ProcessData(IEnumerable<T> data, string outputFormat = "console")
+    {
+        Console.WriteLine($"\n=== Processing {typeof(T).Name} Data ===");
+        
+        // Template method hiding complex processing steps
+        var cleanedData = CleanData(data);
+        var transformedData = TransformData(cleanedData);
+        var aggregatedData = AggregateData(transformedData);
+        
+        OutputResults(aggregatedData, outputFormat);
+    }
+    
+    // Abstract methods hiding implementation complexity
+    protected abstract IEnumerable<T> CleanData(IEnumerable<T> data);
+    protected abstract IEnumerable<T> TransformData(IEnumerable<T> data);
+    protected abstract object AggregateData(IEnumerable<T> data);
+    
+    // Virtual method with default implementation
+    protected virtual void OutputResults(object results, string format)
+    {
+        Console.WriteLine($"Results ({format}): {results}");
+    }
+}
+
+// Concrete processor for numbers
+public class NumberProcessor : DataProcessor<double>
+{
+    protected override IEnumerable<double> CleanData(IEnumerable<double> data)
+    {
+        Console.WriteLine("Cleaning data: removing invalid numbers");
+        return data.Where(x => !double.IsNaN(x) && !double.IsInfinity(x));
+    }
+    
+    protected override IEnumerable<double> TransformData(IEnumerable<double> data)
+    {
+        Console.WriteLine("Transforming data: normalizing values");
+        var max = data.Max();
+        var min = data.Min();
+        var range = max - min;
+        
+        return range == 0 ? data : data.Select(x => (x - min) / range);
+    }
+    
+    protected override object AggregateData(IEnumerable<double> data)
+    {
+        Console.WriteLine("Aggregating data: calculating statistics");
+        var list = data.ToList();
+        
+        return new
+        {
+            Count = list.Count,
+            Average = list.Average(),
+            Min = list.Min(),
+            Max = list.Max(),
+            StandardDeviation = CalculateStandardDeviation(list)
+        };
+    }
+    
+    private double CalculateStandardDeviation(List<double> values)
+    {
+        var avg = values.Average();
+        var sumOfSquares = values.Sum(x => Math.Pow(x - avg, 2));
+        return Math.Sqrt(sumOfSquares / values.Count);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Procedural Abstraction Demo ===");
+        
+        // Sorting abstraction - hide algorithm complexity
+        SortingAlgorithm[] algorithms = {
+            new BubbleSort(),
+            new QuickSort()
+        };
+        
+        int[] numbers = { 64, 34, 25, 12, 22, 11, 90, 5 };
+        
+        foreach (var algorithm in algorithms)
+        {
+            int[] copy = (int[])numbers.Clone();
+            algorithm.SortAndDisplay(copy); // Abstract method hides complexity
+        }
+        
+        // Data processing abstraction
+        var processor = new NumberProcessor();
+        var sampleData = new double[] { 10.5, 20.3, 15.7, 8.9, 25.1, 12.4, 18.6 };
+        
+        processor.ProcessData(sampleData); // Template method hides processing steps
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-check-circle"></i>
+            </div>
+            <div>
+              <h2>Abstraction Best Practices</h2>
+              <p class="text-muted mb-0">Guidelines for effective use of abstraction in C#</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="alert alert-info">
+                <h5><i class="bi bi-lightbulb me-2"></i>Best Practices</h5>
+                <ul class="mb-0">
+                  <li><strong>Design abstract classes for related classes</strong> that share common functionality</li>
+                  <li><strong>Use interfaces for contracts</strong> without shared implementation</li>
+                  <li><strong>Keep abstract classes focused</strong> - single responsibility principle</li>
+                  <li><strong>Provide meaningful default implementations</strong> in virtual methods</li>
+                  <li><strong>Use template method pattern</strong> to define algorithm structure</li>
+                  <li><strong>Abstract at the right level</strong> - not too high, not too low</li>
+                  <li><strong>Document abstract methods clearly</strong> - specify expectations</li>
+                  <li><strong>Consider sealed classes</strong> when abstraction is complete</li>
+                </ul>
+              </div>
+
+              <div class="alert alert-warning">
+                <h5><i class="bi bi-exclamation-triangle me-2"></i>Common Pitfalls</h5>
+                <ul class="mb-0">
+                  <li><strong>Over-abstraction</strong> - creating too many layers of abstraction</li>
+                  <li><strong>Premature abstraction</strong> - abstracting before understanding requirements</li>
+                  <li><strong>Leaky abstractions</strong> - exposing implementation details</li>
+                  <li><strong>God classes</strong> - abstract classes that do too much</li>
+                  <li><strong>Inappropriate inheritance</strong> - using abstract classes instead of composition</li>
+                  <li><strong>Breaking Liskov Substitution Principle</strong> - derived classes not substitutable</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

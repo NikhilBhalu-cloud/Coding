@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Interfaces - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">Related Topics</h6>
+        <nav class="nav flex-column topic-list">
+          <a class="nav-link topic-item" href="index.html#classes">Classes & Objects</a>
+          <a class="nav-link topic-item" href="inheritance.html">Inheritance</a>
+          <a class="nav-link topic-item" href="polymorphism.html">Polymorphism</a>
+          <a class="nav-link topic-item" href="encapsulation.html">Encapsulation</a>
+          <a class="nav-link topic-item" href="abstraction.html">Abstraction</a>
+          <a class="nav-link topic-item active" href="interfaces.html">Interfaces</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-5" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.html#interfaces">OOP Concepts</a></li>
+            <li class="breadcrumb-item active">Interfaces</li>
+          </ol>
+        </nav>
+
+        <!-- Interfaces Main Section -->
+        <section class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-diagram-2"></i>
+            </div>
+            <div>
+              <h1>Interfaces in C#</h1>
+              <p class="text-muted mb-0">Learn how to define contracts and achieve multiple inheritance through interfaces</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                An <strong>Interface</strong> defines a contract that classes must follow. It specifies what methods, properties, 
+                events, or indexers a class must implement, but not how they should be implemented. Interfaces enable multiple 
+                inheritance and loose coupling in C# applications.
+              </p>
+              
+              <h5>Key Concepts:</h5>
+              <ul>
+                <li><strong>Contract Definition:</strong> Interfaces define what must be implemented, not how</li>
+                <li><strong>Multiple Inheritance:</strong> A class can implement multiple interfaces</li>
+                <li><strong>No Implementation:</strong> Interfaces contain only signatures (until C# 8.0)</li>
+                <li><strong>Implicit Public:</strong> All interface members are implicitly public</li>
+                <li><strong>Reference Types:</strong> Interfaces are reference types</li>
+              </ul>
+
+              <h5>Benefits of Interfaces:</h5>
+              <ul>
+                <li><strong>Loose Coupling:</strong> Depend on abstractions, not concrete implementations</li>
+                <li><strong>Multiple Inheritance:</strong> Achieve multiple inheritance through interfaces</li>
+                <li><strong>Testability:</strong> Easy to create mock implementations for testing</li>
+                <li><strong>Flexibility:</strong> Swap implementations without changing client code</li>
+                <li><strong>Polymorphism:</strong> Treat different implementations uniformly</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-question-circle me-2"></i>Questions & Answers</h4>
+              <div class="qa-accordion">
+                <div class="accordion" id="interfacesQA">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                        What's the difference between interfaces and abstract classes?
+                      </button>
+                    </h2>
+                    <div id="q1" class="accordion-collapse collapse" data-bs-parent="#interfacesQA">
+                      <div class="accordion-body">
+                        <p><strong>Interfaces:</strong></p>
+                        <ul>
+                          <li>Define contracts without implementation (before C# 8.0)</li>
+                          <li>Support multiple inheritance</li>
+                          <li>Cannot have constructors, fields, or destructors</li>
+                          <li>All members are implicitly public</li>
+                          <li>Used for unrelated classes that share behavior</li>
+                        </ul>
+                        <p><strong>Abstract Classes:</strong></p>
+                        <ul>
+                          <li>Can have both abstract and concrete methods</li>
+                          <li>Single inheritance only</li>
+                          <li>Can have constructors, fields, and all access modifiers</li>
+                          <li>Used for related classes with shared implementation</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                        What are default interface methods in C# 8.0+?
+                      </button>
+                    </h2>
+                    <div id="q2" class="accordion-collapse collapse" data-bs-parent="#interfacesQA">
+                      <div class="accordion-body">
+                        <p>C# 8.0 introduced default interface methods:</p>
+                        <ul>
+                          <li>Interfaces can now have default implementations</li>
+                          <li>Allows adding new methods without breaking existing implementations</li>
+                          <li>Can have static methods, private methods, and nested types</li>
+                          <li>Helps with interface evolution and versioning</li>
+                          <li>Default methods can only access other interface members</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+                        What is explicit interface implementation?
+                      </button>
+                    </h2>
+                    <div id="q3" class="accordion-collapse collapse" data-bs-parent="#interfacesQA">
+                      <div class="accordion-body">
+                        <p>Explicit interface implementation is used when:</p>
+                        <ul>
+                          <li>A class implements multiple interfaces with conflicting member names</li>
+                          <li>You want to hide interface members from the class's public API</li>
+                          <li>The method can only be accessed through the interface reference</li>
+                          <li>Syntax: <code>void IInterface.Method() { }</code></li>
+                          <li>Cannot use access modifiers (implicitly private)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              
+              <h5>Basic Interface Implementation</h5>
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+// Basic interface definition
+public interface IDrawable
+{
+    void Draw();
+    void SetColor(string color);
+    string GetInfo();
+}
+
+// Interface with properties
+public interface IMovable
+{
+    int X { get; set; }
+    int Y { get; set; }
+    void MoveTo(int x, int y);
+    void MoveBy(int deltaX, int deltaY);
+}
+
+// Interface with events
+public interface INotifiable
+{
+    event Action<string> OnNotification;
+    void SendNotification(string message);
+}
+
+// Class implementing multiple interfaces
+public class Shape : IDrawable, IMovable, INotifiable
+{
+    private string color = "Black";
+    private int x, y;
+    
+    // IDrawable implementation
+    public void Draw()
+    {
+        Console.WriteLine($"Drawing {GetType().Name} at ({X}, {Y}) in {color}");
+    }
+    
+    public void SetColor(string color)
+    {
+        this.color = color;
+        SendNotification($"Color changed to {color}");
+    }
+    
+    public string GetInfo()
+    {
+        return $"{GetType().Name}: Position=({X}, {Y}), Color={color}";
+    }
+    
+    // IMovable implementation
+    public int X 
+    { 
+        get => x; 
+        set 
+        { 
+            x = value; 
+            SendNotification($"X position changed to {value}");
+        } 
+    }
+    
+    public int Y 
+    { 
+        get => y; 
+        set 
+        { 
+            y = value; 
+            SendNotification($"Y position changed to {value}");
+        } 
+    }
+    
+    public void MoveTo(int x, int y)
+    {
+        X = x;
+        Y = y;
+        SendNotification($"Moved to ({x}, {y})");
+    }
+    
+    public void MoveBy(int deltaX, int deltaY)
+    {
+        X += deltaX;
+        Y += deltaY;
+        SendNotification($"Moved by ({deltaX}, {deltaY})");
+    }
+    
+    // INotifiable implementation
+    public event Action<string> OnNotification;
+    
+    public void SendNotification(string message)
+    {
+        OnNotification?.Invoke($"{GetType().Name}: {message}");
+    }
+}
+
+// Derived classes
+public class Circle : Shape
+{
+    public double Radius { get; set; }
+    
+    public Circle(double radius)
+    {
+        Radius = radius;
+    }
+}
+
+public class Rectangle : Shape
+{
+    public double Width { get; set; }
+    public double Height { get; set; }
+    
+    public Rectangle(double width, double height)
+    {
+        Width = width;
+        Height = height;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Basic Interface Implementation Demo ===");
+        
+        // Create shapes
+        Circle circle = new Circle(5.0);
+        Rectangle rectangle = new Rectangle(10.0, 6.0);
+        
+        // Subscribe to notifications
+        circle.OnNotification += msg => Console.WriteLine($"[NOTIFICATION] {msg}");
+        rectangle.OnNotification += msg => Console.WriteLine($"[NOTIFICATION] {msg}");
+        
+        // Use interface methods
+        List<IDrawable> drawableShapes = new List<IDrawable> { circle, rectangle };
+        List<IMovable> movableShapes = new List<IMovable> { circle, rectangle };
+        
+        // Polymorphic behavior through interfaces
+        foreach (IDrawable shape in drawableShapes)
+        {
+            shape.SetColor("Red");
+            shape.Draw();
+            Console.WriteLine(shape.GetInfo());
+        }
+        
+        Console.WriteLine();
+        
+        foreach (IMovable shape in movableShapes)
+        {
+            shape.MoveTo(10, 20);
+            shape.MoveBy(5, -3);
+        }
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Explicit Interface Implementation</h5>
+              <pre><code class="language-csharp">using System;
+
+// Conflicting interfaces
+public interface IVehicle
+{
+    void Start();
+    void Stop();
+    string GetStatus();
+}
+
+public interface IEngine
+{
+    void Start();
+    void Stop();
+    int GetRPM();
+}
+
+public interface IBattery
+{
+    void Start(); // Start charging
+    void Stop();  // Stop charging
+    int GetChargeLevel();
+}
+
+// Class implementing multiple interfaces with conflicting method names
+public class HybridCar : IVehicle, IEngine, IBattery
+{
+    private bool vehicleRunning = false;
+    private bool engineRunning = false;
+    private bool batteryCharging = false;
+    private int rpm = 0;
+    private int chargeLevel = 80;
+    
+    // Implicit implementation for IVehicle (preferred interface)
+    public void Start()
+    {
+        Console.WriteLine("Starting hybrid car...");
+        vehicleRunning = true;
+        ((IEngine)this).Start(); // Explicitly call engine start
+    }
+    
+    public void Stop()
+    {
+        Console.WriteLine("Stopping hybrid car...");
+        vehicleRunning = false;
+        ((IEngine)this).Stop(); // Explicitly call engine stop
+    }
+    
+    public string GetStatus()
+    {
+        return $"Vehicle Running: {vehicleRunning}, Engine: {engineRunning}, Battery Charging: {batteryCharging}";
+    }
+    
+    // Explicit implementation for IEngine
+    void IEngine.Start()
+    {
+        Console.WriteLine("Starting engine...");
+        engineRunning = true;
+        rpm = 800; // Idle RPM
+    }
+    
+    void IEngine.Stop()
+    {
+        Console.WriteLine("Stopping engine...");
+        engineRunning = false;
+        rpm = 0;
+    }
+    
+    int IEngine.GetRPM()
+    {
+        return rpm;
+    }
+    
+    // Explicit implementation for IBattery
+    void IBattery.Start()
+    {
+        Console.WriteLine("Starting battery charging...");
+        batteryCharging = true;
+    }
+    
+    void IBattery.Stop()
+    {
+        Console.WriteLine("Stopping battery charging...");
+        batteryCharging = false;
+    }
+    
+    int IBattery.GetChargeLevel()
+    {
+        return chargeLevel;
+    }
+    
+    // Public method to demonstrate explicit interface access
+    public void DisplayAllStatus()
+    {
+        Console.WriteLine("\n=== Complete Status ===");
+        Console.WriteLine(GetStatus());
+        Console.WriteLine($"Engine RPM: {((IEngine)this).GetRPM()}");
+        Console.WriteLine($"Battery Charge: {((IBattery)this).GetChargeLevel()}%");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Explicit Interface Implementation Demo ===");
+        
+        HybridCar car = new HybridCar();
+        
+        // Direct method calls use implicit implementation
+        car.Start(); // Calls IVehicle.Start()
+        car.DisplayAllStatus();
+        
+        Console.WriteLine("\n=== Interface-specific operations ===");
+        
+        // Cast to specific interfaces to access explicit implementations
+        IEngine engine = car;
+        IBattery battery = car;
+        
+        engine.Start(); // Explicitly calls IEngine.Start()
+        battery.Start(); // Explicitly calls IBattery.Start()
+        
+        car.DisplayAllStatus();
+        
+        // These calls would not be possible:
+        // car.GetRPM();        // Error: not accessible
+        // car.GetChargeLevel(); // Error: not accessible
+        
+        // But these work:
+        Console.WriteLine($"Direct engine RPM: {engine.GetRPM()}");
+        Console.WriteLine($"Direct battery level: {battery.GetChargeLevel()}");
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Advanced Interface Patterns</h5>
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+
+// Generic interface
+public interface IRepository<T> where T : class
+{
+    void Add(T item);
+    T GetById(int id);
+    IEnumerable<T> GetAll();
+    void Update(T item);
+    void Delete(int id);
+    bool Exists(int id);
+}
+
+// Interface inheritance
+public interface IReadOnlyRepository<T> where T : class
+{
+    T GetById(int id);
+    IEnumerable<T> GetAll();
+    bool Exists(int id);
+}
+
+public interface IWriteOnlyRepository<T> where T : class
+{
+    void Add(T item);
+    void Update(T item);
+    void Delete(int id);
+}
+
+// Full repository inherits from both
+public interface IFullRepository<T> : IReadOnlyRepository<T>, IWriteOnlyRepository<T> where T : class
+{
+    // Additional methods specific to full repository
+    int Count { get; }
+    void Clear();
+}
+
+// Marker interface (no methods)
+public interface IAuditable
+{
+    DateTime CreatedDate { get; }
+    DateTime LastModified { get; }
+}
+
+// Fluent interface pattern
+public interface IQueryBuilder<T>
+{
+    IQueryBuilder<T> Where(Func<T, bool> predicate);
+    IQueryBuilder<T> OrderBy(Func<T, object> keySelector);
+    IQueryBuilder<T> Take(int count);
+    IEnumerable<T> Execute();
+}
+
+// Domain model implementing marker interface
+public class User : IAuditable
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime LastModified { get; set; }
+    
+    public User()
+    {
+        CreatedDate = DateTime.Now;
+        LastModified = DateTime.Now;
+    }
+    
+    public override string ToString() => $"User: {Name} ({Email})";
+}
+
+// Repository implementation
+public class MemoryRepository<T> : IFullRepository<T> where T : class
+{
+    private readonly List<T> items = new List<T>();
+    
+    public int Count => items.Count;
+    
+    public void Add(T item)
+    {
+        items.Add(item);
+        UpdateAuditInfo(item);
+        Console.WriteLine($"Added {typeof(T).Name}");
+    }
+    
+    public T GetById(int id)
+    {
+        // Assume T has an Id property (simplified for demo)
+        return items.FirstOrDefault();
+    }
+    
+    public IEnumerable<T> GetAll()
+    {
+        return items.AsReadOnly();
+    }
+    
+    public void Update(T item)
+    {
+        UpdateAuditInfo(item);
+        Console.WriteLine($"Updated {typeof(T).Name}");
+    }
+    
+    public void Delete(int id)
+    {
+        var item = GetById(id);
+        if (item != null)
+        {
+            items.Remove(item);
+            Console.WriteLine($"Deleted {typeof(T).Name}");
+        }
+    }
+    
+    public bool Exists(int id)
+    {
+        return GetById(id) != null;
+    }
+    
+    public void Clear()
+    {
+        items.Clear();
+        Console.WriteLine($"Cleared all {typeof(T).Name} items");
+    }
+    
+    private void UpdateAuditInfo(T item)
+    {
+        if (item is IAuditable auditable)
+        {
+            // Use reflection or explicit casting to update audit info
+            var auditableItem = item as IAuditable;
+            // In real implementation, you'd update LastModified
+        }
+    }
+}
+
+// Fluent query builder implementation
+public class QueryBuilder<T> : IQueryBuilder<T>
+{
+    private IEnumerable<T> source;
+    private Func<T, bool> whereClause;
+    private Func<T, object> orderByClause;
+    private int? takeCount;
+    
+    public QueryBuilder(IEnumerable<T> source)
+    {
+        this.source = source;
+    }
+    
+    public IQueryBuilder<T> Where(Func<T, bool> predicate)
+    {
+        whereClause = predicate;
+        return this;
+    }
+    
+    public IQueryBuilder<T> OrderBy(Func<T, object> keySelector)
+    {
+        orderByClause = keySelector;
+        return this;
+    }
+    
+    public IQueryBuilder<T> Take(int count)
+    {
+        takeCount = count;
+        return this;
+    }
+    
+    public IEnumerable<T> Execute()
+    {
+        IEnumerable<T> result = source;
+        
+        if (whereClause != null)
+            result = result.Where(whereClause);
+        
+        if (orderByClause != null)
+            result = result.OrderBy(orderByClause);
+        
+        if (takeCount.HasValue)
+            result = result.Take(takeCount.Value);
+        
+        return result;
+    }
+}
+
+// Service using dependency injection through interfaces
+public class UserService
+{
+    private readonly IFullRepository<User> repository;
+    
+    public UserService(IFullRepository<User> repository)
+    {
+        this.repository = repository;
+    }
+    
+    public void CreateUser(string name, string email)
+    {
+        var user = new User { Name = name, Email = email };
+        repository.Add(user);
+    }
+    
+    public IQueryBuilder<User> Query()
+    {
+        return new QueryBuilder<User>(repository.GetAll());
+    }
+    
+    public void DisplayStatistics()
+    {
+        Console.WriteLine($"Total users: {repository.Count}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Advanced Interface Patterns Demo ===");
+        
+        // Dependency injection through interfaces
+        IFullRepository<User> userRepository = new MemoryRepository<User>();
+        var userService = new UserService(userRepository);
+        
+        // Create users
+        userService.CreateUser("Alice Johnson", "alice@example.com");
+        userService.CreateUser("Bob Smith", "bob@example.com");
+        userService.CreateUser("Charlie Brown", "charlie@example.com");
+        
+        userService.DisplayStatistics();
+        
+        Console.WriteLine("\n=== Fluent Interface Query ===");
+        
+        // Use fluent interface for querying
+        var results = userService.Query()
+            .Where(u => u.Name.Contains("e"))
+            .OrderBy(u => u.Name)
+            .Take(2)
+            .Execute();
+        
+        foreach (var user in results)
+        {
+            Console.WriteLine(user);
+        }
+        
+        Console.WriteLine("\n=== Interface Polymorphism ===");
+        
+        // Use different interface views of the same object
+        IReadOnlyRepository<User> readOnlyRepo = userRepository;
+        IWriteOnlyRepository<User> writeOnlyRepo = userRepository;
+        
+        Console.WriteLine($"Read-only access - Users exist: {readOnlyRepo.GetAll().Any()}");
+        
+        writeOnlyRepo.Add(new User { Name = "David Wilson", Email = "david@example.com" });
+        userService.DisplayStatistics();
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Modern Interface Features (C# 8.0+)</h5>
+              <pre><code class="language-csharp">using System;
+
+// Interface with default implementation (C# 8.0+)
+public interface ILogger
+{
+    void Log(string message);
+    
+    // Default implementation
+    void LogError(string message)
+    {
+        Log($"ERROR: {message}");
+    }
+    
+    // Default implementation with timestamp
+    void LogWithTimestamp(string message)
+    {
+        Log($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}");
+    }
+    
+    // Static method in interface (C# 8.0+)
+    static string FormatMessage(string level, string message)
+    {
+        return $"[{level}] {message}";
+    }
+    
+    // Private method in interface (C# 8.0+)
+    private string GetCurrentTime()
+    {
+        return DateTime.Now.ToString("HH:mm:ss");
+    }
+    
+    // Protected interface members are not allowed
+    // protected void ProtectedMethod(); // Compilation error
+}
+
+// Enhanced logger interface
+public interface IAdvancedLogger : ILogger
+{
+    LogLevel MinimumLevel { get; set; }
+    
+    // Override default implementation
+    new void LogError(string message)
+    {
+        if (MinimumLevel <= LogLevel.Error)
+        {
+            Log(ILogger.FormatMessage("ERROR", message));
+        }
+    }
+    
+    void LogWarning(string message)
+    {
+        if (MinimumLevel <= LogLevel.Warning)
+        {
+            Log(ILogger.FormatMessage("WARNING", message));
+        }
+    }
+    
+    void LogInfo(string message)
+    {
+        if (MinimumLevel <= LogLevel.Info)
+        {
+            Log(ILogger.FormatMessage("INFO", message));
+        }
+    }
+}
+
+public enum LogLevel
+{
+    Debug = 0,
+    Info = 1,
+    Warning = 2,
+    Error = 3
+}
+
+// Simple console logger
+public class ConsoleLogger : IAdvancedLogger
+{
+    public LogLevel MinimumLevel { get; set; } = LogLevel.Info;
+    
+    public void Log(string message)
+    {
+        Console.WriteLine(message);
+    }
+    
+    // Inherits default implementations from interfaces
+    // Can optionally override specific methods
+}
+
+// File logger with custom implementation
+public class FileLogger : IAdvancedLogger
+{
+    private readonly string fileName;
+    public LogLevel MinimumLevel { get; set; } = LogLevel.Debug;
+    
+    public FileLogger(string fileName)
+    {
+        this.fileName = fileName;
+    }
+    
+    public void Log(string message)
+    {
+        // Simulate file writing
+        Console.WriteLine($"[FILE: {fileName}] {message}");
+    }
+    
+    // Custom implementation overriding default
+    public void LogError(string message)
+    {
+        if (MinimumLevel <= LogLevel.Error)
+        {
+            Log($"*** CRITICAL ERROR *** {message}");
+        }
+    }
+}
+
+// Interface with nullable reference types (C# 8.0+)
+public interface IDataProcessor
+{
+    string? ProcessData(string? input);
+    bool TryProcessData(string? input, out string? result);
+}
+
+public class DataProcessor : IDataProcessor
+{
+    public string? ProcessData(string? input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return null;
+        
+        return input.ToUpper();
+    }
+    
+    public bool TryProcessData(string? input, out string? result)
+    {
+        result = ProcessData(input);
+        return result != null;
+    }
+}
+
+// Generic interface with constraints
+public interface IConverter<TInput, TOutput> 
+    where TInput : class 
+    where TOutput : new()
+{
+    TOutput Convert(TInput input);
+    bool CanConvert(TInput input);
+    
+    // Default implementation using generics
+    TResult ConvertTo<TResult>(TInput input) where TResult : TOutput, new()
+    {
+        var baseResult = Convert(input);
+        if (baseResult is TResult result)
+            return result;
+        
+        return new TResult();
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Modern Interface Features Demo ===");
+        
+        // Test default interface implementations
+        IAdvancedLogger consoleLogger = new ConsoleLogger();
+        IAdvancedLogger fileLogger = new FileLogger("app.log");
+        
+        IAdvancedLogger[] loggers = { consoleLogger, fileLogger };
+        
+        foreach (var logger in loggers)
+        {
+            Console.WriteLine($"\n=== Testing {logger.GetType().Name} ===");
+            logger.LogInfo("Application started");
+            logger.LogWarning("This is a warning");
+            logger.LogError("This is an error");
+            
+            // Uses default implementation from interface
+            logger.LogWithTimestamp("Message with timestamp");
+        }
+        
+        Console.WriteLine("\n=== Static Interface Methods ===");
+        string formatted = ILogger.FormatMessage("DEBUG", "Static method call");
+        Console.WriteLine(formatted);
+        
+        Console.WriteLine("\n=== Nullable Reference Types ===");
+        IDataProcessor processor = new DataProcessor();
+        
+        string? result1 = processor.ProcessData("hello");
+        string? result2 = processor.ProcessData(null);
+        
+        Console.WriteLine($"Result 1: {result1 ?? "null"}");
+        Console.WriteLine($"Result 2: {result2 ?? "null"}");
+        
+        if (processor.TryProcessData("world", out string? result3))
+        {
+            Console.WriteLine($"Processed successfully: {result3}");
+        }
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-check-circle"></i>
+            </div>
+            <div>
+              <h2>Interface Best Practices</h2>
+              <p class="text-muted mb-0">Guidelines for effective interface design and usage</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="alert alert-info">
+                <h5><i class="bi bi-lightbulb me-2"></i>Best Practices</h5>
+                <ul class="mb-0">
+                  <li><strong>Keep interfaces small and focused</strong> - Interface Segregation Principle</li>
+                  <li><strong>Use meaningful names</strong> - prefix with 'I' by convention</li>
+                  <li><strong>Design for testability</strong> - interfaces enable easy mocking</li>
+                  <li><strong>Prefer composition over inheritance</strong> - use interfaces for contracts</li>
+                  <li><strong>Use generic interfaces</strong> for type safety and reusability</li>
+                  <li><strong>Consider explicit implementation</strong> for conflicting method names</li>
+                  <li><strong>Document interface contracts</strong> clearly in XML comments</li>
+                  <li><strong>Use dependency injection</strong> to depend on interfaces, not implementations</li>
+                </ul>
+              </div>
+
+              <div class="alert alert-warning">
+                <h5><i class="bi bi-exclamation-triangle me-2"></i>Common Pitfalls</h5>
+                <ul class="mb-0">
+                  <li><strong>Fat interfaces</strong> - interfaces that do too much</li>
+                  <li><strong>Inappropriate interface granularity</strong> - too many tiny interfaces</li>
+                  <li><strong>Breaking interface contracts</strong> - changing existing interface signatures</li>
+                  <li><strong>Overusing explicit implementation</strong> - makes code harder to use</li>
+                  <li><strong>Not versioning interfaces</strong> - create new interfaces for breaking changes</li>
+                  <li><strong>Circular dependencies</strong> - interfaces referencing each other</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Polymorphism - C# Learning Hub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-code-square me-2"></i>C# Learning Hub
+        </a>
+        <div class="d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light me-2">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="p-3">
+        <h6 class="text-muted text-uppercase fw-bold mb-3">Related Topics</h6>
+        <nav class="nav flex-column topic-list">
+          <a class="nav-link topic-item" href="index.html#classes">Classes & Objects</a>
+          <a class="nav-link topic-item" href="inheritance.html">Inheritance</a>
+          <a class="nav-link topic-item active" href="polymorphism.html">Polymorphism</a>
+          <a class="nav-link topic-item" href="encapsulation.html">Encapsulation</a>
+          <a class="nav-link topic-item" href="abstraction.html">Abstraction</a>
+          <a class="nav-link topic-item" href="interfaces.html">Interfaces</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="container py-5" style="margin-top: 56px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.html#polymorphism">OOP Concepts</a></li>
+            <li class="breadcrumb-item active">Polymorphism</li>
+          </ol>
+        </nav>
+
+        <!-- Polymorphism Main Section -->
+        <section class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-shuffle"></i>
+            </div>
+            <div>
+              <h1>Polymorphism in C#</h1>
+              <p class="text-muted mb-0">Learn how to use one interface to represent different data types</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><i class="bi bi-info-circle me-2"></i>Theory</h4>
+              <p>
+                <strong>Polymorphism</strong> is the ability of objects of different types to be treated as instances of the same type through a common interface. 
+                The word "polymorphism" comes from Greek, meaning "many forms."
+              </p>
+              
+              <h5>Types of Polymorphism in C#:</h5>
+              <ul>
+                <li><strong>Runtime Polymorphism (Method Overriding):</strong> Using virtual and override keywords</li>
+                <li><strong>Compile-time Polymorphism (Method Overloading):</strong> Multiple methods with same name but different signatures</li>
+                <li><strong>Interface Polymorphism:</strong> Different classes implementing the same interface</li>
+                <li><strong>Generic Polymorphism:</strong> Using generics to work with different types</li>
+              </ul>
+
+              <h5>Benefits of Polymorphism:</h5>
+              <ul>
+                <li><strong>Code Flexibility:</strong> Write code that works with multiple types</li>
+                <li><strong>Extensibility:</strong> Add new types without changing existing code</li>
+                <li><strong>Maintainability:</strong> Reduce code duplication and improve organization</li>
+                <li><strong>Abstraction:</strong> Hide implementation details behind common interfaces</li>
+              </ul>
+
+              <h4 class="mt-4"><i class="bi bi-question-circle me-2"></i>Questions & Answers</h4>
+              <div class="qa-accordion">
+                <div class="accordion" id="polymorphismQA">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                        What's the difference between method overloading and overriding?
+                      </button>
+                    </h2>
+                    <div id="q1" class="accordion-collapse collapse" data-bs-parent="#polymorphismQA">
+                      <div class="accordion-body">
+                        <p><strong>Method Overloading (Compile-time Polymorphism):</strong></p>
+                        <ul>
+                          <li>Multiple methods with same name but different parameters</li>
+                          <li>Resolved at compile time</li>
+                          <li>Within the same class</li>
+                          <li>No inheritance required</li>
+                        </ul>
+                        <p><strong>Method Overriding (Runtime Polymorphism):</strong></p>
+                        <ul>
+                          <li>Child class provides specific implementation of parent's virtual method</li>
+                          <li>Resolved at runtime based on actual object type</li>
+                          <li>Requires inheritance</li>
+                          <li>Uses virtual/override keywords</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                        How does virtual method table (vtable) work?
+                      </button>
+                    </h2>
+                    <div id="q2" class="accordion-collapse collapse" data-bs-parent="#polymorphismQA">
+                      <div class="accordion-body">
+                        <p>The virtual method table (vtable) is a mechanism used to implement dynamic dispatch:</p>
+                        <ul>
+                          <li>Each class with virtual methods has a vtable containing function pointers</li>
+                          <li>Each object instance has a pointer to its class's vtable</li>
+                          <li>When a virtual method is called, the runtime looks up the correct implementation in the vtable</li>
+                          <li>This allows the correct overridden method to be called based on the actual object type</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+                        What is the difference between abstract classes and interfaces for polymorphism?
+                      </button>
+                    </h2>
+                    <div id="q3" class="accordion-collapse collapse" data-bs-parent="#polymorphismQA">
+                      <div class="accordion-body">
+                        <p><strong>Abstract Classes:</strong></p>
+                        <ul>
+                          <li>Can have both abstract and concrete methods</li>
+                          <li>Single inheritance only</li>
+                          <li>Can have constructors, fields, and properties</li>
+                          <li>Use when classes share common implementation</li>
+                        </ul>
+                        <p><strong>Interfaces:</strong></p>
+                        <ul>
+                          <li>All methods are implicitly abstract (until C# 8.0)</li>
+                          <li>Multiple inheritance supported</li>
+                          <li>No constructors or fields</li>
+                          <li>Use when defining contracts for unrelated classes</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="mt-4"><i class="bi bi-code-slash me-2"></i>Example Code</h4>
+              
+              <h5>Runtime Polymorphism (Method Overriding)</h5>
+              <pre><code class="language-csharp">using System;
+
+// Base class with virtual methods
+public abstract class Shape
+{
+    protected string color;
+    
+    public Shape(string color)
+    {
+        this.color = color;
+    }
+    
+    // Virtual method - can be overridden
+    public virtual void Draw()
+    {
+        Console.WriteLine($"Drawing a {color} shape");
+    }
+    
+    // Abstract method - must be overridden
+    public abstract double CalculateArea();
+    
+    // Virtual method with default implementation
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine($"Color: {color}, Area: {CalculateArea():F2}");
+    }
+}
+
+public class Circle : Shape
+{
+    private double radius;
+    
+    public Circle(string color, double radius) : base(color)
+    {
+        this.radius = radius;
+    }
+    
+    public override void Draw()
+    {
+        Console.WriteLine($"Drawing a {color} circle with radius {radius}");
+    }
+    
+    public override double CalculateArea()
+    {
+        return Math.PI * radius * radius;
+    }
+}
+
+public class Rectangle : Shape
+{
+    private double width, height;
+    
+    public Rectangle(string color, double width, double height) : base(color)
+    {
+        this.width = width;
+        this.height = height;
+    }
+    
+    public override void Draw()
+    {
+        Console.WriteLine($"Drawing a {color} rectangle {width}x{height}");
+    }
+    
+    public override double CalculateArea()
+    {
+        return width * height;
+    }
+    
+    // Override virtual method with additional functionality
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo(); // Call base implementation
+        Console.WriteLine($"Dimensions: {width} x {height}");
+    }
+}
+
+public class Triangle : Shape
+{
+    private double baseLength, height;
+    
+    public Triangle(string color, double baseLength, double height) : base(color)
+    {
+        this.baseLength = baseLength;
+        this.height = height;
+    }
+    
+    public override void Draw()
+    {
+        Console.WriteLine($"Drawing a {color} triangle");
+    }
+    
+    public override double CalculateArea()
+    {
+        return 0.5 * baseLength * height;
+    }
+}
+
+// Demonstration of polymorphism
+class Program
+{
+    static void Main()
+    {
+        // Create array of different shapes (polymorphic collection)
+        Shape[] shapes = {
+            new Circle("red", 5.0),
+            new Rectangle("blue", 4.0, 6.0),
+            new Triangle("green", 3.0, 4.0),
+            new Circle("yellow", 3.0)
+        };
+        
+        Console.WriteLine("=== Polymorphic behavior ===");
+        
+        // Process all shapes polymorphically
+        foreach (Shape shape in shapes)
+        {
+            shape.Draw();           // Calls appropriate overridden method
+            shape.DisplayInfo();    // Calls appropriate method
+            Console.WriteLine();
+        }
+        
+        // Calculate total area
+        double totalArea = 0;
+        foreach (Shape shape in shapes)
+        {
+            totalArea += shape.CalculateArea(); // Polymorphic method call
+        }
+        
+        Console.WriteLine($"Total area of all shapes: {totalArea:F2}");
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Compile-time Polymorphism (Method Overloading)</h5>
+              <pre><code class="language-csharp">using System;
+
+public class Calculator
+{
+    // Method overloading - same name, different parameters
+    
+    // Add two integers
+    public int Add(int a, int b)
+    {
+        Console.WriteLine("Adding two integers");
+        return a + b;
+    }
+    
+    // Add three integers
+    public int Add(int a, int b, int c)
+    {
+        Console.WriteLine("Adding three integers");
+        return a + b + c;
+    }
+    
+    // Add two doubles
+    public double Add(double a, double b)
+    {
+        Console.WriteLine("Adding two doubles");
+        return a + b;
+    }
+    
+    // Add two strings (concatenation)
+    public string Add(string a, string b)
+    {
+        Console.WriteLine("Concatenating two strings");
+        return a + b;
+    }
+    
+    // Add array of integers
+    public int Add(params int[] numbers)
+    {
+        Console.WriteLine($"Adding array of {numbers.Length} integers");
+        int sum = 0;
+        foreach (int num in numbers)
+        {
+            sum += num;
+        }
+        return sum;
+    }
+    
+    // Different return type is NOT enough for overloading
+    // This would cause compilation error:
+    // public string Add(int a, int b) { return (a + b).ToString(); }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Calculator calc = new Calculator();
+        
+        Console.WriteLine("=== Method Overloading Examples ===");
+        
+        // Compiler determines which method to call based on arguments
+        Console.WriteLine($"Result: {calc.Add(5, 3)}");                    // int Add(int, int)
+        Console.WriteLine($"Result: {calc.Add(5, 3, 2)}");                // int Add(int, int, int)
+        Console.WriteLine($"Result: {calc.Add(5.5, 3.2)}");               // double Add(double, double)
+        Console.WriteLine($"Result: {calc.Add("Hello", " World")}");       // string Add(string, string)
+        Console.WriteLine($"Result: {calc.Add(1, 2, 3, 4, 5)}");         // int Add(params int[])
+    }
+}</code></pre>
+
+              <h5 class="mt-4">Interface Polymorphism</h5>
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+// Common interface for different payment methods
+public interface IPaymentProcessor
+{
+    bool ProcessPayment(decimal amount);
+    string GetPaymentMethod();
+    bool ValidatePayment(decimal amount);
+}
+
+// Different implementations of the payment interface
+public class CreditCardProcessor : IPaymentProcessor
+{
+    private string cardNumber;
+    private decimal creditLimit;
+    
+    public CreditCardProcessor(string cardNumber, decimal creditLimit)
+    {
+        this.cardNumber = cardNumber;
+        this.creditLimit = creditLimit;
+    }
+    
+    public bool ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing credit card payment of ${amount}");
+        Console.WriteLine($"Card: ****{cardNumber.Substring(cardNumber.Length - 4)}");
+        return true;
+    }
+    
+    public string GetPaymentMethod()
+    {
+        return "Credit Card";
+    }
+    
+    public bool ValidatePayment(decimal amount)
+    {
+        return amount <= creditLimit && amount > 0;
+    }
+}
+
+public class PayPalProcessor : IPaymentProcessor
+{
+    private string email;
+    private decimal balance;
+    
+    public PayPalProcessor(string email, decimal balance)
+    {
+        this.email = email;
+        this.balance = balance;
+    }
+    
+    public bool ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing PayPal payment of ${amount}");
+        Console.WriteLine($"Account: {email}");
+        balance -= amount;
+        return true;
+    }
+    
+    public string GetPaymentMethod()
+    {
+        return "PayPal";
+    }
+    
+    public bool ValidatePayment(decimal amount)
+    {
+        return amount <= balance && amount > 0;
+    }
+}
+
+public class BankTransferProcessor : IPaymentProcessor
+{
+    private string accountNumber;
+    private string routingNumber;
+    
+    public BankTransferProcessor(string accountNumber, string routingNumber)
+    {
+        this.accountNumber = accountNumber;
+        this.routingNumber = routingNumber;
+    }
+    
+    public bool ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing bank transfer of ${amount}");
+        Console.WriteLine($"To account: ****{accountNumber.Substring(accountNumber.Length - 4)}");
+        return true;
+    }
+    
+    public string GetPaymentMethod()
+    {
+        return "Bank Transfer";
+    }
+    
+    public bool ValidatePayment(decimal amount)
+    {
+        return amount > 0 && amount <= 10000; // Daily limit
+    }
+}
+
+// Payment processor that works with any IPaymentProcessor
+public class PaymentService
+{
+    public bool ProcessOrder(IPaymentProcessor processor, decimal amount)
+    {
+        Console.WriteLine($"\n=== Processing payment via {processor.GetPaymentMethod()} ===");
+        
+        if (!processor.ValidatePayment(amount))
+        {
+            Console.WriteLine("Payment validation failed!");
+            return false;
+        }
+        
+        bool result = processor.ProcessPayment(amount);
+        
+        if (result)
+        {
+            Console.WriteLine("Payment processed successfully!");
+        }
+        else
+        {
+            Console.WriteLine("Payment processing failed!");
+        }
+        
+        return result;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Create different payment processors
+        List<IPaymentProcessor> paymentMethods = new List<IPaymentProcessor>
+        {
+            new CreditCardProcessor("1234567890123456", 5000m),
+            new PayPalProcessor("user@example.com", 1000m),
+            new BankTransferProcessor("9876543210", "123456789")
+        };
+        
+        PaymentService paymentService = new PaymentService();
+        decimal orderAmount = 299.99m;
+        
+        Console.WriteLine("=== Interface Polymorphism Demo ===");
+        
+        // Process payment using different methods polymorphically
+        foreach (IPaymentProcessor processor in paymentMethods)
+        {
+            paymentService.ProcessOrder(processor, orderAmount);
+        }
+        
+        Console.WriteLine("\n=== Dynamic payment method selection ===");
+        
+        // Select payment method at runtime
+        IPaymentProcessor selectedProcessor = paymentMethods[1]; // PayPal
+        paymentService.ProcessOrder(selectedProcessor, 150.00m);
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advanced Polymorphism Section -->
+        <section class="content-section">
+          <div class="section-header examples">
+            <div class="section-icon">
+              <i class="bi bi-gear-wide-connected"></i>
+            </div>
+            <div>
+              <h2>Advanced Polymorphism Concepts</h2>
+              <p class="text-muted mb-0">Generic polymorphism and covariance/contravariance</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h5>Generic Polymorphism</h5>
+              <pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+// Generic interface for data repositories
+public interface IRepository<T> where T : class
+{
+    void Add(T item);
+    T GetById(int id);
+    IEnumerable<T> GetAll();
+    void Update(T item);
+    void Delete(int id);
+}
+
+// Generic base repository with common functionality
+public abstract class BaseRepository<T> : IRepository<T> where T : class
+{
+    protected List<T> items = new List<T>();
+    
+    public virtual void Add(T item)
+    {
+        items.Add(item);
+        Console.WriteLine($"Added {typeof(T).Name}");
+    }
+    
+    public abstract T GetById(int id);
+    
+    public virtual IEnumerable<T> GetAll()
+    {
+        return items;
+    }
+    
+    public abstract void Update(T item);
+    
+    public virtual void Delete(int id)
+    {
+        var item = GetById(id);
+        if (item != null)
+        {
+            items.Remove(item);
+            Console.WriteLine($"Deleted {typeof(T).Name}");
+        }
+    }
+}
+
+// Domain models
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+    
+    public override string ToString() => $"User: {Name} ({Email})";
+}
+
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    
+    public override string ToString() => $"Product: {Name} (${Price})";
+}
+
+// Specific repository implementations
+public class UserRepository : BaseRepository<User>
+{
+    public override User GetById(int id)
+    {
+        return items.FirstOrDefault(u => u.Id == id);
+    }
+    
+    public override void Update(User item)
+    {
+        var existing = GetById(item.Id);
+        if (existing != null)
+        {
+            existing.Name = item.Name;
+            existing.Email = item.Email;
+            Console.WriteLine($"Updated user {item.Name}");
+        }
+    }
+}
+
+public class ProductRepository : BaseRepository<Product>
+{
+    public override Product GetById(int id)
+    {
+        return items.FirstOrDefault(p => p.Id == id);
+    }
+    
+    public override void Update(Product item)
+    {
+        var existing = GetById(item.Id);
+        if (existing != null)
+        {
+            existing.Name = item.Name;
+            existing.Price = item.Price;
+            Console.WriteLine($"Updated product {item.Name}");
+        }
+    }
+}
+
+// Generic service that works with any repository
+public class DataService<T> where T : class
+{
+    private readonly IRepository<T> repository;
+    
+    public DataService(IRepository<T> repository)
+    {
+        this.repository = repository;
+    }
+    
+    public void AddItem(T item)
+    {
+        repository.Add(item);
+    }
+    
+    public void DisplayAll()
+    {
+        Console.WriteLine($"\n=== All {typeof(T).Name}s ===");
+        foreach (var item in repository.GetAll())
+        {
+            Console.WriteLine(item);
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Generic Polymorphism Demo ===");
+        
+        // Create repositories
+        var userRepo = new UserRepository();
+        var productRepo = new ProductRepository();
+        
+        // Create services using generic polymorphism
+        var userService = new DataService<User>(userRepo);
+        var productService = new DataService<Product>(productRepo);
+        
+        // Add users
+        userService.AddItem(new User { Id = 1, Name = "John Doe", Email = "john@example.com" });
+        userService.AddItem(new User { Id = 2, Name = "Jane Smith", Email = "jane@example.com" });
+        
+        // Add products
+        productService.AddItem(new Product { Id = 1, Name = "Laptop", Price = 999.99m });
+        productService.AddItem(new Product { Id = 2, Name = "Mouse", Price = 29.99m });
+        
+        // Display all using generic service
+        userService.DisplayAll();
+        productService.DisplayAll();
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section class="content-section">
+          <div class="section-header theory">
+            <div class="section-icon">
+              <i class="bi bi-check-circle"></i>
+            </div>
+            <div>
+              <h2>Polymorphism Best Practices</h2>
+              <p class="text-muted mb-0">Guidelines for effective use of polymorphism</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="alert alert-info">
+                <h5><i class="bi bi-lightbulb me-2"></i>Best Practices</h5>
+                <ul class="mb-0">
+                  <li><strong>Use interfaces for contracts</strong> when classes don't share implementation</li>
+                  <li><strong>Use abstract classes for shared implementation</strong> with common behavior</li>
+                  <li><strong>Prefer composition over inheritance</strong> when possible</li>
+                  <li><strong>Keep virtual methods focused</strong> - make them do one thing well</li>
+                  <li><strong>Use sealed keyword</strong> to prevent further overriding when appropriate</li>
+                  <li><strong>Follow Liskov Substitution Principle</strong> - derived classes should be substitutable</li>
+                  <li><strong>Consider performance</strong> - virtual method calls have slight overhead</li>
+                  <li><strong>Use generics for type-safe polymorphism</strong> without boxing</li>
+                </ul>
+              </div>
+
+              <div class="alert alert-warning">
+                <h5><i class="bi bi-exclamation-triangle me-2"></i>Common Pitfalls</h5>
+                <ul class="mb-0">
+                  <li><strong>Overusing virtual methods</strong> - not every method needs to be virtual</li>
+                  <li><strong>Breaking contracts</strong> - overridden methods should honor base class contracts</li>
+                  <li><strong>Performance overhead</strong> - excessive virtual calls can impact performance</li>
+                  <li><strong>Complex inheritance hierarchies</strong> - keep inheritance trees shallow</li>
+                  <li><strong>Interface segregation violation</strong> - keep interfaces focused and specific</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-0">
+          &copy; 2024 C# Learning Hub. Built for aspiring developers.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
